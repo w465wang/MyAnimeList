@@ -15,12 +15,9 @@ class SearchViewController: UITableViewController {
     
     var userSearch: String?
     var searchResults: [AnimeResult]?
-    var searchSource: [AnimeResult]?
     
     var searchManager = SearchManager()
     var animeID = ""
-    var limit = 10
-    let spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +28,7 @@ class SearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchSource?.count ?? 1
+        return searchResults?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,40 +42,6 @@ class SearchViewController: UITableViewController {
         }
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if searchResults != nil && searchSource != nil {
-            if indexPath.row == searchResults!.count - 1 {
-                spinner.stopAnimating()
-            } else if indexPath.row == searchSource!.count - 1 {
-                if searchSource!.count < searchResults!.count {
-                    var index = searchSource!.count
-                    limit = index + 10
-                    
-                    if limit > searchResults!.count {
-                        limit = searchResults!.count
-                    }
-                    
-                    while index < limit {
-                        searchSource!.append(searchResults![index])
-                        index += 1
-                    }
-                    
-                    self.perform(#selector(loadTable), with: nil, afterDelay: 0.5)
-                }
-            }
-        }
-    }
-    
-    @objc func loadTable() {
-        spinner.startAnimating()
-        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-
-        self.tableView.tableFooterView = spinner
-        self.tableView.tableFooterView?.isHidden = false
-        
-        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -103,13 +66,6 @@ extension SearchViewController: SearchManagerDelegate {
     func didUpdateSearch(_ searchManager: SearchManager, _ search: SearchModel) {
         self.removeSpinner()
         searchResults = search.animeSearchResults
-
-        if searchResults!.isEmpty == false {
-            searchSource = []
-            for i in 0...min(9, searchResults!.count - 1) {
-                searchSource?.append(searchResults![i])
-            }
-        }
         
         DispatchQueue.main.async {
             self.tableView.reloadData()

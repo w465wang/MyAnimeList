@@ -32,7 +32,7 @@ class StatViewController: UITableViewController {
         if section == 0 {
             return "Summary"
         } else if section == 1 {
-            return "Scores"
+            return "Score Distribution"
         } else {
             return "Recent User Updates"
         }

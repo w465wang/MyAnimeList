@@ -12,12 +12,9 @@ class ReviewViewController: UITableViewController {
     
     @IBOutlet var reviewTable: UITableView!
     var reviews: [Review]?
-    var reviewSource: [Review]?
     
     var animeManager = AnimeManager()
     var animeID = ""
-    var limit = 5
-    let spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +25,11 @@ class ReviewViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reviewSource?.count ?? 1
+        if reviews != nil && reviews!.count == 0 {
+            return 1
+        }
+        
+        return reviews?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -37,7 +38,7 @@ class ReviewViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ReviewCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.review, for: indexPath) as! ReviewCell
-        
+
         if reviews != nil {
             if reviews!.isEmpty == false {
                 cell.reviewImage.kf.setImage(with: URL(string: reviews![indexPath.row].reviewer.image_url), for: .normal)
@@ -58,40 +59,6 @@ class ReviewViewController: UITableViewController {
         }
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if reviews != nil && reviewSource != nil {
-            if indexPath.row == reviews!.count - 1 {
-                spinner.stopAnimating()
-            } else if indexPath.row == reviewSource!.count - 1 {
-                if reviewSource!.count < reviews!.count {
-                    var index = reviewSource!.count
-                    limit = index + 5
-                    
-                    if limit > reviews!.count {
-                        limit = reviews!.count
-                    }
-                    
-                    while index < limit {
-                        reviewSource!.append(reviews![index])
-                        index += 1
-                    }
-                    
-                    self.perform(#selector(loadTable), with: nil, afterDelay: 0.5)
-                }
-            }
-        }
-    }
-    
-    @objc func loadTable() {
-        spinner.startAnimating()
-        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-        
-        self.tableView.tableFooterView = spinner
-        self.tableView.tableFooterView?.isHidden = false
-        
-        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -131,13 +98,6 @@ extension ReviewViewController: AnimeManagerDelegate {
     func didUpdateAnimeReview(_ animeManager: AnimeManager, _ anime: AnimeReviewModel) {
         self.removeSpinner()
         reviews = anime.animeReviews
-        
-        if reviews!.isEmpty == false {
-            reviewSource = []
-            for i in 0...min(4, reviews!.count - 1) {
-                reviewSource?.append(reviews![i])
-            }
-        }
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
