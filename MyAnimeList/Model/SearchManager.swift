@@ -19,6 +19,7 @@ struct SearchManager {
     
     func fetchSearch(_ searchType: String, _ searchQ: String) {
         let urlString = "\(searchURL)/\(searchType)?q=\(searchQ.replacingOccurrences(of: " ", with: "%20"))"
+        print(urlString)
         performRequest(with: urlString)
     }
     

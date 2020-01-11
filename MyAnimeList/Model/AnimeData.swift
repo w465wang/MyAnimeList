@@ -62,6 +62,22 @@ struct Score: Codable {
     let percentage: Double
 }
 
+// MARK: - User Updates
+
+struct AnimeUserData: Codable {
+    let users: [User]
+}
+
+struct User: Codable {
+    let username: String
+    let image_url: String
+    let score: Int?
+    let status: String
+    let episodes_seen: Int?
+    let episodes_total: Int?
+    let date: String
+}
+
 // MARK: - Reviews
 
 struct AnimeReviewData: Codable {

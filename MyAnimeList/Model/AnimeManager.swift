@@ -12,6 +12,7 @@ protocol AnimeManagerDelegate {
     func didUpdateAnime(_ animeManager: AnimeManager, _ anime: AnimeModel)
     func didUpdateAnimeCharacterStaff(_ animeManager: AnimeManager, _ anime: AnimeCharacterModel)
     func didUpdateAnimeStat(_ animeManager: AnimeManager, _ anime: AnimeStatModel)
+    func didUpdateAnimeUser(_ animeManager: AnimeManager, _ anime: AnimeUserModel)
     func didUpdateAnimeReview(_ animeManager: AnimeManager, _ anime: AnimeReviewModel)
     func didFailWithError(_ error: Error)
 }
@@ -22,6 +23,7 @@ struct AnimeManager {
     
     func fetchAnime(_ animeID: String, _ animeRequest: String) {
         let urlString = "\(animeURL)/\(animeID)/\(animeRequest)"
+        print(urlString)
         performRequest(with: urlString, and: animeRequest)
     }
     
@@ -47,6 +49,10 @@ struct AnimeManager {
                     } else if request == K.Requests.stats {
                         if let anime = self.parseJSONStat(safeData) {
                             self.delegate?.didUpdateAnimeStat(self, anime)
+                        }
+                    } else if request == K.Requests.userupdates {
+                        if let anime = self.parseJSONUser(safeData) {
+                            self.delegate?.didUpdateAnimeUser(self, anime)
                         }
                     } else if request == K.Requests.reviews {
                         if let anime = self.parseJSONReview(safeData) {
@@ -142,6 +148,20 @@ struct AnimeManager {
         do {
             let decodedData = try decoder.decode(AnimeStatData.self, from: animeData)
             let anime = AnimeStatModel(animeWatching: String(decodedData.watching), animeCompleted: String(decodedData.completed), animeOnHold: String(decodedData.on_hold), animeDropped: String(decodedData.dropped), animePlanToWatch: String(decodedData.plan_to_watch), animeTotal: String(decodedData.total), animeScores: decodedData.scores)
+
+            return anime
+        } catch {
+            delegate?.didFailWithError(error)
+            return nil
+        }
+    }
+    
+    func parseJSONUser(_ animeData: Data) -> AnimeUserModel? {
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(AnimeUserData.self, from: animeData)
+            let anime = AnimeUserModel(animeUsers: decodedData.users)
 
             return anime
         } catch {

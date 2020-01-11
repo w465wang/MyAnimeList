@@ -50,6 +50,14 @@ class StatCell: UITableViewCell {
     @IBOutlet weak var statLabel: UILabel!
 }
 
+class UserCell: UITableViewCell {
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var userScore: UILabel!
+    @IBOutlet weak var userStatus: UILabel!
+    @IBOutlet weak var userEpsSeen: UILabel!
+}
+
 class ReviewCell: UITableViewCell {
     @IBOutlet weak var reviewImage: UIButton!
     @IBOutlet weak var reviewUsername: UILabel!

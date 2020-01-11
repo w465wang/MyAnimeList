@@ -30,6 +30,7 @@ struct K {
         static let animeReviews = "animeReviewsCell"
         static let character = "characterCell"
         static let stat = "statCell"
+        static let user = "userCell"
         static let review = "reviewCell"
         static let characterImage = "characterImageCell"
         static let characterAbout = "characterAboutCell"

@@ -124,6 +124,10 @@ extension ReviewViewController: AnimeManagerDelegate {
         print("Not looking for stats.")
     }
     
+    func didUpdateAnimeUser(_ animeManager: AnimeManager, _ anime: AnimeUserModel) {
+        print("Not looking for user updates.")
+    }
+    
     func didUpdateAnimeReview(_ animeManager: AnimeManager, _ anime: AnimeReviewModel) {
         self.removeSpinner()
         reviews = anime.animeReviews

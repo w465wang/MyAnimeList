@@ -44,6 +44,12 @@ struct AnimeStatModel {
     let animeScores: [String: Score]
 }
 
+// MARK: - User Updates
+
+struct AnimeUserModel {
+    let animeUsers: [User]
+}
+
 // MARK: - Reviews
 
 struct AnimeReviewModel {
