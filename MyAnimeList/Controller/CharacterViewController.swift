@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CharacterViewController: UITableViewController {
     
@@ -19,7 +20,6 @@ class CharacterViewController: UITableViewController {
         super.viewDidLoad()
         
         characterManager.delegate = self
-        
         characterManager.fetchCharacter(characterID, K.Requests.null)
         self.showSpinner(onView: self.view)
     }
@@ -38,7 +38,9 @@ class CharacterViewController: UITableViewController {
             if indexPath.row == 0 {
                 let cell0: CharacterImageCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterImage, for: indexPath) as! CharacterImageCell
                 
-                cell0.characterImage.kf.setImage(with: URL(string: characterInfo.characterImageURL))
+                cell0.characterImage.kf.setImage(with: URL(string: characterInfo.characterImageURL), for: .normal)
+                cell0.characterImage.imageView?.contentMode = .scaleAspectFit
+                
                 cell0.characterName.text = characterInfo.characterName
                 cell0.characterKanji.text = characterInfo.characterKanji
                 cell0.characterFavorite.text = "Member Favourites: \(characterInfo.characterFavorites)"
@@ -48,13 +50,19 @@ class CharacterViewController: UITableViewController {
                 let cell1: CharacterAboutCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterAbout, for: indexPath) as! CharacterAboutCell
                 
                 var nicknames = "Nicknames:"
-                for name in characterInfo.characterNicknames {
-                    nicknames.append(" \(name),")
+                if characterInfo.characterNicknames.count > 0 {
+                    for name in characterInfo.characterNicknames {
+                        nicknames.append(" \(name),")
+                    }
+                    
+                    nicknames.remove(at: nicknames.index(before: nicknames.endIndex))
+                    nicknames.append("\n")
+                } else {
+                    nicknames = ""
                 }
-                nicknames.remove(at: nicknames.index(before: nicknames.endIndex))
                 
                 cell1.title.text = "About"
-                cell1.characterAbout.text = "\(nicknames)\n\(characterInfo.characterAbout)"
+                cell1.characterAbout.text = "\(nicknames)\(characterInfo.characterAbout)"
                 
                 return cell1
             } else if indexPath.row == 2 {
@@ -87,12 +95,27 @@ class CharacterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    @IBAction func characterImagePressed(_ sender: UIButton) {
+        performSegue(withIdentifier: K.Segues.characterPicture, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.Segues.characterAnime {
+            let destinationVC = segue.destination as! AnimeTableViewController
+            destinationVC.animeID = animeID
+        } else if segue.identifier == K.Segues.characterPicture {
+            let destinationVC = segue.destination as! PictureViewController
+            destinationVC.type = "character"
+            destinationVC.id = characterID
+        }
+    }
 }
 
 // MARK: - CharacterManagerDelegate
 
 extension CharacterViewController: CharacterManagerDelegate {
-    func didUpdateSearch(_ characterManager: CharacterManager, _ character: CharacterModel) {
+    func didUpdateCharacter(_ characterManager: CharacterManager, _ character: CharacterModel) {
         characterInfo = CharacterModel(characterName: character.characterName, characterKanji: character.characterKanji, characterNicknames: character.characterNicknames, characterAbout: character.characterAbout, characterFavorites: character.characterFavorites, characterImageURL: character.characterImageURL, characterAnimeography: character.characterAnimeography, characterMangaography: character.characterMangaography, characterVoiceActors: character.characterVoiceActors)
         
         DispatchQueue.main.async {
@@ -100,12 +123,16 @@ extension CharacterViewController: CharacterManagerDelegate {
         }
     }
     
+    func didUpdateCharacterPicture(_ characterManager: CharacterManager, _ picture: PictureModel) {
+        print("Not looking for pictures.")
+    }
+    
     func didFailWithError(_ error: Error) {
         print(error)
     }
 }
 
-// MARK: - UICollectionViewDelegate/DataSource
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
 extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -150,13 +177,6 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDat
         if collectionView.tag == 2 {
             animeID = String(characterInfo.characterAnimeography[indexPath.row].mal_id)
             performSegue(withIdentifier: K.Segues.characterAnime, sender: self)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.Segues.characterAnime {
-            let destinationVC = segue.destination as! AnimeTableViewController
-            destinationVC.animeID = animeID
         }
     }
 }

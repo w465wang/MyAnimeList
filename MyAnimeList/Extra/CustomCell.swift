@@ -14,7 +14,7 @@ class SearchCell: UITableViewCell {
 }
 
 class AnimeImageCell: UITableViewCell {
-    @IBOutlet weak var animeImage: UIImageView!
+    @IBOutlet weak var animeImage: UIButton!
     @IBOutlet weak var animeTitle: UILabel!
     @IBOutlet weak var animeTypePremiered: UILabel!
     @IBOutlet weak var animeEpisodes: UILabel!
@@ -68,7 +68,7 @@ class ReviewCell: UITableViewCell {
 }
 
 class CharacterImageCell: UITableViewCell {
-    @IBOutlet weak var characterImage: UIImageView!
+    @IBOutlet weak var characterImage: UIButton!
     @IBOutlet weak var characterName: UILabel!
     @IBOutlet weak var characterKanji: UILabel!
     @IBOutlet weak var characterFavorite: UILabel!

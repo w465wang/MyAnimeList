@@ -40,7 +40,9 @@ class AnimeTableViewController: UITableViewController {
             if indexPath.row == 0 {
                 let cell0: AnimeImageCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.animeImage, for: indexPath) as! AnimeImageCell
                 
-                cell0.animeImage.kf.setImage(with: URL(string: animeInfo.animeImageURL))
+                cell0.animeImage.kf.setImage(with: URL(string: animeInfo.animeImageURL), for: .normal)
+                cell0.animeImage.imageView?.contentMode = .scaleAspectFit
+                
                 cell0.animeTitle.text = animeInfo.animeTitle
                 if Int(animeInfo.animeEpisodes) == 1 {
                     cell0.animeEpisodes.text = "\(animeInfo.animeEpisodes) Episode"
@@ -108,6 +110,10 @@ class AnimeTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    @IBAction func animeImagePressed(_ sender: UIButton) {
+        performSegue(withIdentifier: K.Segues.animePicture, sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segues.characterList {
             let destinationVC = segue.destination as! CharacterStaffViewController
@@ -118,6 +124,10 @@ class AnimeTableViewController: UITableViewController {
         } else if segue.identifier == K.Segues.review {
             let destinationVC = segue.destination as! ReviewViewController
             destinationVC.animeID = animeID
+        } else if segue.identifier == K.Segues.animePicture {
+            let destinationVC = segue.destination as! PictureViewController
+            destinationVC.type = "anime"
+            destinationVC.id = animeID
         }
     }
 }

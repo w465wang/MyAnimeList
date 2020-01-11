@@ -12,6 +12,9 @@
 		3422B56B23C7E4BE00E01D1A /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422B56A23C7E4BE00E01D1A /* CharacterModel.swift */; };
 		3422B56D23C7E58C00E01D1A /* CharacterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422B56C23C7E58C00E01D1A /* CharacterManager.swift */; };
 		344EDE2A23C935C30084E96D /* StatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EDE2923C935C30084E96D /* StatViewController.swift */; };
+		344EDE2C23CA66460084E96D /* PictureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EDE2B23CA66460084E96D /* PictureData.swift */; };
+		344EDE2E23CA66660084E96D /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EDE2D23CA66660084E96D /* PictureModel.swift */; };
+		344EDE3223CA6D260084E96D /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EDE3123CA6D260084E96D /* PictureViewController.swift */; };
 		3497E51723C1836900E65C9E /* CharacterStaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497E51623C1836900E65C9E /* CharacterStaffViewController.swift */; };
 		3497E52323C28B4D00E65C9E /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497E52223C28B4D00E65C9E /* SearchModel.swift */; };
 		3497E52523C3DBE600E65C9E /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497E52423C3DBE600E65C9E /* CustomCell.swift */; };
@@ -42,6 +45,9 @@
 		3422B56A23C7E4BE00E01D1A /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		3422B56C23C7E58C00E01D1A /* CharacterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterManager.swift; sourceTree = "<group>"; };
 		344EDE2923C935C30084E96D /* StatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatViewController.swift; sourceTree = "<group>"; };
+		344EDE2B23CA66460084E96D /* PictureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureData.swift; sourceTree = "<group>"; };
+		344EDE2D23CA66660084E96D /* PictureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureModel.swift; sourceTree = "<group>"; };
+		344EDE3123CA6D260084E96D /* PictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		3497E51623C1836900E65C9E /* CharacterStaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterStaffViewController.swift; sourceTree = "<group>"; };
 		3497E52223C28B4D00E65C9E /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		3497E52423C3DBE600E65C9E /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
@@ -138,6 +144,7 @@
 				344EDE2923C935C30084E96D /* StatViewController.swift */,
 				3497E52623C3DD2F00E65C9E /* ReviewViewController.swift */,
 				3422B56823C7DEB800E01D1A /* CharacterViewController.swift */,
+				344EDE3123CA6D260084E96D /* PictureViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -162,6 +169,8 @@
 				3422B56C23C7E58C00E01D1A /* CharacterManager.swift */,
 				3422B56623C7D94400E01D1A /* CharacterData.swift */,
 				3422B56A23C7E4BE00E01D1A /* CharacterModel.swift */,
+				344EDE2B23CA66460084E96D /* PictureData.swift */,
+				344EDE2D23CA66660084E96D /* PictureModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -307,7 +316,9 @@
 				34B1014523BEF98600D2C63E /* AnimeViewController.swift in Sources */,
 				344EDE2A23C935C30084E96D /* StatViewController.swift in Sources */,
 				34B1014923BF92BC00D2C63E /* SearchData.swift in Sources */,
+				344EDE3223CA6D260084E96D /* PictureViewController.swift in Sources */,
 				34B1014D23BF9A3C00D2C63E /* HomeViewController.swift in Sources */,
+				344EDE2C23CA66460084E96D /* PictureData.swift in Sources */,
 				34B38B3F23BE831500925B6F /* AnimeManager.swift in Sources */,
 				34B38B3D23BE82F700925B6F /* AnimeModel.swift in Sources */,
 				3422B56723C7D94400E01D1A /* CharacterData.swift in Sources */,
@@ -315,6 +326,7 @@
 				3422B56D23C7E58C00E01D1A /* CharacterManager.swift in Sources */,
 				3497E52323C28B4D00E65C9E /* SearchModel.swift in Sources */,
 				34B38B3B23BE816800925B6F /* AnimeData.swift in Sources */,
+				344EDE2E23CA66660084E96D /* PictureModel.swift in Sources */,
 				3497E52A23C4E44C00E65C9E /* HTMLtoString.swift in Sources */,
 				3497E52523C3DBE600E65C9E /* CustomCell.swift in Sources */,
 				3422B56923C7DEB800E01D1A /* CharacterViewController.swift in Sources */,

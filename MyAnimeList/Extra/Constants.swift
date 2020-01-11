@@ -13,10 +13,12 @@ struct K {
     struct Segues {
         static let search = "homeToSearch"
         static let selection = "searchToAnime"
+        static let animePicture = "animeToPictures"
         static let characterList = "animeToCharacters"
         static let stat = "animeToStats"
         static let review = "animeToReviews"
         static let characterMain = "charactersToCharacter"
+        static let characterPicture = "characterToPictures"
         static let characterAnime = "characterToAnime"
     }
     
