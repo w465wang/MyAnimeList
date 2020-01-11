@@ -44,7 +44,7 @@ class StatViewController: UITableViewController {
         } else if section == 1 {
             return 10
         } else {
-            if userInfo != nil {
+            if userInfo != nil && userInfo!.count > 0 {
                 return 20
             } else {
                 return 1
@@ -113,30 +113,34 @@ class StatViewController: UITableViewController {
             let cell2: UserCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.user, for: indexPath) as! UserCell
             
             if userInfo != nil {
-                var score: String
-                if userInfo![indexPath.row].score != nil {
-                    score = String(userInfo![indexPath.row].score!)
+                if userInfo!.count > 0 {
+                    var score: String
+                    if userInfo![indexPath.row].score != nil {
+                        score = String(userInfo![indexPath.row].score!)
+                    } else {
+                        score = "-"
+                    }
+                    var seen: String
+                    if userInfo![indexPath.row].episodes_seen != nil {
+                        seen = String(userInfo![indexPath.row].episodes_seen!)
+                    } else {
+                        seen = "-"
+                    }
+                    var total: String
+                    if userInfo![indexPath.row].episodes_total != nil {
+                        total = String(userInfo![indexPath.row].episodes_total!)
+                    } else {
+                        total = "-"
+                    }
+                    
+                    cell2.userImage.kf.setImage(with: URL(string: userInfo![indexPath.row].image_url))
+                    cell2.username.text = "\(userInfo![indexPath.row].username)"
+                    cell2.userScore.text = "Score: \(score)"
+                    cell2.userStatus.text = "Status: \(userInfo![indexPath.row].status)"
+                    cell2.userEpsSeen.text = "Seen: \(seen)/\(total)"
                 } else {
-                    score = "-"
+                    cell2.username.text = "No updates found."
                 }
-                var seen: String
-                if userInfo![indexPath.row].episodes_seen != nil {
-                    seen = String(userInfo![indexPath.row].episodes_seen!)
-                } else {
-                    seen = "-"
-                }
-                var total: String
-                if userInfo![indexPath.row].episodes_total != nil {
-                    total = String(userInfo![indexPath.row].episodes_total!)
-                } else {
-                    total = "-"
-                }
-                
-                cell2.userImage.kf.setImage(with: URL(string: userInfo![indexPath.row].image_url))
-                cell2.username.text = "\(userInfo![indexPath.row].username)"
-                cell2.userScore.text = "Score: \(score)"
-                cell2.userStatus.text = "Status: \(userInfo![indexPath.row].status)"
-                cell2.userEpsSeen.text = "Seen: \(seen)/\(total)"
             }
             
             return cell2
