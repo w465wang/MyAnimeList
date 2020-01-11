@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnimeStatViewController: UITableViewController {
+class StatViewController: UITableViewController {
     
     var animeManager = AnimeManager()
     var animeID = ""
@@ -102,7 +102,7 @@ class AnimeStatViewController: UITableViewController {
 
 // MARK: - AnimeManagerDelegate
 
-extension AnimeStatViewController: AnimeManagerDelegate {
+extension StatViewController: AnimeManagerDelegate {
     
     func didUpdateAnime(_ animeManager: AnimeManager, _ anime: AnimeModel) {
         print("Not looking for null.")

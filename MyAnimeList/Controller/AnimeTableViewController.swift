@@ -110,13 +110,13 @@ class AnimeTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segues.characterList {
-            let destinationVC = segue.destination as! AnimeCharacterStaffViewController
+            let destinationVC = segue.destination as! CharacterStaffViewController
             destinationVC.animeID = animeID
         } else if segue.identifier == K.Segues.stat {
-            let destinationVC = segue.destination as! AnimeStatViewController
+            let destinationVC = segue.destination as! StatViewController
             destinationVC.animeID = animeID
         } else if segue.identifier == K.Segues.review {
-            let destinationVC = segue.destination as! AnimeReviewViewController
+            let destinationVC = segue.destination as! ReviewViewController
             destinationVC.animeID = animeID
         }
     }

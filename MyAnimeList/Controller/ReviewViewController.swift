@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnimeReviewViewController: UITableViewController {
+class ReviewViewController: UITableViewController {
     
     @IBOutlet var reviewTable: UITableView!
     var reviews: [Review]?
@@ -110,7 +110,7 @@ class AnimeReviewViewController: UITableViewController {
 
 // MARK: - AnimeManagerDelegate
 
-extension AnimeReviewViewController: AnimeManagerDelegate {
+extension ReviewViewController: AnimeManagerDelegate {
     
     func didUpdateAnime(_ animeManager: AnimeManager, _ anime: AnimeModel) {
         print("Not looking for null.")
