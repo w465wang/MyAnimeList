@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+struct CharacterModel {
+    let characterName: String
+    let characterKanji: String
+    let characterNicknames: [String]
+    let characterAbout: String
+    let characterFavorites: String
+    let characterImageURL: String
+    let characterAnimeography: [Ography]
+    let characterMangaography: [Ography]
+    let characterVoiceActors: [VoiceActor]
+}

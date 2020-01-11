@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct AnimeSearchModel {
-    var searchResults: [Result]
+struct SearchModel {
+    var animeSearchResults: [AnimeResult]
 }

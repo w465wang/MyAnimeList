@@ -7,23 +7,39 @@
 //
 
 import Foundation
+import UIImageColors
 
 struct K {
     struct Segues {
         static let search = "homeToSearch"
         static let selection = "searchToAnime"
-        static let character = "animeToCharacters"
+        static let characterList = "animeToCharacters"
         static let stat = "animeToStats"
         static let review = "animeToReviews"
+        static let characterMain = "charactersToCharacter"
+        static let characterAnime = "characterToAnime"
     }
     
     struct CellIdentifier {
         static let search = "searchCell"
+        static let animeImage = "animeImageCell"
+        static let animeSynopsis = "animeSynopsisCell"
+        static let animeInfo = "animeInfoCell"
+        static let animeCharacterStaff = "animeCharacterStaffCell"
+        static let animeStats = "animeStatsCell"
+        static let animeReviews = "animeReviewsCell"
         static let character = "characterCell"
+        static let stat = "statCell"
         static let review = "reviewCell"
+        static let characterImage = "characterImageCell"
+        static let characterAbout = "characterAboutCell"
+        static let characterAnime = "characterAnimeCell"
+        static let characterManga = "characterMangaCell"
+        static let characterActor = "characterActorCell"
+        static let characterCollection = "characterCollectionCell"
     }
     
-    struct AnimeRequests {
+    struct Requests {
         static let null = ""
         static let charactersStaff = "characters_staff"
         static let episodes = "episodes"
@@ -45,9 +61,5 @@ struct K {
         static let character = "character"
     }
     
-    struct LoadingMessage {
-        static let search = "Loading Results..."
-        static let character = "Loading Characters..."
-        static let review = "Loading Reviews..."
-    }
+    static let defaultColors = UIImageColors.init(background: .white, primary: .white, secondary: .white, detail: .white)
 }

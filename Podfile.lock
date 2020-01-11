@@ -1,0 +1,26 @@
+PODS:
+  - IQKeyboardManagerSwift (6.5.4)
+  - Kingfisher (5.12.0):
+    - Kingfisher/Core (= 5.12.0)
+  - Kingfisher/Core (5.12.0)
+  - UIImageColors (2.1.0)
+
+DEPENDENCIES:
+  - IQKeyboardManagerSwift
+  - Kingfisher (~> 5.0)
+  - UIImageColors
+
+SPEC REPOS:
+  trunk:
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - UIImageColors
+
+SPEC CHECKSUMS:
+  IQKeyboardManagerSwift: 2dde0fc70110e8eac7ccce2a46fdbec6a850b414
+  Kingfisher: dc6e0f53bb5b12c3e75bedb0e01bbd7a640eea69
+  UIImageColors: d2ef3b0877d203cbb06489eeb78ea8b7788caabe
+
+PODFILE CHECKSUM: 918419e0f9b0ae229958bfdf2d54d7f5948e161b
+
+COCOAPODS: 1.8.4
