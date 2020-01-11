@@ -160,6 +160,10 @@ extension AnimeTableViewController: AnimeManagerDelegate {
         print("Not looking for reviews.")
     }
     
+    func didUpdateAnimePicture(_ animeManager: AnimeManager, _ anime: PictureModel) {
+        print("Not looking for pictures.")
+    }
+    
     func didFailWithError(_ error: Error) {
         print(error)
     }

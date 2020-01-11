@@ -14,6 +14,7 @@ protocol AnimeManagerDelegate {
     func didUpdateAnimeStat(_ animeManager: AnimeManager, _ anime: AnimeStatModel)
     func didUpdateAnimeUser(_ animeManager: AnimeManager, _ anime: AnimeUserModel)
     func didUpdateAnimeReview(_ animeManager: AnimeManager, _ anime: AnimeReviewModel)
+    func didUpdateAnimePicture(_ animeManager: AnimeManager, _ anime: PictureModel)
     func didFailWithError(_ error: Error)
 }
 
@@ -57,6 +58,10 @@ struct AnimeManager {
                     } else if request == K.Requests.reviews {
                         if let anime = self.parseJSONReview(safeData) {
                             self.delegate?.didUpdateAnimeReview(self, anime)
+                        }
+                    } else if request == K.Requests.pictures {
+                        if let anime = self.parseJSONPictures(safeData) {
+                            self.delegate?.didUpdateAnimePicture(self, anime)
                         }
                     }
                 }
@@ -178,6 +183,21 @@ struct AnimeManager {
             let anime = AnimeReviewModel(animeReviews: decodedData.reviews)
 
             return anime
+        } catch {
+            delegate?.didFailWithError(error)
+            return nil
+        }
+    }
+    
+    func parseJSONPictures(_ pictureData: Data) -> PictureModel? {
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(PictureData.self, from: pictureData)
+
+            let character = PictureModel(pictures: decodedData.pictures)
+            
+            return character
         } catch {
             delegate?.didFailWithError(error)
             return nil

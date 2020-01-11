@@ -10,7 +10,7 @@ import Foundation
 
 protocol CharacterManagerDelegate {
     func didUpdateCharacter(_ characterManager: CharacterManager, _ character: CharacterModel)
-    func didUpdateCharacterPicture(_ characterManager: CharacterManager, _ picture: PictureModel)
+    func didUpdateCharacterPicture(_ characterManager: CharacterManager, _ character: PictureModel)
     func didFailWithError(_ error: Error)
 }
 
@@ -40,8 +40,8 @@ struct CharacterManager {
                             self.delegate?.didUpdateCharacter(self, character)
                         }
                     } else if request == K.Requests.pictures {
-                        if let picture = self.parseJSONPictures(safeData) {
-                            self.delegate?.didUpdateCharacterPicture(self, picture)
+                        if let character = self.parseJSONPictures(safeData) {
+                            self.delegate?.didUpdateCharacterPicture(self, character)
                         }
                     }
                 }

@@ -120,7 +120,7 @@ class CharacterStaffViewController: UITableViewController {
 extension CharacterStaffViewController: AnimeManagerDelegate {
     
     func didUpdateAnime(_ animeManager: AnimeManager, _ anime: AnimeModel) {
-        print("Not looking for null.")
+        print("Not looking for anime.")
     }
     
     func didUpdateAnimeCharacterStaff(_ animeManager: AnimeManager, _ anime: AnimeCharacterModel) {
@@ -162,6 +162,10 @@ extension CharacterStaffViewController: AnimeManagerDelegate {
     
     func didUpdateAnimeReview(_ animeManager: AnimeManager, _ anime: AnimeReviewModel) {
         print("Not looking for reviews.")
+    }
+    
+    func didUpdateAnimePicture(_ animeManager: AnimeManager, _ anime: PictureModel) {
+        print("Not looking for pictures.")
     }
     
     func didFailWithError(_ error: Error) {

@@ -123,7 +123,7 @@ extension CharacterViewController: CharacterManagerDelegate {
         }
     }
     
-    func didUpdateCharacterPicture(_ characterManager: CharacterManager, _ picture: PictureModel) {
+    func didUpdateCharacterPicture(_ characterManager: CharacterManager, _ character: PictureModel) {
         print("Not looking for pictures.")
     }
     
@@ -177,6 +177,8 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDat
         if collectionView.tag == 2 {
             animeID = String(characterInfo.characterAnimeography[indexPath.row].mal_id)
             performSegue(withIdentifier: K.Segues.characterAnime, sender: self)
+        } else {
+            collectionView.deselectItem(at: indexPath, animated: true)
         }
     }
 }

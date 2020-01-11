@@ -67,6 +67,10 @@ class ReviewCell: UITableViewCell {
     @IBOutlet weak var reviewContent: UILabel!
 }
 
+class PictureCell: UICollectionViewCell {
+    @IBOutlet weak var picture: UIImageView!
+}
+
 class CharacterImageCell: UITableViewCell {
     @IBOutlet weak var characterImage: UIButton!
     @IBOutlet weak var characterName: UILabel!
