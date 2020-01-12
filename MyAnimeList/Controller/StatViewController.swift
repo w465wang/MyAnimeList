@@ -133,14 +133,17 @@ class StatViewController: UITableViewController {
                         total = "-"
                     }
                     
-                    cell2.userImage.kf.setImage(with: URL(string: userInfo![indexPath.row].image_url))
+                    cell2.userImage.kf.setImage(with: URL(string: userInfo![indexPath.row].image_url), for: .normal)
+                    cell2.userImage.imageView?.contentMode = .scaleAspectFit
                     cell2.username.text = "\(userInfo![indexPath.row].username)"
                     cell2.userScore.text = "Score: \(score)"
                     cell2.userStatus.text = "Status: \(userInfo![indexPath.row].status)"
                     cell2.userEpsSeen.text = "Seen: \(seen)/\(total)"
                 } else {
-                    cell2.username.text = "No updates found."
+                    cell2.userScore.text = "No updates found."
                 }
+            } else {
+                cell2.userScore.text = "Tap to reload."
             }
             
             return cell2
@@ -150,6 +153,9 @@ class StatViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 && userInfo == nil {
+            animeManager.fetchAnime(animeID, K.Requests.userupdates)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
