@@ -17,9 +17,13 @@ struct K {
         static let characterList = "animeToCharacters"
         static let stat = "animeToStats"
         static let review = "animeToReviews"
-        static let characterMain = "charactersToCharacter"
+        static let characterListCharacter = "characterListToCharacter"
+        static let characterListPerson = "characterListToPerson"
         static let characterPicture = "characterToPictures"
         static let characterAnime = "characterToAnime"
+        static let characterManga = "characterToManga"
+        static let characterPerson = "characterToPerson"
+        static let personPicture = "personToPictures"
     }
     
     struct CellIdentifier {
@@ -41,6 +45,8 @@ struct K {
         static let characterManga = "characterMangaCell"
         static let characterActor = "characterActorCell"
         static let characterCollection = "characterCollectionCell"
+        static let personImage = "personImageCell"
+        static let personAbout = "personAboutCell"
     }
     
     struct Requests {

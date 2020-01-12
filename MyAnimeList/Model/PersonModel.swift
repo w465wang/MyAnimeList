@@ -11,10 +11,9 @@ import Foundation
 struct PersonModel {
     let personImageURL: String
     let personName: String
-    let personGivenName: String
-    let personFamilyName: String
+    let personKanji: String
     let personAlternateNames: [String]
-    let personMemberFavorites: Int
+    let personFavorites: String
     let personAbout: String
     let personVoice: [VoiceActingRole]
     let personAnime: [AnimeStaffPosition]

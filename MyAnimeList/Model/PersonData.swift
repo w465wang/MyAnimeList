@@ -11,11 +11,11 @@ import Foundation
 struct PersonData: Codable {
     let image_url: String
     let name: String
-    let given_name: String
-    let family_name: String
+    let given_name: String?
+    let family_name: String?
     let alternate_names: [String]
     let member_favorites: Int
-    let about: String
+    let about: String?
     let voice_acting_roles: [VoiceActingRole]
     let anime_staff_positions: [AnimeStaffPosition]
     let published_manga: [PublishedManga]

@@ -19,6 +19,7 @@ class CharacterListViewController: UITableViewController {
     var animeManager = AnimeManager()
     var animeID = ""
     var characterID = ""
+    var personID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,7 @@ class CharacterListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CharacterCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.character, for: indexPath) as! CharacterCell
+        let cell: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.character, for: indexPath) as! CharacterListCell
         
         if animeCharacters != nil {
             if indexPath.section == 0 {
@@ -60,12 +61,14 @@ class CharacterListViewController: UITableViewController {
                     if mainCharacters![indexPath.row].voice_actors.count > 0 {
                         for actor in mainCharacters![indexPath.row].voice_actors {
                             if actor.language == "Japanese" {
-                                cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")))
+                                cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")), for: .normal)
+                                cell.staffImage.imageView?.contentMode = .scaleAspectFit
                                 cell.staffName.text = actor.name
                             }
                         }
                     } else {
-                        cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"))
+                        cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"), for: .normal)
+                        cell.staffImage.imageView?.contentMode = .scaleAspectFit
                         cell.staffName.text = "   "
                     }
                 } else {
@@ -78,12 +81,14 @@ class CharacterListViewController: UITableViewController {
                     if supportingCharacters![indexPath.row].voice_actors.count > 0 {
                         for actor in supportingCharacters![indexPath.row].voice_actors {
                             if actor.language == "Japanese" {
-                                cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")))
+                                cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")), for: .normal)
+                                cell.staffImage.imageView?.contentMode = .scaleAspectFit
                                 cell.staffName.text = actor.name
                             }
                         }
                     } else {
-                        cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"))
+                        cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"), for: .normal)
+                        cell.staffImage.imageView?.contentMode = .scaleAspectFit
                         cell.staffName.text = "   "
                     }
                 } else {
@@ -102,15 +107,22 @@ class CharacterListViewController: UITableViewController {
             characterID = String(supportingCharacters![indexPath.row].mal_id)
         }
         
-        performSegue(withIdentifier: K.Segues.characterMain, sender: self)
+        performSegue(withIdentifier: K.Segues.characterListCharacter, sender: self)
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+//    @IBAction func staffImagePressed(_ sender: UIButton) {
+//        performSegue(withIdentifier: K.Segues.characterListPerson, sender: self)
+//    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.Segues.characterMain {
+        if segue.identifier == K.Segues.characterListCharacter {
             let destinationVC = segue.destination as! CharacterViewController
             destinationVC.characterID = characterID
+        } else if segue.identifier == K.Segues.characterListPerson {
+            let destinationVC = segue.destination as! PersonViewController
+            destinationVC.personID = personID
         }
     }
 }

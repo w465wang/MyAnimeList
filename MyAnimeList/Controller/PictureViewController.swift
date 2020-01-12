@@ -12,6 +12,7 @@ class PictureViewController: UICollectionViewController {
     
     var animeManager = AnimeManager()
     var characterManager = CharacterManager()
+    var personManager = PersonManager()
     
     var type = ""
     var id = ""
@@ -26,6 +27,9 @@ class PictureViewController: UICollectionViewController {
         } else if type == "character" {
             characterManager.delegate = self
             characterManager.fetchCharacter(id, K.Requests.pictures)
+        } else if type == "person" {
+            personManager.delegate = self
+            personManager.fetchPerson(id, K.Requests.pictures)
         }
         
         self.showSpinner(onView: self.view)
@@ -98,6 +102,7 @@ extension PictureViewController: AnimeManagerDelegate {
 // MARK: - CharacterManagerDelegate
 
 extension PictureViewController: CharacterManagerDelegate {
+    
     func didUpdateCharacter(_ characterManager: CharacterManager, _ character: CharacterModel) {
         print("Not looking for character.")
     }
@@ -112,5 +117,22 @@ extension PictureViewController: CharacterManagerDelegate {
     
     func didFailWithError(_ error: Error) {
         print(error)
+    }
+}
+
+// MARK: - PersonManagerDelegate
+
+extension PictureViewController: PersonManagerDelegate {
+    
+    func didUpdatePerson(_ personManager: PersonManager, _ person: PersonModel) {
+        print("Not looking for person.")
+    }
+    
+    func didUpdatePersonPicture(_ personManager: PersonManager, _ person: PictureModel) {
+        pictures = person.pictures
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }

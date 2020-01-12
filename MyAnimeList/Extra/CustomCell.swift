@@ -39,9 +39,9 @@ class ButtonCell: UITableViewCell {
     @IBOutlet weak var buttonImage: UIButton!
 }
 
-class CharacterCell: UITableViewCell {
+class CharacterListCell: UITableViewCell {
     @IBOutlet weak var characterImage: UIImageView!
-    @IBOutlet weak var staffImage: UIImageView!
+    @IBOutlet weak var staffImage: UIButton!
     @IBOutlet weak var characterName: UILabel!
     @IBOutlet weak var staffName: UILabel!
 }
@@ -71,16 +71,16 @@ class PictureCell: UICollectionViewCell {
     @IBOutlet weak var picture: UIImageView!
 }
 
-class CharacterImageCell: UITableViewCell {
-    @IBOutlet weak var characterImage: UIButton!
-    @IBOutlet weak var characterName: UILabel!
-    @IBOutlet weak var characterKanji: UILabel!
-    @IBOutlet weak var characterFavorite: UILabel!
+class ImageCell: UITableViewCell {
+    @IBOutlet weak var picture: UIButton!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var kanji: UILabel!
+    @IBOutlet weak var favorite: UILabel!
 }
 
-class CharacterAboutCell: UITableViewCell {
+class AboutCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var characterAbout: UILabel!
+    @IBOutlet weak var about: UILabel!
 }
 
 class CharacterScrollCell: UITableViewCell {

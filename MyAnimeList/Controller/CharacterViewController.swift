@@ -14,6 +14,8 @@ class CharacterViewController: UITableViewController {
     var characterManager = CharacterManager()
     var characterID = ""
     var animeID = ""
+    var mangaID = ""
+    var personID = ""
     var characterInfo = CharacterModel(characterName: "", characterKanji: "", characterNicknames: [], characterAbout: "", characterFavorites: "", characterImageURL: "", characterAnimeography: [], characterMangaography: [], characterVoiceActors: [])
     
     override func viewDidLoad() {
@@ -36,18 +38,18 @@ class CharacterViewController: UITableViewController {
         if characterInfo.characterName != "" {
             self.removeSpinner()
             if indexPath.row == 0 {
-                let cell0: CharacterImageCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterImage, for: indexPath) as! CharacterImageCell
+                let cell0: ImageCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterImage, for: indexPath) as! ImageCell
                 
-                cell0.characterImage.kf.setImage(with: URL(string: characterInfo.characterImageURL), for: .normal)
-                cell0.characterImage.imageView?.contentMode = .scaleAspectFit
+                cell0.picture.kf.setImage(with: URL(string: characterInfo.characterImageURL), for: .normal)
+                cell0.picture.imageView?.contentMode = .scaleAspectFit
                 
-                cell0.characterName.text = characterInfo.characterName
-                cell0.characterKanji.text = characterInfo.characterKanji
-                cell0.characterFavorite.text = "Member Favourites: \(characterInfo.characterFavorites)"
+                cell0.name.text = characterInfo.characterName
+                cell0.kanji.text = characterInfo.characterKanji
+                cell0.favorite.text = "Member Favourites: \(characterInfo.characterFavorites)"
                 
                 return cell0
             } else if indexPath.row == 1 {
-                let cell1: CharacterAboutCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterAbout, for: indexPath) as! CharacterAboutCell
+                let cell1: AboutCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterAbout, for: indexPath) as! AboutCell
                 
                 var nicknames = "Nicknames:"
                 if characterInfo.characterNicknames.count > 0 {
@@ -62,7 +64,7 @@ class CharacterViewController: UITableViewController {
                 }
                 
                 cell1.title.text = "About"
-                cell1.characterAbout.text = "\(nicknames)\(characterInfo.characterAbout)"
+                cell1.about.text = "\(nicknames)\(characterInfo.characterAbout)"
                 
                 return cell1
             } else if indexPath.row == 2 {
@@ -94,12 +96,12 @@ class CharacterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1 {
-            let cell: CharacterAboutCell = tableView.cellForRow(at: indexPath) as! CharacterAboutCell
+            let cell: AboutCell = tableView.cellForRow(at: indexPath) as! AboutCell
 
-            if cell.characterAbout.numberOfLines == 8 {
-                cell.characterAbout.numberOfLines = 0
+            if cell.about.numberOfLines == 8 {
+                cell.about.numberOfLines = 0
             } else {
-                cell.characterAbout.numberOfLines = 8
+                cell.about.numberOfLines = 8
             }
             
             self.tableView.reloadData()
@@ -113,13 +115,18 @@ class CharacterViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.Segues.characterAnime {
-            let destinationVC = segue.destination as! AnimeTableViewController
-            destinationVC.animeID = animeID
-        } else if segue.identifier == K.Segues.characterPicture {
+        if segue.identifier == K.Segues.characterPicture {
             let destinationVC = segue.destination as! PictureViewController
             destinationVC.type = "character"
             destinationVC.id = characterID
+        } else if segue.identifier == K.Segues.characterAnime {
+            let destinationVC = segue.destination as! AnimeTableViewController
+            destinationVC.animeID = animeID
+        } else if segue.identifier == K.Segues.characterManga {
+            
+        } else if segue.identifier == K.Segues.characterPerson {
+            let destinationVC = segue.destination as! PersonViewController
+            destinationVC.personID = personID
         }
     }
 }
@@ -127,6 +134,7 @@ class CharacterViewController: UITableViewController {
 // MARK: - CharacterManagerDelegate
 
 extension CharacterViewController: CharacterManagerDelegate {
+    
     func didUpdateCharacter(_ characterManager: CharacterManager, _ character: CharacterModel) {
         characterInfo = CharacterModel(characterName: character.characterName, characterKanji: character.characterKanji, characterNicknames: character.characterNicknames, characterAbout: character.characterAbout, characterFavorites: character.characterFavorites, characterImageURL: character.characterImageURL, characterAnimeography: character.characterAnimeography, characterMangaography: character.characterMangaography, characterVoiceActors: character.characterVoiceActors)
         
@@ -181,6 +189,11 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDat
         if collectionView.tag == 2 {
             animeID = String(characterInfo.characterAnimeography[indexPath.row].mal_id)
             performSegue(withIdentifier: K.Segues.characterAnime, sender: self)
+        } else if collectionView.tag == 3 {
+            
+        } else if collectionView.tag == 4 {
+            personID = String(characterInfo.characterVoiceActors[indexPath.row].mal_id)
+            performSegue(withIdentifier: K.Segues.characterPerson, sender: self)
         } else {
             collectionView.deselectItem(at: indexPath, animated: true)
         }
