@@ -93,6 +93,18 @@ class CharacterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1 {
+            let cell: CharacterAboutCell = tableView.cellForRow(at: indexPath) as! CharacterAboutCell
+
+            if cell.characterAbout.numberOfLines == 8 {
+                cell.characterAbout.numberOfLines = 0
+            } else {
+                cell.characterAbout.numberOfLines = 8
+            }
+            
+            self.tableView.reloadData()
+        }
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
