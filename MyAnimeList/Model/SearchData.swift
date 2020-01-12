@@ -43,11 +43,11 @@ struct CharacterResult: Codable {
     let image_url: String
     let name: String
     let alternative_names: [String]
-    let anime: [Blurb]
-    let mange: [Blurb]
+    let anime: [CharacterBlurb]
+    let mange: [CharacterBlurb]
 }
 
-struct Blurb: Codable {
+struct CharacterBlurb: Codable {
     let mal_id: Int
     let type: String
     let name: String

@@ -153,10 +153,13 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDat
         
         if collectionView.tag == 2 {
             cell.image.kf.setImage(with: URL(string: characterInfo.characterAnimeography[indexPath.row].image_url))
+            cell.role.text = characterInfo.characterAnimeography[indexPath.row].role
         } else if collectionView.tag == 3 {
             cell.image.kf.setImage(with: URL(string: characterInfo.characterMangaography[indexPath.row].image_url))
+            cell.role.text = characterInfo.characterMangaography[indexPath.row].role
         } else if collectionView.tag == 4 {
             cell.image.kf.setImage(with: URL(string: characterInfo.characterVoiceActors[indexPath.row].image_url.replacingOccurrences(of: "v.jpg", with: ".jpg")))
+            cell.role.text = characterInfo.characterVoiceActors[indexPath.row].language
         }
 
         return cell

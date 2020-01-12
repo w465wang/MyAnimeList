@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CharacterStaffViewController: UITableViewController {
+class CharacterListViewController: UITableViewController {
     
     @IBOutlet var characterList: UITableView!
     
@@ -117,7 +117,7 @@ class CharacterStaffViewController: UITableViewController {
 
 // MARK: - AnimeManagerDelegate
 
-extension CharacterStaffViewController: AnimeManagerDelegate {
+extension CharacterListViewController: AnimeManagerDelegate {
     
     func didUpdateAnime(_ animeManager: AnimeManager, _ anime: AnimeModel) {
         print("Not looking for anime.")
