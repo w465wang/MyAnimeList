@@ -41,7 +41,7 @@ class PictureViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PictureCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.picture, for: indexPath) as! PictureCell
-        
+
         if pictures != nil {
             self.removeSpinner()
             cell.picture.kf.setImage(with: URL(string: pictures![indexPath.row].large))
@@ -130,6 +130,10 @@ extension PictureViewController: PersonManagerDelegate {
     
     func didUpdatePersonPicture(_ personManager: PersonManager, _ person: PictureModel) {
         pictures = person.pictures
+        
+        if pictures!.count == 0 {
+            self.removeSpinner()
+        }
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
