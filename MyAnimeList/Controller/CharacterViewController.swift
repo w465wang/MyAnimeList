@@ -149,28 +149,17 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: CharacterCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.characterCollection, for: indexPath) as! CharacterCollectionCell
         
         if collectionView.tag == 2 {
-            let cell0: CharacterCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.characterCollection, for: indexPath) as! CharacterCollectionCell
-            
-            cell0.image.kf.setImage(with: URL(string: characterInfo.characterAnimeography[indexPath.row].image_url))
-
-            return cell0
+            cell.image.kf.setImage(with: URL(string: characterInfo.characterAnimeography[indexPath.row].image_url))
         } else if collectionView.tag == 3 {
-            let cell1: CharacterCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.characterCollection, for: indexPath) as! CharacterCollectionCell
-
-            cell1.image.kf.setImage(with: URL(string: characterInfo.characterMangaography[indexPath.row].image_url))
-
-            return cell1
+            cell.image.kf.setImage(with: URL(string: characterInfo.characterMangaography[indexPath.row].image_url))
         } else if collectionView.tag == 4 {
-            let cell2: CharacterCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.characterCollection, for: indexPath) as! CharacterCollectionCell
-            
-            cell2.image.kf.setImage(with: URL(string: characterInfo.characterVoiceActors[indexPath.row].image_url.replacingOccurrences(of: "v.jpg", with: ".jpg")))
-            
-            return cell2
+            cell.image.kf.setImage(with: URL(string: characterInfo.characterVoiceActors[indexPath.row].image_url.replacingOccurrences(of: "v.jpg", with: ".jpg")))
         }
 
-        return UICollectionViewCell.init()
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
