@@ -53,6 +53,7 @@ class CharacterListViewController: UITableViewController {
         let cell: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.character, for: indexPath) as! CharacterListCell
         
         if animeCharacters != nil {
+            var count = 0
             if indexPath.section == 0 {
                 if mainCharacters != nil && mainCharacters!.isEmpty == false {
                     cell.characterImage.kf.setImage(with: URL(string: mainCharacters![indexPath.row].image_url))
@@ -64,12 +65,15 @@ class CharacterListViewController: UITableViewController {
                                 cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")), for: .normal)
                                 cell.staffImage.imageView?.contentMode = .scaleAspectFit
                                 cell.staffName.text = actor.name
+                                count += 1
                             }
                         }
-                    } else {
+                    }
+                    
+                    if count == 0 {
                         cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"), for: .normal)
                         cell.staffImage.imageView?.contentMode = .scaleAspectFit
-                        cell.staffName.text = "   "
+                        cell.staffName.text = "Unknown"
                     }
                 } else {
                     cell.characterName.text = "None found."
@@ -84,12 +88,15 @@ class CharacterListViewController: UITableViewController {
                                 cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")), for: .normal)
                                 cell.staffImage.imageView?.contentMode = .scaleAspectFit
                                 cell.staffName.text = actor.name
+                                count += 1
                             }
                         }
-                    } else {
+                    }
+                    
+                    if count == 0 {
                         cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"), for: .normal)
                         cell.staffImage.imageView?.contentMode = .scaleAspectFit
-                        cell.staffName.text = "   "
+                        cell.staffName.text = "Unknown"
                     }
                 } else {
                     cell.characterName.text = "None found."
