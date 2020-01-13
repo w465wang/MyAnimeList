@@ -202,7 +202,16 @@ extension CharacterListViewController: CustomCellDelegate {
             personID = person
             performSegue(withIdentifier: K.Segues.characterListPerson, sender: self)
         } else {
-            // Popup
+            let alertController = UIAlertController(title: "Why did you tap here?", message: "No Japanese voice actor found for this character.", preferredStyle: .actionSheet)
+
+            alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action:UIAlertAction) in })
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+//            Where to put?
+//            @objc func dismissAlertController() {
+//                self.dismiss(animated: true, completion: nil)
+//            }
         }
     }
 }
