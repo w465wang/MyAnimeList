@@ -459,6 +459,9 @@
                                                         <constraint firstAttribute="width" constant="50.140000000000001" id="kL8-Tf-ADq"/>
                                                         <constraint firstAttribute="height" constant="78" id="mAD-uH-Fn6"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="staffImagePressed:" destination="Baz-qi-iiU" eventType="touchUpInside" id="cof-JW-ltd"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -488,7 +491,7 @@
                     <connections>
                         <outlet property="characterList" destination="Rpj-gR-Gps" id="oOO-Zu-jRO"/>
                         <segue destination="pHO-F8-7v7" kind="show" identifier="characterListToCharacter" id="eKt-0r-pYO"/>
-                        <segue destination="WhC-Op-R5d" kind="show" id="Sje-jn-ZTw"/>
+                        <segue destination="WhC-Op-R5d" kind="show" identifier="characterListToPerson" id="Sje-jn-ZTw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26P-ze-Qt6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1537,7 +1540,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="eKt-0r-pYO"/>
         <segue reference="Sje-jn-ZTw"/>
-        <segue reference="Cyf-Fm-ZIA"/>
+        <segue reference="9YX-N8-U36"/>
         <segue reference="LsF-sA-960"/>
     </inferredMetricsTieBreakers>
 </document>

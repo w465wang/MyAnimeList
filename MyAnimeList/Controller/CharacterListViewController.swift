@@ -51,6 +51,7 @@ class CharacterListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.character, for: indexPath) as! CharacterListCell
+        cell.delegate = self
         
         if animeCharacters != nil {
             var count = 0
@@ -65,6 +66,7 @@ class CharacterListViewController: UITableViewController {
                                 cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")), for: .normal)
                                 cell.staffImage.imageView?.contentMode = .scaleAspectFit
                                 cell.staffName.text = actor.name
+                                cell.person = String(actor.mal_id)
                                 count += 1
                             }
                         }
@@ -74,6 +76,7 @@ class CharacterListViewController: UITableViewController {
                         cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"), for: .normal)
                         cell.staffImage.imageView?.contentMode = .scaleAspectFit
                         cell.staffName.text = "Unknown"
+                        cell.person = ""
                     }
                 } else {
                     cell.characterName.text = "None found."
@@ -88,6 +91,7 @@ class CharacterListViewController: UITableViewController {
                                 cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")), for: .normal)
                                 cell.staffImage.imageView?.contentMode = .scaleAspectFit
                                 cell.staffName.text = actor.name
+                                cell.person = String(actor.mal_id)
                                 count += 1
                             }
                         }
@@ -97,6 +101,7 @@ class CharacterListViewController: UITableViewController {
                         cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"), for: .normal)
                         cell.staffImage.imageView?.contentMode = .scaleAspectFit
                         cell.staffName.text = "Unknown"
+                        cell.person = ""
                     }
                 } else {
                     cell.characterName.text = "None found."
@@ -118,10 +123,6 @@ class CharacterListViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-//    @IBAction func staffImagePressed(_ sender: UIButton) {
-//        performSegue(withIdentifier: K.Segues.characterListPerson, sender: self)
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segues.characterListCharacter {
@@ -189,5 +190,19 @@ extension CharacterListViewController: AnimeManagerDelegate {
     
     func didFailWithError(_ error: Error) {
         print(error)
+    }
+}
+
+// MARK: - CustomCellDelegate
+
+extension CharacterListViewController: CustomCellDelegate {
+    
+    func callSegueFromCell(_ person: String) {
+        if person != "" {
+            personID = person
+            performSegue(withIdentifier: K.Segues.characterListPerson, sender: self)
+        } else {
+            // Popup
+        }
     }
 }

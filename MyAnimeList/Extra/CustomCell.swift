@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CustomCellDelegate {
+    func callSegueFromCell(_ person: String)
+}
+
 class SearchCell: UITableViewCell {
     @IBOutlet weak var searchImage: UIImageView!
     @IBOutlet weak var searchLabel: UILabel!
@@ -40,10 +44,18 @@ class ButtonCell: UITableViewCell {
 }
 
 class CharacterListCell: UITableViewCell {
+    
+    var delegate: CustomCellDelegate!
+    var person = ""
+    
     @IBOutlet weak var characterImage: UIImageView!
     @IBOutlet weak var staffImage: UIButton!
     @IBOutlet weak var characterName: UILabel!
     @IBOutlet weak var staffName: UILabel!
+    
+    @IBAction func staffImagePressed(_ sender: UIButton) {
+        self.delegate.callSegueFromCell(person)
+    }
 }
 
 class StatCell: UITableViewCell {
