@@ -95,17 +95,16 @@ class AboutCell: UITableViewCell {
     @IBOutlet weak var about: UILabel!
 }
 
-class CharacterScrollCell: UITableViewCell {
+class CollectionCell: UITableViewCell {
     @IBOutlet weak var collectionTitle: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    func setCollectionViewDataSourceDelegate <D: UICollectionViewDelegate & UICollectionViewDataSource> (_ dataSourceDelegate: D, forRow row: Int) {
-        collectionView.delegate = dataSourceDelegate
-        collectionView.dataSource = dataSourceDelegate
-    }
 }
 
-class CharacterCollectionCell: UICollectionViewCell {
+class CharacterStaffCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var role: UILabel!
+}
+
+class TableCell: UICollectionViewCell {
+    @IBOutlet weak var tableView: UITableView!
 }

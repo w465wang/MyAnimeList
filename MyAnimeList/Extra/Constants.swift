@@ -24,6 +24,7 @@ struct K {
         static let characterManga = "characterToManga"
         static let characterPerson = "characterToPerson"
         static let personPicture = "personToPictures"
+        static let personStaff = "personToStaff"
     }
     
     struct CellIdentifier {
@@ -47,6 +48,11 @@ struct K {
         static let characterCollection = "characterCollectionCell"
         static let personImage = "personImageCell"
         static let personAbout = "personAboutCell"
+        static let personStaff = "personStaffCell"
+        static let personVoice = "personVoiceCell"
+        static let personAnime = "personAnimeCell"
+        static let personManga = "personMangaCell"
+        static let personTable = "personTableCell"
     }
     
     struct Requests {

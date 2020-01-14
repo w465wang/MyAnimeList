@@ -65,6 +65,12 @@ class PersonViewController: UITableViewController {
                 cell1.about.text = "\(alternate)\(personInfo.personAbout.replacingOccurrences(of: "\\n", with: ""))"
                 
                 return cell1
+            } else if indexPath.row == 2 {
+                let cell2: ButtonCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personStaff, for: indexPath) as! ButtonCell
+                
+                cell2.buttonName.text = "Roles & Staff Positions"
+                
+                return cell2
             }
         }
         
@@ -82,12 +88,14 @@ class PersonViewController: UITableViewController {
             }
             
             self.tableView.reloadData()
+        } else if indexPath.row == 2 {
+            performSegue(withIdentifier: K.Segues.personStaff, sender: self)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    @IBAction func pesronImagePressed(_ sender: UIButton) {
+    @IBAction func personImagePressed(_ sender: UIButton) {
         performSegue(withIdentifier: K.Segues.personPicture, sender: self)
     }
     
@@ -96,6 +104,11 @@ class PersonViewController: UITableViewController {
             let destinationVC = segue.destination as! PictureViewController
             destinationVC.type = "person"
             destinationVC.id = personID
+        } else if segue.identifier == K.Segues.personStaff {
+            let destinationVC = segue.destination as! CollectionTableViewController
+            destinationVC.voice = personInfo.personVoice
+            destinationVC.anime = personInfo.personAnime
+            destinationVC.manga = personInfo.personManga
         }
     }
 }

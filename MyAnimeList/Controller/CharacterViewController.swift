@@ -68,21 +68,21 @@ class CharacterViewController: UITableViewController {
                 
                 return cell1
             } else if indexPath.row == 2 {
-                let cell2: CharacterScrollCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterAnime, for: indexPath) as! CharacterScrollCell
+                let cell2: CollectionCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterAnime, for: indexPath) as! CollectionCell
                 
                 cell2.collectionTitle.text = "Animeography"
                 cell2.collectionView.tag = 2
                 
                 return cell2
             } else if indexPath.row == 3 {
-                let cell3: CharacterScrollCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterManga, for: indexPath) as! CharacterScrollCell
+                let cell3: CollectionCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterManga, for: indexPath) as! CollectionCell
                 
                 cell3.collectionTitle.text = "Mangaography"
                 cell3.collectionView.tag = 3
                 
                 return cell3
             } else if indexPath.row == 4 {
-                let cell4: CharacterScrollCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterActor, for: indexPath) as! CharacterScrollCell
+                let cell4: CollectionCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.characterActor, for: indexPath) as! CollectionCell
                 
                 cell4.collectionTitle.text = "Voice Actors"
                 cell4.collectionView.tag = 4
@@ -161,15 +161,13 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDat
             return characterInfo.characterAnimeography.count
         } else if collectionView.tag == 3 {
             return characterInfo.characterMangaography.count
-        } else if collectionView.tag == 4 {
+        } else {
             return characterInfo.characterVoiceActors.count
         }
-        
-        return characterInfo.characterAnimeography.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: CharacterCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.characterCollection, for: indexPath) as! CharacterCollectionCell
+        let cell: CharacterStaffCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.characterCollection, for: indexPath) as! CharacterStaffCell
         
         if collectionView.tag == 2 {
             cell.image.kf.setImage(with: URL(string: characterInfo.characterAnimeography[indexPath.row].image_url))
