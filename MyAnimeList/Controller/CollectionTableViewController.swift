@@ -92,34 +92,34 @@ extension CollectionTableViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.tag == 0 {
-            let cell0: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath) as! CharacterListCell
+            let cell0: ListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath) as! ListCell
             cell0.delegate = self
             
-            cell0.characterImage.kf.setImage(with: URL(string: voice[indexPath.row].anime.image_url))
-            cell0.characterName.text = voice[indexPath.row].anime.name
-            cell0.staffImage.kf.setImage(with: URL(string: voice[indexPath.row].character.image_url), for: .normal)
-            cell0.staffImage.imageView?.contentMode = .scaleAspectFit
-            cell0.staffName.text = voice[indexPath.row].character.name
+            cell0.listImageLeft.kf.setImage(with: URL(string: voice[indexPath.row].anime.image_url))
+            cell0.listNameLeft.text = voice[indexPath.row].anime.name
+            cell0.listImageRight.kf.setImage(with: URL(string: voice[indexPath.row].character.image_url), for: .normal)
+            cell0.listImageRight.imageView?.contentMode = .scaleAspectFit
+            cell0.listNameRight.text = voice[indexPath.row].character.name
             cell0.id = String(voice[indexPath.row].character.mal_id)
             
             return cell0;
         } else if tableView.tag == 1 {
-            let cell1: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath) as! CharacterListCell
+            let cell1: ListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath) as! ListCell
             cell1.delegate = self
             
-            cell1.characterImage.kf.setImage(with: URL(string: anime[indexPath.row].anime.image_url))
-            cell1.characterName.text = anime[indexPath.row].anime.name
-            cell1.staffName.text = anime[indexPath.row].position
+            cell1.listImageLeft.kf.setImage(with: URL(string: anime[indexPath.row].anime.image_url))
+            cell1.listNameLeft.text = anime[indexPath.row].anime.name
+            cell1.listNameRight.text = anime[indexPath.row].position
             cell1.id = ""
             
             return cell1
         } else {
-            let cell2: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath) as! CharacterListCell
+            let cell2: ListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath) as! ListCell
             cell2.delegate = self
             
-            cell2.characterImage.kf.setImage(with: URL(string: manga[indexPath.row].manga.image_url))
-            cell2.characterName.text = manga[indexPath.row].manga.name
-            cell2.staffName.text = manga[indexPath.row].position
+            cell2.listImageLeft.kf.setImage(with: URL(string: manga[indexPath.row].manga.image_url))
+            cell2.listNameLeft.text = manga[indexPath.row].manga.name
+            cell2.listNameRight.text = manga[indexPath.row].position
             cell2.id = ""
             
             return cell2

@@ -43,15 +43,14 @@ class ButtonCell: UITableViewCell {
     @IBOutlet weak var buttonImage: UIButton!
 }
 
-class CharacterListCell: UITableViewCell {
-    
+class ListCell: UITableViewCell {
     var delegate: CustomCellDelegate!
     var id = ""
     
-    @IBOutlet weak var characterImage: UIImageView!
-    @IBOutlet weak var staffImage: UIButton!
-    @IBOutlet weak var characterName: UILabel!
-    @IBOutlet weak var staffName: UILabel!
+    @IBOutlet weak var listImageLeft: UIImageView!
+    @IBOutlet weak var listImageRight: UIButton!
+    @IBOutlet weak var listNameLeft: UILabel!
+    @IBOutlet weak var listNameRight: UILabel!
     
     @IBAction func staffImagePressed(_ sender: UIButton) {
         self.delegate.callSegueFromCell(id)

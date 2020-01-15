@@ -419,7 +419,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="characterCell" id="Baz-qi-iiU" customClass="CharacterListCell" customModule="MyAnimeList" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="characterCell" id="Baz-qi-iiU" customClass="ListCell" customModule="MyAnimeList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="100.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Baz-qi-iiU" id="4gZ-24-swk">
@@ -474,10 +474,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="characterImage" destination="ZfR-Mq-3d0" id="sd4-nx-dAs"/>
-                                    <outlet property="characterName" destination="7zT-uC-Fa3" id="vEo-yC-khf"/>
-                                    <outlet property="staffImage" destination="qlh-hP-1Z9" id="2bx-jQ-bfF"/>
-                                    <outlet property="staffName" destination="hrm-Tf-n7S" id="QSS-vH-PJ8"/>
+                                    <outlet property="listImageLeft" destination="ZfR-Mq-3d0" id="sd4-nx-dAs"/>
+                                    <outlet property="listImageRight" destination="qlh-hP-1Z9" id="2bx-jQ-bfF"/>
+                                    <outlet property="listNameLeft" destination="7zT-uC-Fa3" id="vEo-yC-khf"/>
+                                    <outlet property="listNameRight" destination="hrm-Tf-n7S" id="QSS-vH-PJ8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1599,7 +1599,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="416" height="173"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <prototypes>
-                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="personTableCell" rowHeight="100.5" id="at5-lE-4CE" customClass="CharacterListCell" customModule="MyAnimeList" customModuleProvider="target">
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="personTableCell" rowHeight="100.5" id="at5-lE-4CE" customClass="ListCell" customModule="MyAnimeList" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="28" width="416" height="100.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="at5-lE-4CE" id="9Ye-Mp-YKX">
@@ -1654,10 +1654,10 @@
                                                         </constraints>
                                                     </tableViewCellContentView>
                                                     <connections>
-                                                        <outlet property="characterImage" destination="kde-gK-bbY" id="ViW-ns-IkC"/>
-                                                        <outlet property="characterName" destination="qiU-NW-XA3" id="TqH-xS-igK"/>
-                                                        <outlet property="staffImage" destination="9pg-hd-mLT" id="Yu4-od-3PV"/>
-                                                        <outlet property="staffName" destination="VW4-Wp-uyG" id="Ne2-Pb-AA1"/>
+                                                        <outlet property="listImageLeft" destination="kde-gK-bbY" id="ViW-ns-IkC"/>
+                                                        <outlet property="listImageRight" destination="9pg-hd-mLT" id="Yu4-od-3PV"/>
+                                                        <outlet property="listNameLeft" destination="qiU-NW-XA3" id="TqH-xS-igK"/>
+                                                        <outlet property="listNameRight" destination="VW4-Wp-uyG" id="Ne2-Pb-AA1"/>
                                                     </connections>
                                                 </tableViewCell>
                                             </prototypes>
@@ -1690,7 +1690,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="416" height="173"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <prototypes>
-                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="personTableCell" rowHeight="100.5" id="hLf-QZ-1X1" customClass="CharacterListCell" customModule="MyAnimeList" customModuleProvider="target">
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="personTableCell" rowHeight="100.5" id="hLf-QZ-1X1" customClass="ListCell" customModule="MyAnimeList" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="28" width="416" height="100.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hLf-QZ-1X1" id="Gu5-qX-3xN">
@@ -1745,10 +1745,10 @@
                                                         </constraints>
                                                     </tableViewCellContentView>
                                                     <connections>
-                                                        <outlet property="characterImage" destination="heo-Ya-4D1" id="qH4-HV-3aS"/>
-                                                        <outlet property="characterName" destination="z32-Qq-bzo" id="Ch8-Xd-mkb"/>
-                                                        <outlet property="staffImage" destination="s3o-h3-yGI" id="JnW-wg-CSP"/>
-                                                        <outlet property="staffName" destination="gWG-Uk-2cP" id="BGt-hM-aOe"/>
+                                                        <outlet property="listImageLeft" destination="heo-Ya-4D1" id="qH4-HV-3aS"/>
+                                                        <outlet property="listImageRight" destination="s3o-h3-yGI" id="JnW-wg-CSP"/>
+                                                        <outlet property="listNameLeft" destination="z32-Qq-bzo" id="Ch8-Xd-mkb"/>
+                                                        <outlet property="listNameRight" destination="gWG-Uk-2cP" id="BGt-hM-aOe"/>
                                                     </connections>
                                                 </tableViewCell>
                                             </prototypes>
@@ -1781,7 +1781,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="416" height="173"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <prototypes>
-                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="personTableCell" rowHeight="100.5" id="p7r-ih-scp" customClass="CharacterListCell" customModule="MyAnimeList" customModuleProvider="target">
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="personTableCell" rowHeight="100.5" id="p7r-ih-scp" customClass="ListCell" customModule="MyAnimeList" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="28" width="416" height="100.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p7r-ih-scp" id="j0G-I6-5k9">
@@ -1836,10 +1836,10 @@
                                                         </constraints>
                                                     </tableViewCellContentView>
                                                     <connections>
-                                                        <outlet property="characterImage" destination="OFO-oz-KFI" id="Thr-hQ-KCD"/>
-                                                        <outlet property="characterName" destination="3jw-xV-KQs" id="eqa-BM-GCo"/>
-                                                        <outlet property="staffImage" destination="SLu-4J-KVh" id="Drh-5L-GXE"/>
-                                                        <outlet property="staffName" destination="uBf-jG-EFT" id="393-VX-gvH"/>
+                                                        <outlet property="listImageLeft" destination="OFO-oz-KFI" id="Thr-hQ-KCD"/>
+                                                        <outlet property="listImageRight" destination="SLu-4J-KVh" id="Drh-5L-GXE"/>
+                                                        <outlet property="listNameLeft" destination="3jw-xV-KQs" id="eqa-BM-GCo"/>
+                                                        <outlet property="listNameRight" destination="uBf-jG-EFT" id="393-VX-gvH"/>
                                                     </connections>
                                                 </tableViewCell>
                                             </prototypes>
@@ -1886,7 +1886,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Sje-jn-ZTw"/>
-        <segue reference="Cyf-Fm-ZIA"/>
+        <segue reference="37R-gC-Qms"/>
         <segue reference="6bl-Hv-MR7"/>
         <segue reference="On7-Mw-xkJ"/>
     </inferredMetricsTieBreakers>

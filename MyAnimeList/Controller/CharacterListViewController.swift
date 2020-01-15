@@ -50,7 +50,7 @@ class CharacterListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.character, for: indexPath) as! CharacterListCell
+        let cell: ListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.character, for: indexPath) as! ListCell
         cell.delegate = self
         
         if animeCharacters != nil {
@@ -58,15 +58,15 @@ class CharacterListViewController: UITableViewController {
             
             if indexPath.section == 0 {
                 if mainCharacters != nil && mainCharacters!.isEmpty == false {
-                    cell.characterImage.kf.setImage(with: URL(string: mainCharacters![indexPath.row].image_url))
-                    cell.characterName.text = mainCharacters![indexPath.row].name.html2String
+                    cell.listImageLeft.kf.setImage(with: URL(string: mainCharacters![indexPath.row].image_url))
+                    cell.listNameLeft.text = mainCharacters![indexPath.row].name.html2String
                     
                     if mainCharacters![indexPath.row].voice_actors.count > 0 {
                         for actor in mainCharacters![indexPath.row].voice_actors {
                             if actor.language == "Japanese" {
-                                cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")), for: .normal)
-                                cell.staffImage.imageView?.contentMode = .scaleAspectFit
-                                cell.staffName.text = actor.name
+                                cell.listImageRight.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "").replacingOccurrences(of: "/r/42x62", with: "")), for: .normal)
+                                cell.listImageRight.imageView?.contentMode = .scaleAspectFit
+                                cell.listNameRight.text = actor.name
                                 cell.id = String(actor.mal_id)
                                 count += 1
                             }
@@ -74,24 +74,24 @@ class CharacterListViewController: UITableViewController {
                     }
                     
                     if count == 0 {
-                        cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"), for: .normal)
-                        cell.staffImage.imageView?.contentMode = .scaleAspectFit
-                        cell.staffName.text = "Unknown"
+                        cell.listImageRight.kf.setImage(with: URL(string: "https://opengameart.org/content/transparency-background-checkerboard"), for: .normal)
+                        cell.listImageRight.imageView?.contentMode = .scaleAspectFit
+                        cell.listNameRight.text = "Unknown"
                         cell.id = ""
                     }
                 } else {
-                    cell.characterName.text = "None found."
+                    cell.listNameLeft.text = "None found."
                 }
             } else {
                 if supportingCharacters != nil && supportingCharacters!.isEmpty == false {
-                    cell.characterImage.kf.setImage(with: URL(string: supportingCharacters![indexPath.row].image_url))
-                    cell.characterName.text = supportingCharacters![indexPath.row].name.html2String
+                    cell.listImageLeft.kf.setImage(with: URL(string: supportingCharacters![indexPath.row].image_url))
+                    cell.listNameLeft.text = supportingCharacters![indexPath.row].name.html2String
                     if supportingCharacters![indexPath.row].voice_actors.count > 0 {
                         for actor in supportingCharacters![indexPath.row].voice_actors {
                             if actor.language == "Japanese" {
-                                cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")), for: .normal)
-                                cell.staffImage.imageView?.contentMode = .scaleAspectFit
-                                cell.staffName.text = actor.name
+                                cell.listImageRight.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "").replacingOccurrences(of: "/r/42x62", with: "")), for: .normal)
+                                cell.listImageRight.imageView?.contentMode = .scaleAspectFit
+                                cell.listNameRight.text = actor.name
                                 cell.id = String(actor.mal_id)
                                 count += 1
                             }
@@ -99,13 +99,13 @@ class CharacterListViewController: UITableViewController {
                     }
                     
                     if count == 0 {
-                        cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"), for: .normal)
-                        cell.staffImage.imageView?.contentMode = .scaleAspectFit
-                        cell.staffName.text = "Unknown"
+                        cell.listImageRight.kf.setImage(with: URL(string: "https://opengameart.org/content/transparency-background-checkerboard"), for: .normal)
+                        cell.listImageRight.imageView?.contentMode = .scaleAspectFit
+                        cell.listNameRight.text = "Unknown"
                         cell.id = ""
                     }
                 } else {
-                    cell.characterName.text = "None found."
+                    cell.listNameLeft.text = "None found."
                 }
             }
         }
