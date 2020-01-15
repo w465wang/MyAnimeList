@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CustomCellDelegate {
-    func callSegueFromCell(_ person: String)
+    func callSegueFromCell(_ id: String)
 }
 
 class SearchCell: UITableViewCell {
@@ -46,7 +46,7 @@ class ButtonCell: UITableViewCell {
 class CharacterListCell: UITableViewCell {
     
     var delegate: CustomCellDelegate!
-    var person = ""
+    var id = ""
     
     @IBOutlet weak var characterImage: UIImageView!
     @IBOutlet weak var staffImage: UIButton!
@@ -54,7 +54,7 @@ class CharacterListCell: UITableViewCell {
     @IBOutlet weak var staffName: UILabel!
     
     @IBAction func staffImagePressed(_ sender: UIButton) {
-        self.delegate.callSegueFromCell(person)
+        self.delegate.callSegueFromCell(id)
     }
 }
 

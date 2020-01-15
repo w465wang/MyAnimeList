@@ -25,6 +25,8 @@ struct K {
         static let characterPerson = "characterToPerson"
         static let personPicture = "personToPictures"
         static let personStaff = "personToStaff"
+        static let staffAnime = "staffToAnime"
+        static let staffCharacter = "staffToCharacter"
     }
     
     struct CellIdentifier {

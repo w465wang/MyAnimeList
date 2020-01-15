@@ -55,6 +55,7 @@ class CharacterListViewController: UITableViewController {
         
         if animeCharacters != nil {
             var count = 0
+            
             if indexPath.section == 0 {
                 if mainCharacters != nil && mainCharacters!.isEmpty == false {
                     cell.characterImage.kf.setImage(with: URL(string: mainCharacters![indexPath.row].image_url))
@@ -66,7 +67,7 @@ class CharacterListViewController: UITableViewController {
                                 cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")), for: .normal)
                                 cell.staffImage.imageView?.contentMode = .scaleAspectFit
                                 cell.staffName.text = actor.name
-                                cell.person = String(actor.mal_id)
+                                cell.id = String(actor.mal_id)
                                 count += 1
                             }
                         }
@@ -76,7 +77,7 @@ class CharacterListViewController: UITableViewController {
                         cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"), for: .normal)
                         cell.staffImage.imageView?.contentMode = .scaleAspectFit
                         cell.staffName.text = "Unknown"
-                        cell.person = ""
+                        cell.id = ""
                     }
                 } else {
                     cell.characterName.text = "None found."
@@ -91,7 +92,7 @@ class CharacterListViewController: UITableViewController {
                                 cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "")), for: .normal)
                                 cell.staffImage.imageView?.contentMode = .scaleAspectFit
                                 cell.staffName.text = actor.name
-                                cell.person = String(actor.mal_id)
+                                cell.id = String(actor.mal_id)
                                 count += 1
                             }
                         }
@@ -101,7 +102,7 @@ class CharacterListViewController: UITableViewController {
                         cell.staffImage.kf.setImage(with: URL(string: "https://cdn.myanimelist.net/images/questionmark_23.gif?s=f0d17be5a46f7de113f7dbbb23ae5e1a"), for: .normal)
                         cell.staffImage.imageView?.contentMode = .scaleAspectFit
                         cell.staffName.text = "Unknown"
-                        cell.person = ""
+                        cell.id = ""
                     }
                 } else {
                     cell.characterName.text = "None found."
@@ -197,9 +198,9 @@ extension CharacterListViewController: AnimeManagerDelegate {
 
 extension CharacterListViewController: CustomCellDelegate {
     
-    func callSegueFromCell(_ person: String) {
-        if person != "" {
-            personID = person
+    func callSegueFromCell(_ id: String) {
+        if id != "" {
+            personID = id
             performSegue(withIdentifier: K.Segues.characterListPerson, sender: self)
         } else {
             let alertController = UIAlertController(title: "Why did you tap here?", message: "No Japanese voice actor found for this character.", preferredStyle: .actionSheet)

@@ -14,6 +14,9 @@ class CollectionTableViewController: UICollectionViewController {
     var anime: [AnimeStaffPosition] = []
     var manga: [PublishedManga] = []
     
+    var animeID = ""
+    var characterID = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,7 +67,11 @@ extension CollectionTableViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension CollectionTableViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.tag == 0 {
             return voice.count
@@ -79,17 +86,59 @@ extension CollectionTableViewController: UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath)
         
         if tableView.tag == 0 {
-            cell.backgroundColor = .red
+            let cell0: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath) as! CharacterListCell
+            cell0.delegate = self
+            
+            cell0.characterImage.kf.setImage(with: URL(string: voice[indexPath.row].anime.image_url))
+            cell0.characterName.text = voice[indexPath.row].character.name
+            cell0.staffImage.kf.setImage(with: URL(string: voice[indexPath.row].character.image_url), for: .normal)
+            cell0.staffImage.imageView?.contentMode = .scaleAspectFit
+            cell0.staffName.text = voice[indexPath.row].role
+            
+            cell0.id = String(voice[indexPath.row].character.mal_id)
+            
+            return cell0;
         } else if tableView.tag == 1 {
             cell.backgroundColor = .green
+//            cell.characterImage.kf.setImage(with: URL(string: anime[indexPath.row].anime.image_url))
         } else {
             cell.backgroundColor = .blue
+//            cell.characterImage.kf.setImage(with: URL(string: manga[indexPath.row].manga.image_url))
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if tableView.tag == 0 {
+            animeID = String(voice[indexPath.row].anime.mal_id)
+            performSegue(withIdentifier: K.Segues.staffAnime, sender: self)
+        } else if tableView.tag == 1 {
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else if tableView.tag == 2 {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.Segues.staffAnime {
+            let destinationVC = segue.destination as! AnimeTableViewController
+            destinationVC.animeID = animeID
+        } else if segue.identifier == K.Segues.staffCharacter {
+            let destinationVC = segue.destination as! CharacterViewController
+            destinationVC.characterID = characterID
+        }
+    }
+}
+
+// MARK: - CustomCellDelegate
+
+extension CollectionTableViewController: CustomCellDelegate {
+    
+    func callSegueFromCell(_ id: String) {
+        if id != "" {
+            characterID = id
+            performSegue(withIdentifier: K.Segues.staffCharacter, sender: self)
+        }
     }
 }
