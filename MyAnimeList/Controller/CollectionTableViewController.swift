@@ -10,6 +10,8 @@ import UIKit
 
 class CollectionTableViewController: UICollectionViewController {
     
+    @IBOutlet weak var navBar: UINavigationItem!
+    
     var voice: [VoiceActingRole] = []
     var anime: [AnimeStaffPosition] = []
     var manga: [PublishedManga] = []
@@ -28,18 +30,24 @@ class CollectionTableViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
+//            navBar.title = "Voice Acting Roles"
+            
             let cell0: TableCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.personVoice, for: indexPath) as! TableCell
 
             cell0.tableView.tag = 0
             
             return cell0
         } else if indexPath.row == 1 {
+//            navBar.title = "Anime Staff Positions"
+            
             let cell1: TableCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.personAnime, for: indexPath) as! TableCell
             
             cell1.tableView.tag = 1
             
             return cell1
         } else {
+//            navBar.title = "Published Manga"
+            
             let cell2: TableCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.personManga, for: indexPath) as! TableCell
             
             cell2.tableView.tag = 2
@@ -83,30 +91,39 @@ extension CollectionTableViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath)
-        
         if tableView.tag == 0 {
             let cell0: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath) as! CharacterListCell
             cell0.delegate = self
             
             cell0.characterImage.kf.setImage(with: URL(string: voice[indexPath.row].anime.image_url))
-            cell0.characterName.text = voice[indexPath.row].character.name
+            cell0.characterName.text = voice[indexPath.row].anime.name
             cell0.staffImage.kf.setImage(with: URL(string: voice[indexPath.row].character.image_url), for: .normal)
             cell0.staffImage.imageView?.contentMode = .scaleAspectFit
-            cell0.staffName.text = voice[indexPath.row].role
-            
+            cell0.staffName.text = voice[indexPath.row].character.name
             cell0.id = String(voice[indexPath.row].character.mal_id)
             
             return cell0;
         } else if tableView.tag == 1 {
-            cell.backgroundColor = .green
-//            cell.characterImage.kf.setImage(with: URL(string: anime[indexPath.row].anime.image_url))
+            let cell1: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath) as! CharacterListCell
+            cell1.delegate = self
+            
+            cell1.characterImage.kf.setImage(with: URL(string: anime[indexPath.row].anime.image_url))
+            cell1.characterName.text = anime[indexPath.row].anime.name
+            cell1.staffName.text = anime[indexPath.row].position
+            cell1.id = ""
+            
+            return cell1
         } else {
-            cell.backgroundColor = .blue
-//            cell.characterImage.kf.setImage(with: URL(string: manga[indexPath.row].manga.image_url))
+            let cell2: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.personTable, for: indexPath) as! CharacterListCell
+            cell2.delegate = self
+            
+            cell2.characterImage.kf.setImage(with: URL(string: manga[indexPath.row].manga.image_url))
+            cell2.characterName.text = manga[indexPath.row].manga.name
+            cell2.staffName.text = manga[indexPath.row].position
+            cell2.id = ""
+            
+            return cell2
         }
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -114,10 +131,13 @@ extension CollectionTableViewController: UITableViewDelegate, UITableViewDataSou
             animeID = String(voice[indexPath.row].anime.mal_id)
             performSegue(withIdentifier: K.Segues.staffAnime, sender: self)
         } else if tableView.tag == 1 {
-            tableView.deselectRow(at: indexPath, animated: true)
+            animeID = String(anime[indexPath.row].anime.mal_id)
+            performSegue(withIdentifier: K.Segues.staffAnime, sender: self)
         } else if tableView.tag == 2 {
-            tableView.deselectRow(at: indexPath, animated: true)
+            
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
