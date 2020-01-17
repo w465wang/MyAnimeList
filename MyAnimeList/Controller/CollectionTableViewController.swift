@@ -30,24 +30,18 @@ class CollectionTableViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
-//            navBar.title = "Voice Acting Roles"
-            
             let cell0: TableCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.personVoice, for: indexPath) as! TableCell
-
+            
             cell0.tableView.tag = 0
             
             return cell0
         } else if indexPath.row == 1 {
-//            navBar.title = "Anime Staff Positions"
-            
             let cell1: TableCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.personAnime, for: indexPath) as! TableCell
             
             cell1.tableView.tag = 1
             
             return cell1
         } else {
-//            navBar.title = "Published Manga"
-            
             let cell2: TableCell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CellIdentifier.personManga, for: indexPath) as! TableCell
             
             cell2.tableView.tag = 2
@@ -64,7 +58,7 @@ class CollectionTableViewController: UICollectionViewController {
 extension CollectionTableViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
+        return CGSize(width: view.frame.width, height: view.frame.height - 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -87,6 +81,16 @@ extension CollectionTableViewController: UITableViewDelegate, UITableViewDataSou
             return anime.count
         } else {
             return manga.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView.tag == 0 {
+            return "Voice Acting Roles"
+        } else if tableView.tag == 1 {
+            return "Anime Staff Positions"
+        } else {
+            return "Published Manga"
         }
     }
     
