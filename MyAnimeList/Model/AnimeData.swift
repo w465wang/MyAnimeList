@@ -27,10 +27,10 @@ struct AnimeData: Codable {
 // MARK: - Characters and Staff
 
 struct AnimeCharacterData: Codable {
-    let characters: [Character]
+    let characters: [AnimeCharacter]
 }
 
-struct Character: Codable {
+struct AnimeCharacter: Codable {
     let mal_id: Int
     let image_url: String
     let name: String

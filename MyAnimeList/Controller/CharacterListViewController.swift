@@ -12,20 +12,30 @@ class CharacterListViewController: UITableViewController {
     
     @IBOutlet var characterList: UITableView!
     
-    var animeCharacters: [Character]?
-    var mainCharacters: [Character]?
-    var supportingCharacters: [Character]?
+    var animeCharacters: [AnimeCharacter]?
+    var animeMainCharacters: [AnimeCharacter]?
+    var animeSupportingCharacters: [AnimeCharacter]?
+    var mangaCharacters: [MangaCharacter]?
+    var mangaMainCharacters: [MangaCharacter]?
+    var mangaSupportingCharacters: [MangaCharacter]?
     
     var animeManager = AnimeManager()
+    var mangaManager = MangaManager()
     var animeID = ""
+    var mangaID = ""
     var characterID = ""
     var personID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        animeManager.delegate = self
-        animeManager.fetchAnime(animeID, K.Requests.charactersStaff)
+        if animeID != "" {
+            animeManager.delegate = self
+            animeManager.fetchAnime(animeID, K.Requests.charactersStaff)
+        } else if mangaID != "" {
+            mangaManager.delegate = self
+            mangaManager.fetchManga(mangaID, K.Requests.characters)
+        }
         self.showSpinner(onView: self.view)
     }
     
@@ -42,27 +52,36 @@ class CharacterListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return mainCharacters?.count ?? 1
-        } else {
-            return supportingCharacters?.count ?? 1
+        if animeID != "" {
+            if section == 0 {
+                return animeMainCharacters?.count ?? 1
+            } else {
+                return animeSupportingCharacters?.count ?? 1
+            }
+        } else if mangaID != "" {
+            if section == 0 {
+                return mangaMainCharacters?.count ?? 1
+            } else {
+                return mangaSupportingCharacters?.count ?? 1
+            }
         }
+        
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.character, for: indexPath) as! ListCell
         cell.delegate = self
         
-        if animeCharacters != nil {
-            var count = 0
-            
+        var count = 0
+        if animeID != "" && animeCharacters != nil {
             if indexPath.section == 0 {
-                if mainCharacters != nil && mainCharacters!.isEmpty == false {
-                    cell.listImageLeft.kf.setImage(with: URL(string: mainCharacters![indexPath.row].image_url))
-                    cell.listNameLeft.text = mainCharacters![indexPath.row].name.html2String
+                if animeMainCharacters != nil && animeMainCharacters!.isEmpty == false {
+                    cell.listImageLeft.kf.setImage(with: URL(string: animeMainCharacters![indexPath.row].image_url))
+                    cell.listNameLeft.text = animeMainCharacters![indexPath.row].name.html2String
                     
-                    if mainCharacters![indexPath.row].voice_actors.count > 0 {
-                        for actor in mainCharacters![indexPath.row].voice_actors {
+                    if animeMainCharacters![indexPath.row].voice_actors.count > 0 {
+                        for actor in animeMainCharacters![indexPath.row].voice_actors {
                             if actor.language == "Japanese" {
                                 cell.listImageRight.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "").replacingOccurrences(of: "/r/42x62", with: "")), for: .normal)
                                 cell.listImageRight.imageView?.contentMode = .scaleAspectFit
@@ -84,11 +103,12 @@ class CharacterListViewController: UITableViewController {
                     cell.listNameLeft.text = "None found."
                 }
             } else {
-                if supportingCharacters != nil && supportingCharacters!.isEmpty == false {
-                    cell.listImageLeft.kf.setImage(with: URL(string: supportingCharacters![indexPath.row].image_url))
-                    cell.listNameLeft.text = supportingCharacters![indexPath.row].name.html2String
-                    if supportingCharacters![indexPath.row].voice_actors.count > 0 {
-                        for actor in supportingCharacters![indexPath.row].voice_actors {
+                if animeSupportingCharacters != nil && animeSupportingCharacters!.isEmpty == false {
+                    cell.listImageLeft.kf.setImage(with: URL(string: animeSupportingCharacters![indexPath.row].image_url))
+                    cell.listNameLeft.text = animeSupportingCharacters![indexPath.row].name.html2String
+                    
+                    if animeSupportingCharacters![indexPath.row].voice_actors.count > 0 {
+                        for actor in animeSupportingCharacters![indexPath.row].voice_actors {
                             if actor.language == "Japanese" {
                                 cell.listImageRight.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "").replacingOccurrences(of: "/r/42x62", with: "")), for: .normal)
                                 cell.listImageRight.imageView?.contentMode = .scaleAspectFit
@@ -110,20 +130,45 @@ class CharacterListViewController: UITableViewController {
                     cell.listNameLeft.text = "None found."
                 }
             }
+        } else if mangaID != "" && mangaCharacters != nil {
+            if indexPath.section == 0 {
+                if mangaMainCharacters != nil && mangaMainCharacters!.isEmpty == false {
+                    cell.listImageLeft.kf.setImage(with: URL(string: mangaMainCharacters![indexPath.row].image_url))
+                    cell.listNameLeft.text = mangaMainCharacters![indexPath.row].name.html2String
+                    cell.id = String(mangaMainCharacters![indexPath.row].mal_id)
+                } else {
+                    cell.listNameLeft.text = "None found."
+                }
+            } else {
+                if mangaSupportingCharacters != nil && mangaSupportingCharacters!.isEmpty == false {
+                    cell.listImageLeft.kf.setImage(with: URL(string: mangaSupportingCharacters![indexPath.row].image_url))
+                    cell.listNameLeft.text = mangaSupportingCharacters![indexPath.row].name.html2String
+                    cell.id = String(mangaSupportingCharacters![indexPath.row].mal_id)
+                } else {
+                    cell.listNameLeft.text = "None found."
+                }
+            }
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            characterID = String(mainCharacters![indexPath.row].mal_id)
-        } else {
-            characterID = String(supportingCharacters![indexPath.row].mal_id)
+        if animeID != "" {
+            if indexPath.section == 0 {
+                characterID = String(animeMainCharacters![indexPath.row].mal_id)
+            } else {
+                characterID = String(animeSupportingCharacters![indexPath.row].mal_id)
+            }
+        } else if mangaID != "" {
+            if indexPath.section == 0 {
+                characterID = String(mangaMainCharacters![indexPath.row].mal_id)
+            } else {
+                characterID = String(mangaSupportingCharacters![indexPath.row].mal_id)
+            }
         }
         
         performSegue(withIdentifier: K.Segues.characterListCharacter, sender: self)
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -151,22 +196,22 @@ extension CharacterListViewController: AnimeManagerDelegate {
         animeCharacters = anime.animeCharacters
         
         if animeCharacters!.isEmpty == false {
-            mainCharacters = []
-            supportingCharacters = []
+            animeMainCharacters = []
+            animeSupportingCharacters = []
             
             for character in animeCharacters! {
                 if character.role == "Main" {
-                    mainCharacters?.append(character)
+                    animeMainCharacters?.append(character)
                 } else if character.role == "Supporting" {
-                    supportingCharacters?.append(character)
+                    animeSupportingCharacters?.append(character)
                 }
             }
             
-            if mainCharacters!.isEmpty == true {
-                mainCharacters = nil
+            if animeMainCharacters!.isEmpty == true {
+                animeMainCharacters = nil
             }
-            if supportingCharacters!.isEmpty == true {
-                supportingCharacters = nil
+            if animeSupportingCharacters!.isEmpty == true {
+                animeSupportingCharacters = nil
             }
         }
         
@@ -196,12 +241,57 @@ extension CharacterListViewController: AnimeManagerDelegate {
     }
 }
 
+// MARK: - MangaManagerDelegate
+
+extension CharacterListViewController: MangaManagerDelegate {
+    
+    func didUpdateManga(_ mangaManager: MangaManager, _ manga: MangaModel) {
+        print("Not looking for manga.")
+    }
+    
+    func didUpdateMangaCharacter(_ mangaManager: MangaManager, _ manga: MangaCharacterModel) {
+        self.removeSpinner()
+        mangaCharacters = manga.mangaCharacters
+        
+        if mangaCharacters!.isEmpty == false {
+            mangaMainCharacters = []
+            mangaSupportingCharacters = []
+            
+            for character in mangaCharacters! {
+                if character.role == "Main" {
+                    mangaMainCharacters?.append(character)
+                } else if character.role == "Supporting" {
+                    mangaSupportingCharacters?.append(character)
+                }
+            }
+            
+            if mangaMainCharacters!.isEmpty == true {
+                mangaMainCharacters = nil
+            }
+            if mangaSupportingCharacters!.isEmpty == true {
+                mangaSupportingCharacters = nil
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel) {
+        print("Not looking for pictures.")
+    }
+}
+
 // MARK: - CustomCellDelegate
 
 extension CharacterListViewController: CustomCellDelegate {
     
     func callSegueFromCell(_ id: String) {
-        if id != "" {
+        if mangaID != "" {
+            characterID = id
+            performSegue(withIdentifier: K.Segues.characterListCharacter, sender: self)
+        } else if id != "" {
             personID = id
             performSegue(withIdentifier: K.Segues.characterListPerson, sender: self)
         } else {

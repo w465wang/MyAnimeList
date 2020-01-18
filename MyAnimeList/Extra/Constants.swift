@@ -61,6 +61,7 @@ struct K {
     
     struct Requests {
         static let null = ""
+        static let characters = "characters"
         static let charactersStaff = "characters_staff"
         static let episodes = "episodes"
         static let news = "news"

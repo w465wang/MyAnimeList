@@ -22,3 +22,9 @@ struct MangaModel {
     let mangaFavorites: String
     let mangaSynopsis: String
 }
+
+// MARK: - Characters
+
+struct MangaCharacterModel {
+    let mangaCharacters: [MangaCharacter]
+}

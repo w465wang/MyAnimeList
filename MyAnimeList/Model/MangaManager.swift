@@ -10,6 +10,10 @@ import Foundation
 
 protocol MangaManagerDelegate {
     func didUpdateManga(_ mangaManager: MangaManager, _ manga: MangaModel)
+    func didUpdateMangaCharacter(_ mangaManager: MangaManager, _ manga: MangaCharacterModel)
+//    func didUpdateMangaStat(_ mangaManager: MangaManager, _ manga: MangaStatModel)
+//    func didUpdateMangaUser(_ mangaManager: MangaManager, _ manga: MangaUserModel)
+//    func didUpdateMangaReview(_ mangaManager: MangaManager, _ manga: MangaReviewModel)
     func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel)
     func didFailWithError(_ error: Error)
 }
@@ -38,6 +42,10 @@ struct MangaManager {
                     if request == K.Requests.null {
                         if let manga = self.parseJSON(safeData) {
                             self.delegate?.didUpdateManga(self, manga)
+                        }
+                    } else if request == K.Requests.characters {
+                        if let manga = self.parseJSONCharacters(safeData) {
+                            self.delegate?.didUpdateMangaCharacter(self, manga)
                         }
                     } else if request == K.Requests.pictures {
                         if let manga = self.parseJSONPictures(safeData) {
@@ -111,6 +119,20 @@ struct MangaManager {
 
             let manga = MangaModel(mangaTitle: title, mangaType: type, mangaStatus: status, mangaImageURL: imageURL, mangaVolChap: volChap, mangaRank: rank, mangaScore: score, mangaScoredBy: scoredBy, mangaPopularity: popularity, mangaMembers: members, mangaFavorites: favorites, mangaSynopsis: synopsis)
             
+            return manga
+        } catch {
+            delegate?.didFailWithError(error)
+            return nil
+        }
+    }
+    
+    func parseJSONCharacters(_ mangaData: Data) -> MangaCharacterModel? {
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(MangaCharacterData.self, from: mangaData)
+            let manga = MangaCharacterModel(mangaCharacters: decodedData.characters)
+
             return manga
         } catch {
             delegate?.didFailWithError(error)

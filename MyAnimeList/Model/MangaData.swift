@@ -23,3 +23,16 @@ struct MangaData: Codable {
     let favorites: Int
     let synopsis: String?
 }
+
+// MARK: - Characters
+
+struct MangaCharacterData: Codable {
+    let characters: [MangaCharacter]
+}
+
+struct MangaCharacter: Codable {
+    let mal_id: Int
+    let image_url: String
+    let name: String
+    let role: String
+}

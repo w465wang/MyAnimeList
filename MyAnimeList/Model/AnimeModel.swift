@@ -29,7 +29,7 @@ struct AnimeModel {
 // MARK: - Characters
 
 struct AnimeCharacterModel {
-    let animeCharacters: [Character]
+    let animeCharacters: [AnimeCharacter]
 }
 
 // MARK: - Stats

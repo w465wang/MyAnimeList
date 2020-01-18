@@ -144,13 +144,28 @@ class AnimeMangaViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segues.characterList {
             let destinationVC = segue.destination as! CharacterListViewController
-            destinationVC.animeID = animeID
+            
+            if animeID != "" {
+                destinationVC.animeID = animeID
+            } else if mangaID != "" {
+                destinationVC.mangaID = mangaID
+            }
         } else if segue.identifier == K.Segues.stat {
             let destinationVC = segue.destination as! StatViewController
-            destinationVC.animeID = animeID
+            
+            if animeID != "" {
+                destinationVC.animeID = animeID
+            } else if mangaID != "" {
+                
+            }
         } else if segue.identifier == K.Segues.review {
             let destinationVC = segue.destination as! ReviewViewController
-            destinationVC.animeID = animeID
+            
+            if animeID != "" {
+                destinationVC.animeID = animeID
+            } else if mangaID != "" {
+                
+            }
         } else if segue.identifier == K.Segues.animePicture {
             let destinationVC = segue.destination as! PictureViewController
             
@@ -212,6 +227,10 @@ extension AnimeMangaViewController: MangaManagerDelegate {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    func didUpdateMangaCharacter(_ mangaManager: MangaManager, _ manga: MangaCharacterModel) {
+        print("Not looking for characters.")
     }
     
     func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel) {
