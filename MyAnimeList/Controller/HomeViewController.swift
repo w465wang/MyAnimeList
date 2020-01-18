@@ -35,9 +35,14 @@ class HomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.Segues.search {
+        if segue.identifier == K.Segues.animeSearch {
             let destinationVC = segue.destination as! SearchViewController
             destinationVC.userSearch = userSearch
+            destinationVC.searchType = K.SearchType.anime
+        } else if segue.identifier == K.Segues.mangaSearch {
+            let destinationVC = segue.destination as! SearchViewController
+            destinationVC.userSearch = userSearch
+            destinationVC.searchType = K.SearchType.manga
         }
     }
 }
@@ -50,12 +55,15 @@ extension HomeViewController: UISearchBarDelegate {
         if let text = searchBar.text {
             if text.count >= 3 {
                 userSearch = text
-                performSegue(withIdentifier: K.Segues.search, sender: self)
+                
+                if self.title! == K.VCTitle.animeHome {
+                    performSegue(withIdentifier: K.Segues.animeSearch, sender: self)
+                } else if self.title! == K.VCTitle.mangaHome {
+                    performSegue(withIdentifier: K.Segues.mangaSearch, sender: self)
+                }
             } else {
                 let alertController = UIAlertController(title: "Search Error", message: "Must enter at least three characters to perform search.", preferredStyle: .alert)
-
                 alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in })
-                
                 self.present(alertController, animated: true, completion: nil)
             }
         }

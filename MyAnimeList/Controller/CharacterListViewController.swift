@@ -1,5 +1,5 @@
 //
-//  CharacterViewController.swift
+//  CharacterListViewController.swift
 //  MyAnimeList
 //
 //  Created by William Wang on 2020-01-04.
@@ -206,9 +206,7 @@ extension CharacterListViewController: CustomCellDelegate {
             performSegue(withIdentifier: K.Segues.characterListPerson, sender: self)
         } else {
             let alertController = UIAlertController(title: "Why did you tap here?", message: "No Japanese voice actor found for this character.", preferredStyle: .actionSheet)
-
             alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in })
-            
             self.present(alertController, animated: true, completion: nil)
             
 //            Where to put?

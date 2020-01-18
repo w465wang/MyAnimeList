@@ -14,55 +14,83 @@ class SearchViewController: UITableViewController {
     @IBOutlet var searchTable: UITableView!
     
     var userSearch: String?
-    var searchResults: [AnimeResult]?
+    var searchType: String?
+    var animeSearchResults: [AnimeResult]?
+    var mangaSearchResults: [MangaResult]?
     
     var searchManager = SearchManager()
     var animeID = ""
+    var mangaID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         searchManager.delegate = self
-        searchManager.fetchSearch(K.SearchType.anime, userSearch!)
+        searchManager.fetchSearch(searchType!, userSearch!)
         self.showSpinner(onView: self.view)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchResults == nil || searchResults?.isEmpty == true {
-            return 1
-        } else {
-            return searchResults!.count
+        if searchType == K.SearchType.anime {
+            if animeSearchResults == nil || animeSearchResults?.isEmpty == true {
+                return 1
+            } else {
+                return animeSearchResults!.count
+            }
+        } else if searchType == K.SearchType.manga {
+            if mangaSearchResults == nil || mangaSearchResults?.isEmpty == true {
+                return 1
+            } else {
+                return mangaSearchResults!.count
+            }
         }
+        
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SearchCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.search, for: indexPath) as! SearchCell
         
-        if searchResults != nil && searchResults!.isEmpty == false {
-            cell.searchImage.kf.setImage(with: URL(string: searchResults![indexPath.row].image_url))
-            cell.searchLabel.text = searchResults![indexPath.row].title
-        } else if searchResults?.isEmpty == true {
-            let alertController = UIAlertController(title: "Search Error", message: "No search results found.", preferredStyle: .alert)
-
-            alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in self.handleButton(alert: action)})
-            
-            self.present(alertController, animated: true, completion: nil)
+        if searchType == K.SearchType.anime {
+            if animeSearchResults != nil && animeSearchResults!.isEmpty == false {
+                cell.searchImage.kf.setImage(with: URL(string: animeSearchResults![indexPath.row].image_url))
+                cell.searchLabel.text = animeSearchResults![indexPath.row].title
+            } else if animeSearchResults?.isEmpty == true {
+                let alertController = UIAlertController(title: "Search Error", message: "No search results found.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in self.handleButton(alert: action)})
+                self.present(alertController, animated: true, completion: nil)
+            }
+        } else if searchType == K.SearchType.manga {
+            if mangaSearchResults != nil && mangaSearchResults!.isEmpty == false {
+                cell.searchImage.kf.setImage(with: URL(string: mangaSearchResults![indexPath.row].image_url))
+                cell.searchLabel.text = mangaSearchResults![indexPath.row].title
+            } else if mangaSearchResults?.isEmpty == true {
+                let alertController = UIAlertController(title: "Search Error", message: "No search results found.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in self.handleButton(alert: action)})
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searchResults?.isEmpty == false {
-            animeID = String(searchResults![indexPath.row].mal_id)
-            performSegue(withIdentifier: K.Segues.selection, sender: self)
+        if animeSearchResults?.isEmpty == false {
+            animeID = String(animeSearchResults![indexPath.row].mal_id)
+            performSegue(withIdentifier: K.Segues.animeSelection, sender: self)
+        } else if mangaSearchResults?.isEmpty == false {
+            mangaID = String(mangaSearchResults![indexPath.row].mal_id)
+            performSegue(withIdentifier: K.Segues.mangaSelection, sender: self)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.Segues.selection {
+        if segue.identifier == K.Segues.animeSelection {
             let destinationVC = segue.destination as! AnimeMangaViewController
             destinationVC.animeID = animeID
+        } else if segue.identifier == K.Segues.mangaSelection {
+            let destinationVC = segue.destination as! AnimeMangaViewController
+            destinationVC.mangaID = mangaID
         }
     }
     
@@ -80,7 +108,8 @@ extension SearchViewController: SearchManagerDelegate {
     
     func didUpdateSearch(_ searchManager: SearchManager, _ search: SearchModel) {
         self.removeSpinner()
-        searchResults = search.animeSearchResults
+        animeSearchResults = search.animeSearchResults
+        mangaSearchResults = search.mangaSearchResults
         
         DispatchQueue.main.async {
             self.tableView.reloadData()

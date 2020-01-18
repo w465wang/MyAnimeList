@@ -20,10 +20,10 @@ struct SearchManager {
     func fetchSearch(_ searchType: String, _ searchQ: String) {
         let urlString = "\(searchURL)/\(searchType)?q=\(searchQ.replacingOccurrences(of: " ", with: "%20"))"
         print(urlString)
-        performRequest(with: urlString)
+        performRequest(with: urlString, and: searchType)
     }
     
-    func performRequest(with urlString: String) {
+    func performRequest(with urlString: String, and type: String) {
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             
@@ -34,8 +34,14 @@ struct SearchManager {
                 }
                 
                 if let safeData = data {
-                    if let search = self.parseJSONAnime(safeData) {
-                        self.delegate?.didUpdateSearch(self, search)
+                    if type == K.SearchType.anime {
+                        if let search = self.parseJSONAnime(safeData) {
+                            self.delegate?.didUpdateSearch(self, search)
+                        }
+                    } else if type == K.SearchType.manga {
+                        if let search = self.parseJSONManga(safeData) {
+                            self.delegate?.didUpdateSearch(self, search)
+                        }
                     }
                 }
             }
@@ -48,10 +54,21 @@ struct SearchManager {
         let decoder = JSONDecoder()
         
         do {
-            let decodedData = try decoder.decode(SearchData.self, from: searchData)
-            let results = decodedData.results
-            let search = SearchModel(animeSearchResults: results)
-            
+            let decodedData = try decoder.decode(AnimeSearchData.self, from: searchData)
+            let search = SearchModel(animeSearchResults: decodedData.results, mangaSearchResults: [])
+            return search
+        } catch {
+            delegate?.didFailWithError(error)
+            return nil
+        }
+    }
+    
+    func parseJSONManga(_ searchData: Data) -> SearchModel? {
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(MangaSearchData.self, from: searchData)
+            let search = SearchModel(animeSearchResults: [], mangaSearchResults: decodedData.results)
             return search
         } catch {
             delegate?.didFailWithError(error)

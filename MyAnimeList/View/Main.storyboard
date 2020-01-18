@@ -65,6 +65,7 @@
                     <connections>
                         <outlet property="searchTable" destination="q0d-iO-qDN" id="qDh-cj-dkq"/>
                         <segue destination="znT-Sj-IIk" kind="show" identifier="searchToAnime" id="0qa-PW-ibo"/>
+                        <segue destination="znT-Sj-IIk" kind="show" identifier="searchToManga" id="mv3-Rd-cJG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HtP-HT-rgY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -121,7 +122,7 @@
                     <connections>
                         <outlet property="searchBar" destination="xYn-Hl-hKJ" id="NB0-K7-cLb"/>
                         <outlet property="topButton" destination="T4k-s3-RyG" id="sln-fF-h6S"/>
-                        <segue destination="bxx-ei-vOy" kind="show" identifier="homeToSearch" id="I9x-sA-rVr"/>
+                        <segue destination="bxx-ei-vOy" kind="show" identifier="animeHomeToSearch" id="I9x-sA-rVr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DvF-Sd-FhM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1977,6 +1978,7 @@
                     <connections>
                         <outlet property="searchBar" destination="kN2-vd-bJW" id="s9I-LJ-ScH"/>
                         <outlet property="topButton" destination="j48-mo-nJ4" id="wyB-Kc-G7S"/>
+                        <segue destination="bxx-ei-vOy" kind="show" identifier="mangaHomeToSearch" id="yo6-nW-JqG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CON-SM-n2d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1997,6 +1999,7 @@
         <segue reference="7pz-gN-TTJ"/>
         <segue reference="Cyf-Fm-ZIA"/>
         <segue reference="eKt-0r-pYO"/>
-        <segue reference="0qa-PW-ibo"/>
+        <segue reference="mv3-Rd-cJG"/>
+        <segue reference="I9x-sA-rVr"/>
     </inferredMetricsTieBreakers>
 </document>

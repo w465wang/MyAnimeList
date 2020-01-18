@@ -8,8 +8,12 @@
 
 import Foundation
 
-struct SearchData: Codable {
+struct AnimeSearchData: Codable {
     let results: [AnimeResult]
+}
+
+struct MangaSearchData: Codable {
+    let results: [MangaResult]
 }
 
 struct AnimeResult: Codable {

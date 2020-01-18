@@ -1,5 +1,5 @@
 //
-//  AnimeStatViewController.swift
+//  StatViewController.swift
 //  MyAnimeList
 //
 //  Created by William Wang on 2020-01-10.

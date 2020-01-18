@@ -11,8 +11,10 @@ import UIImageColors
 
 struct K {
     struct Segues {
-        static let search = "homeToSearch"
-        static let selection = "searchToAnime"
+        static let animeSearch = "animeHomeToSearch"
+        static let mangaSearch = "mangaHomeToSearch"
+        static let animeSelection = "searchToAnime"
+        static let mangaSelection = "searchToManga"
         static let animePicture = "animeToPictures"
         static let characterList = "animeToCharacters"
         static let stat = "animeToStats"
@@ -77,6 +79,11 @@ struct K {
         static let manga = "manga"
         static let person = "person"
         static let character = "character"
+    }
+    
+    struct VCTitle {
+        static let animeHome = "Anime Home"
+        static let mangaHome = "Manga Home"
     }
     
     static let defaultColors = UIImageColors.init(background: .white, primary: .white, secondary: .white, detail: .white)

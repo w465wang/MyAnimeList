@@ -10,4 +10,5 @@ import Foundation
 
 struct SearchModel {
     var animeSearchResults: [AnimeResult]
+    var mangaSearchResults: [MangaResult]
 }
