@@ -13,8 +13,7 @@ struct MangaModel {
     let mangaType: String
     let mangaStatus: String
     let mangaImageURL: String
-    let mangaVolumes: String
-    let mangaChapters: String
+    let mangaVolChap: String
     let mangaRank: String
     let mangaScore: String
     let mangaScoredBy: String

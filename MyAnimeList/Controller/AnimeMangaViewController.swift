@@ -17,7 +17,7 @@ class AnimeMangaViewController: UITableViewController {
     
     var mangaManager = MangaManager()
     var mangaID = ""
-    var mangaInfo = MangaModel(mangaTitle: "", mangaType: "", mangaStatus: "", mangaImageURL: "", mangaVolumes: "", mangaChapters: "", mangaRank: "", mangaScore: "", mangaScoredBy: "", mangaPopularity: "", mangaMembers: "", mangaFavorites: "", mangaSynopsis: "")
+    var mangaInfo = MangaModel(mangaTitle: "", mangaType: "", mangaStatus: "", mangaImageURL: "", mangaVolChap: "", mangaRank: "", mangaScore: "", mangaScoredBy: "", mangaPopularity: "", mangaMembers: "", mangaFavorites: "", mangaSynopsis: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,36 +42,59 @@ class AnimeMangaViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if animeInfo.animeImageURL != "" {
+        if animeInfo.animeImageURL != "" || mangaInfo.mangaImageURL != "" {
             self.removeSpinner()
             
             if indexPath.row == 0 {
                 let cell0: AnimeImageCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.animeImage, for: indexPath) as! AnimeImageCell
                 
-                cell0.animeImage.kf.setImage(with: URL(string: animeInfo.animeImageURL), for: .normal)
-                cell0.animeImage.imageView?.contentMode = .scaleAspectFit
-                
-                cell0.animeTitle.text = animeInfo.animeTitle
-                cell0.animeEpisodes.text = animeInfo.animeEpisodes
-                cell0.animeTypePremiered.text = "(\(animeInfo.animeType), \(animeInfo.animePremiered))"
-                cell0.animeStatus.text = animeInfo.animeStatus
+                if animeID != "" {
+                    cell0.animeImage.kf.setImage(with: URL(string: animeInfo.animeImageURL), for: .normal)
+                    cell0.animeImage.imageView?.contentMode = .scaleAspectFit
+                    
+                    cell0.animeTitle.text = animeInfo.animeTitle
+                    cell0.animeEpisodes.text = animeInfo.animeEpisodes
+                    cell0.animeTypePremiered.text = "(\(animeInfo.animeType), \(animeInfo.animePremiered))"
+                    cell0.animeStatus.text = animeInfo.animeStatus
+                } else if mangaID != "" {
+                    cell0.animeImage.kf.setImage(with: URL(string: mangaInfo.mangaImageURL), for: .normal)
+                    cell0.animeImage.imageView?.contentMode = .scaleAspectFit
+                    
+                    cell0.animeTitle.text = mangaInfo.mangaTitle
+                    cell0.animeEpisodes.text = mangaInfo.mangaVolChap
+                    cell0.animeTypePremiered.text = mangaInfo.mangaType
+                    cell0.animeStatus.text = mangaInfo.mangaStatus
+                }
                        
                 return cell0
             } else if indexPath.row == 1 {
                 let cell1: AnimeSynopsisCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.animeSynopsis, for: indexPath) as! AnimeSynopsisCell
                 
-                cell1.animeSynopsis.text = animeInfo.animeSynopsis
+                if animeID != "" {
+                    cell1.animeSynopsis.text = animeInfo.animeSynopsis
+                } else if mangaID != "" {
+                    cell1.animeSynopsis.text = mangaInfo.mangaSynopsis
+                }
                 
                 return cell1
             } else if indexPath.row == 2 {
                 let cell2 = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.animeInfo, for: indexPath) as! AnimeInfoCell
                 
-                cell2.animeScore.text = "Score: \(animeInfo.animeScore)"
-                cell2.animeScoredBy.text = "Scored By: \(animeInfo.animeScoredBy)"
-                cell2.animeRank.text = "Rank: \(animeInfo.animeRank)"
-                cell2.animePopularity.text = "Popularity: \(animeInfo.animePopularity)"
-                cell2.animeMembers.text = "Members: \(animeInfo.animeMembers)"
-                cell2.animeFavorites.text = "Favourites: \(animeInfo.animeFavorites)"
+                if animeID != "" {
+                    cell2.animeScore.text = "Score: \(animeInfo.animeScore)"
+                    cell2.animeScoredBy.text = "Scored By: \(animeInfo.animeScoredBy)"
+                    cell2.animeRank.text = "Rank: \(animeInfo.animeRank)"
+                    cell2.animePopularity.text = "Popularity: \(animeInfo.animePopularity)"
+                    cell2.animeMembers.text = "Members: \(animeInfo.animeMembers)"
+                    cell2.animeFavorites.text = "Favourites: \(animeInfo.animeFavorites)"
+                } else if mangaID != "" {
+                    cell2.animeScore.text = "Score: \(mangaInfo.mangaScore)"
+                    cell2.animeScoredBy.text = "Scored By: \(mangaInfo.mangaScoredBy)"
+                    cell2.animeRank.text = "Rank: \(mangaInfo.mangaRank)"
+                    cell2.animePopularity.text = "Popularity: \(mangaInfo.mangaPopularity)"
+                    cell2.animeMembers.text = "Members: \(mangaInfo.mangaMembers)"
+                    cell2.animeFavorites.text = "Favourites: \(mangaInfo.mangaFavorites)"
+                }
                 
                 return cell2
             } else if indexPath.row == 3 {
@@ -130,8 +153,14 @@ class AnimeMangaViewController: UITableViewController {
             destinationVC.animeID = animeID
         } else if segue.identifier == K.Segues.animePicture {
             let destinationVC = segue.destination as! PictureViewController
-            destinationVC.type = "anime"
-            destinationVC.id = animeID
+            
+            if animeID != "" {
+                destinationVC.type = K.SearchType.anime
+                destinationVC.id = animeID
+            } else if mangaID != "" {
+                destinationVC.type = K.SearchType.manga
+                destinationVC.id = mangaID
+            }
         }
     }
 }
@@ -178,6 +207,10 @@ extension AnimeMangaViewController: AnimeManagerDelegate {
 extension AnimeMangaViewController: MangaManagerDelegate {
     
     func didUpdateManga(_ mangaManager: MangaManager, _ manga: MangaModel) {
-        mangaInfo = MangaModel(mangaTitle: manga.mangaTitle, mangaType: manga.mangaType, mangaStatus: manga.mangaStatus, mangaImageURL: manga.mangaImageURL, mangaVolumes: manga.mangaVolumes, mangaChapters: manga.mangaChapters, mangaRank: manga.mangaRank, mangaScore: manga.mangaScore, mangaScoredBy: manga.mangaScoredBy, mangaPopularity: manga.mangaPopularity, mangaMembers: manga.mangaMembers, mangaFavorites: manga.mangaFavorites, mangaSynopsis: manga.mangaSynopsis)
+        mangaInfo = MangaModel(mangaTitle: manga.mangaTitle, mangaType: manga.mangaType, mangaStatus: manga.mangaStatus, mangaImageURL: manga.mangaImageURL, mangaVolChap: manga.mangaVolChap, mangaRank: manga.mangaRank, mangaScore: manga.mangaScore, mangaScoredBy: manga.mangaScoredBy, mangaPopularity: manga.mangaPopularity, mangaMembers: manga.mangaMembers, mangaFavorites: manga.mangaFavorites, mangaSynopsis: manga.mangaSynopsis)
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }

@@ -83,13 +83,9 @@ struct AnimeManager {
             
             let episodes: String
             if decodedData.episodes != nil {
-                if decodedData.episodes! == 1 {
-                    episodes = "\(decodedData.episodes!) Episode"
-                } else {
-                    episodes = "\(decodedData.episodes!) Episodes"
-                }
+                episodes = "Episodes: \(decodedData.episodes!)"
             } else {
-                episodes = "Unknown"
+                episodes = "Episodes: Unknown"
             }
             
             let status = decodedData.status

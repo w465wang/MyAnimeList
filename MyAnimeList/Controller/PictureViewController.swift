@@ -11,6 +11,7 @@ import UIKit
 class PictureViewController: UICollectionViewController {
     
     var animeManager = AnimeManager()
+    var mangaManager = MangaManager()
     var characterManager = CharacterManager()
     var personManager = PersonManager()
     
@@ -21,13 +22,15 @@ class PictureViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if type == "anime" {
+        if type == K.SearchType.anime {
             animeManager.delegate = self
             animeManager.fetchAnime(id, K.Requests.pictures)
-        } else if type == "character" {
+        } else if type == K.SearchType.manga {
+            
+        } else if type == K.SearchType.character {
             characterManager.delegate = self
             characterManager.fetchCharacter(id, K.Requests.pictures)
-        } else if type == "person" {
+        } else if type == K.SearchType.person {
             personManager.delegate = self
             personManager.fetchPerson(id, K.Requests.pictures)
         }
@@ -97,7 +100,15 @@ extension PictureViewController: AnimeManagerDelegate {
             self.collectionView.reloadData()
         }
     }
+    
+    func didFailWithError(_ error: Error) {
+        print(error)
+    }
 }
+
+// MARK: - MangaManagerDelegate
+
+
 
 // MARK: - CharacterManagerDelegate
 
@@ -113,10 +124,6 @@ extension PictureViewController: CharacterManagerDelegate {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-    }
-    
-    func didFailWithError(_ error: Error) {
-        print(error)
     }
 }
 

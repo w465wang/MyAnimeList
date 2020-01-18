@@ -117,13 +117,14 @@ class CharacterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segues.characterPicture {
             let destinationVC = segue.destination as! PictureViewController
-            destinationVC.type = "character"
+            destinationVC.type = K.SearchType.character
             destinationVC.id = characterID
         } else if segue.identifier == K.Segues.characterAnime {
             let destinationVC = segue.destination as! AnimeMangaViewController
             destinationVC.animeID = animeID
         } else if segue.identifier == K.Segues.characterManga {
-            
+            let destinationVC = segue.destination as! AnimeMangaViewController
+            destinationVC.mangaID = mangaID
         } else if segue.identifier == K.Segues.characterPerson {
             let destinationVC = segue.destination as! PersonViewController
             destinationVC.personID = personID
@@ -188,7 +189,8 @@ extension CharacterViewController: UICollectionViewDelegate, UICollectionViewDat
             animeID = String(characterInfo.characterAnimeography[indexPath.row].mal_id)
             performSegue(withIdentifier: K.Segues.characterAnime, sender: self)
         } else if collectionView.tag == 3 {
-            
+            mangaID = String(characterInfo.characterMangaography[indexPath.row].mal_id)
+            performSegue(withIdentifier: K.Segues.characterManga, sender: self)
         } else if collectionView.tag == 4 {
             personID = String(characterInfo.characterVoiceActors[indexPath.row].mal_id)
             performSegue(withIdentifier: K.Segues.characterPerson, sender: self)
