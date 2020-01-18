@@ -83,7 +83,11 @@ struct AnimeManager {
             
             let episodes: String
             if decodedData.episodes != nil {
-                episodes = String(decodedData.episodes!)
+                if decodedData.episodes! == 1 {
+                    episodes = "\(decodedData.episodes!) Episode"
+                } else {
+                    episodes = "\(decodedData.episodes!) Episodes"
+                }
             } else {
                 episodes = "Unknown"
             }
@@ -97,7 +101,7 @@ struct AnimeManager {
                 score = "N/A"
             }
             
-            let scored_by = String(decodedData.scored_by)
+            let scoredBy = String(decodedData.scored_by)
             
             let rank: String
             if decodedData.rank != nil {
@@ -124,7 +128,7 @@ struct AnimeManager {
                 premiered = "N/A"
             }
             
-            let anime = AnimeModel(animeImageURL: imageURL, animeTitle: title, animeType: type, animeEpisodes: episodes, animeStatus: status, animeScore: score, animeScoredBy: scored_by, animeRank: rank, animePopularity: popularity, animeMembers: members, animeFavorites: favorites, animeSynopsis: synopsis, animePremiered: premiered)
+            let anime = AnimeModel(animeImageURL: imageURL, animeTitle: title, animeType: type, animeEpisodes: episodes, animeStatus: status, animeScore: score, animeScoredBy: scoredBy, animeRank: rank, animePopularity: popularity, animeMembers: members, animeFavorites: favorites, animeSynopsis: synopsis, animePremiered: premiered)
             
             return anime
         } catch {

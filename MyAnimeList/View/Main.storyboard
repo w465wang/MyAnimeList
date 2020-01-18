@@ -71,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="24.637681159420293" y="-573.21428571428567"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="bz8-1c-XqH">
             <objects>
-                <viewController id="qHr-1N-1Us" customClass="HomeViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home" id="qHr-1N-1Us" customClass="HomeViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oBQ-7b-Igc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,7 +91,7 @@
                                             <constraint firstAttribute="height" constant="50" id="kV8-Sp-1PV"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                        <state key="normal" title="Top Anime"/>
+                                        <state key="normal" title="   "/>
                                     </button>
                                     <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search Anime" translatesAutoresizingMaskIntoConstraints="NO" id="xYn-Hl-hKJ">
                                         <rect key="frame" x="0.0" y="335" width="374" height="50"/>
@@ -319,10 +319,10 @@
             </objects>
             <point key="canvasLocation" x="-1048" y="-2032"/>
         </scene>
-        <!--Item-->
+        <!--Navigation-->
         <scene sceneID="h6p-tV-ZUx">
             <objects>
-                <navigationController id="DeB-QF-BFU" sceneMemberID="viewController">
+                <navigationController title="Navigation" id="DeB-QF-BFU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="rnQ-HC-yjT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Ir-rj-1G3">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -529,10 +529,10 @@
             </objects>
             <point key="canvasLocation" x="1784" y="-1319"/>
         </scene>
-        <!--Anime Table View Controller-->
+        <!--Anime Manga View Controller-->
         <scene sceneID="TUH-2l-TBm">
             <objects>
-                <tableViewController id="znT-Sj-IIk" customClass="AnimeTableViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="znT-Sj-IIk" customClass="AnimeMangaViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vtm-YQ-bkd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -852,7 +852,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="FYc-Qt-zMt"/>
                     <connections>
-                        <outlet property="animeTable" destination="Vtm-YQ-bkd" id="CCI-6g-SEb"/>
                         <segue destination="AUB-oF-K0g" kind="show" identifier="animeToCharacters" id="BQL-pl-Cec"/>
                         <segue destination="yXm-aw-fjY" kind="show" identifier="animeToReviews" id="XH4-Re-zgl"/>
                         <segue destination="z7h-Xy-VT2" kind="show" identifier="animeToStats" id="XbV-5H-cns"/>
@@ -1918,7 +1917,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Sje-jn-ZTw"/>
         <segue reference="37R-gC-Qms"/>
-        <segue reference="6bl-Hv-MR7"/>
+        <segue reference="eKt-0r-pYO"/>
         <segue reference="0qa-PW-ibo"/>
     </inferredMetricsTieBreakers>
 </document>

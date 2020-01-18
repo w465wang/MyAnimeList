@@ -39,8 +39,11 @@
 		34B38B3B23BE816800925B6F /* AnimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B38B3A23BE816800925B6F /* AnimeData.swift */; };
 		34B38B3D23BE82F700925B6F /* AnimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B38B3C23BE82F700925B6F /* AnimeModel.swift */; };
 		34B38B3F23BE831500925B6F /* AnimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B38B3E23BE831500925B6F /* AnimeManager.swift */; };
+		34F0262A23D3A2BE007044BD /* MangaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F0262923D3A2BE007044BD /* MangaData.swift */; };
+		34F0262C23D3A400007044BD /* AnimeMangaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F0262B23D3A400007044BD /* AnimeMangaViewController.swift */; };
+		34F0262E23D3A516007044BD /* MangaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F0262D23D3A516007044BD /* MangaModel.swift */; };
+		34F0263023D3A674007044BD /* MangaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F0262F23D3A674007044BD /* MangaManager.swift */; };
 		34F564C423C6844C008CE30F /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F564C323C6844C008CE30F /* Spinner.swift */; };
-		34F564C623C6C592008CE30F /* AnimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F564C523C6C592008CE30F /* AnimeTableViewController.swift */; };
 		B92A8CEA427E14A105CAC024 /* Pods_MyAnimeList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D7EC3672E906B5B102EC9E /* Pods_MyAnimeList.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,8 +82,11 @@
 		34B38B3A23BE816800925B6F /* AnimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeData.swift; sourceTree = "<group>"; };
 		34B38B3C23BE82F700925B6F /* AnimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeModel.swift; sourceTree = "<group>"; };
 		34B38B3E23BE831500925B6F /* AnimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeManager.swift; sourceTree = "<group>"; };
+		34F0262923D3A2BE007044BD /* MangaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaData.swift; sourceTree = "<group>"; };
+		34F0262B23D3A400007044BD /* AnimeMangaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeMangaViewController.swift; sourceTree = "<group>"; };
+		34F0262D23D3A516007044BD /* MangaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaModel.swift; sourceTree = "<group>"; };
+		34F0262F23D3A674007044BD /* MangaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaManager.swift; sourceTree = "<group>"; };
 		34F564C323C6844C008CE30F /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
-		34F564C523C6C592008CE30F /* AnimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeTableViewController.swift; sourceTree = "<group>"; };
 		55D7EC3672E906B5B102EC9E /* Pods_MyAnimeList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyAnimeList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B34FFF1ECAB2C95F0849963F /* Pods-MyAnimeList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAnimeList.release.xcconfig"; path = "Target Support Files/Pods-MyAnimeList/Pods-MyAnimeList.release.xcconfig"; sourceTree = "<group>"; };
 		C80F968DBAC9459913990E97 /* Pods-MyAnimeList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAnimeList.debug.xcconfig"; path = "Target Support Files/Pods-MyAnimeList/Pods-MyAnimeList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,7 +155,7 @@
 			children = (
 				34B1014C23BF9A3C00D2C63E /* HomeViewController.swift */,
 				34B1014623BF903F00D2C63E /* SearchViewController.swift */,
-				34F564C523C6C592008CE30F /* AnimeTableViewController.swift */,
+				34F0262B23D3A400007044BD /* AnimeMangaViewController.swift */,
 				3497E51623C1836900E65C9E /* CharacterListViewController.swift */,
 				344EDE2923C935C30084E96D /* StatViewController.swift */,
 				3497E52623C3DD2F00E65C9E /* ReviewViewController.swift */,
@@ -178,6 +184,9 @@
 				34B38B3E23BE831500925B6F /* AnimeManager.swift */,
 				34B38B3A23BE816800925B6F /* AnimeData.swift */,
 				34B38B3C23BE82F700925B6F /* AnimeModel.swift */,
+				34F0262F23D3A674007044BD /* MangaManager.swift */,
+				34F0262923D3A2BE007044BD /* MangaData.swift */,
+				34F0262D23D3A516007044BD /* MangaModel.swift */,
 				3422B56C23C7E58C00E01D1A /* CharacterManager.swift */,
 				3422B56623C7D94400E01D1A /* CharacterData.swift */,
 				3422B56A23C7E4BE00E01D1A /* CharacterModel.swift */,
@@ -324,14 +333,17 @@
 			files = (
 				3453FBED23CD70D8003321B0 /* CollectionTableViewController.swift in Sources */,
 				345CA41223CB871500078204 /* PersonManager.swift in Sources */,
-				34F564C623C6C592008CE30F /* AnimeTableViewController.swift in Sources */,
+				34F0262E23D3A516007044BD /* MangaModel.swift in Sources */,
 				34B38B1E23BD956C00925B6F /* AppDelegate.swift in Sources */,
 				3497E51723C1836900E65C9E /* CharacterListViewController.swift in Sources */,
 				34B1014F23BFA09400D2C63E /* Constants.swift in Sources */,
 				34B1014723BF903F00D2C63E /* SearchViewController.swift in Sources */,
+				34F0262C23D3A400007044BD /* AnimeMangaViewController.swift in Sources */,
 				34B1015123BFA87400D2C63E /* SearchManager.swift in Sources */,
+				34F0262A23D3A2BE007044BD /* MangaData.swift in Sources */,
 				344EDE3623CABCA40084E96D /* PersonData.swift in Sources */,
 				34B1014523BEF98600D2C63E /* AnimeViewController.swift in Sources */,
+				34F0263023D3A674007044BD /* MangaManager.swift in Sources */,
 				344EDE3823CABF330084E96D /* PersonModel.swift in Sources */,
 				344EDE2A23C935C30084E96D /* StatViewController.swift in Sources */,
 				34B1014923BF92BC00D2C63E /* SearchData.swift in Sources */,

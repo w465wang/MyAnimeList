@@ -120,7 +120,7 @@ class CharacterViewController: UITableViewController {
             destinationVC.type = "character"
             destinationVC.id = characterID
         } else if segue.identifier == K.Segues.characterAnime {
-            let destinationVC = segue.destination as! AnimeTableViewController
+            let destinationVC = segue.destination as! AnimeMangaViewController
             destinationVC.animeID = animeID
         } else if segue.identifier == K.Segues.characterManga {
             

@@ -146,7 +146,7 @@ extension CollectionTableViewController: UITableViewDelegate, UITableViewDataSou
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segues.staffAnime {
-            let destinationVC = segue.destination as! AnimeTableViewController
+            let destinationVC = segue.destination as! AnimeMangaViewController
             destinationVC.animeID = animeID
         } else if segue.identifier == K.Segues.staffCharacter {
             let destinationVC = segue.destination as! CharacterViewController

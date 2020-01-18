@@ -61,7 +61,7 @@ class SearchViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segues.selection {
-            let destinationVC = segue.destination as! AnimeTableViewController
+            let destinationVC = segue.destination as! AnimeMangaViewController
             destinationVC.animeID = animeID
         }
     }

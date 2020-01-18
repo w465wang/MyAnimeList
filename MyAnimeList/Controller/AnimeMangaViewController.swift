@@ -9,19 +9,27 @@
 import UIKit
 import UIImageColors
 
-class AnimeTableViewController: UITableViewController {
-    
-    @IBOutlet var animeTable: UITableView!
+class AnimeMangaViewController: UITableViewController {
     
     var animeManager = AnimeManager()
     var animeID = ""
     var animeInfo = AnimeModel(animeImageURL: "", animeTitle: "", animeType: "", animeEpisodes: "", animeStatus: "", animeScore: "", animeScoredBy: "", animeRank: "", animePopularity: "", animeMembers: "", animeFavorites: "", animeSynopsis: "", animePremiered: "")
     
+    var mangaManager = MangaManager()
+    var mangaID = ""
+    var mangaInfo = MangaModel(mangaTitle: "", mangaType: "", mangaStatus: "", mangaImageURL: "", mangaVolumes: "", mangaChapters: "", mangaRank: "", mangaScore: "", mangaScoredBy: "", mangaPopularity: "", mangaMembers: "", mangaFavorites: "", mangaSynopsis: "")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        animeManager.delegate = self
-        animeManager.fetchAnime(animeID, K.Requests.null)
+        if animeID != "" {
+            animeManager.delegate = self
+            animeManager.fetchAnime(animeID, K.Requests.null)
+        } else if mangaID != "" {
+            mangaManager.delegate = self
+            mangaManager.fetchManga(mangaID, K.Requests.null)
+        }
+        
         self.showSpinner(onView: self.view)
     }
     
@@ -44,11 +52,7 @@ class AnimeTableViewController: UITableViewController {
                 cell0.animeImage.imageView?.contentMode = .scaleAspectFit
                 
                 cell0.animeTitle.text = animeInfo.animeTitle
-                if Int(animeInfo.animeEpisodes) == 1 {
-                    cell0.animeEpisodes.text = "\(animeInfo.animeEpisodes) Episode"
-                } else {
-                    cell0.animeEpisodes.text = "\(animeInfo.animeEpisodes) Episodes"
-                }
+                cell0.animeEpisodes.text = animeInfo.animeEpisodes
                 cell0.animeTypePremiered.text = "(\(animeInfo.animeType), \(animeInfo.animePremiered))"
                 cell0.animeStatus.text = animeInfo.animeStatus
                        
@@ -134,7 +138,7 @@ class AnimeTableViewController: UITableViewController {
 
 // MARK: - AnimeManagerDelegate
 
-extension AnimeTableViewController: AnimeManagerDelegate {
+extension AnimeMangaViewController: AnimeManagerDelegate {
     
     func didUpdateAnime(_ animeManager: AnimeManager, _ anime: AnimeModel) {
         animeInfo = AnimeModel(animeImageURL: anime.animeImageURL, animeTitle: anime.animeTitle, animeType: anime.animeType, animeEpisodes: anime.animeEpisodes, animeStatus: anime.animeStatus, animeScore: anime.animeScore, animeScoredBy: anime.animeScoredBy, animeRank: anime.animeRank, animePopularity: anime.animePopularity, animeMembers: anime.animeMembers, animeFavorites: anime.animeFavorites, animeSynopsis: anime.animeSynopsis, animePremiered: anime.animePremiered)
@@ -166,5 +170,14 @@ extension AnimeTableViewController: AnimeManagerDelegate {
     
     func didFailWithError(_ error: Error) {
         print(error)
+    }
+}
+
+// MARK: - MangaManagerDelegate
+
+extension AnimeMangaViewController: MangaManagerDelegate {
+    
+    func didUpdateManga(_ mangaManager: MangaManager, _ manga: MangaModel) {
+        mangaInfo = MangaModel(mangaTitle: manga.mangaTitle, mangaType: manga.mangaType, mangaStatus: manga.mangaStatus, mangaImageURL: manga.mangaImageURL, mangaVolumes: manga.mangaVolumes, mangaChapters: manga.mangaChapters, mangaRank: manga.mangaRank, mangaScore: manga.mangaScore, mangaScoredBy: manga.mangaScoredBy, mangaPopularity: manga.mangaPopularity, mangaMembers: manga.mangaMembers, mangaFavorites: manga.mangaFavorites, mangaSynopsis: manga.mangaSynopsis)
     }
 }
