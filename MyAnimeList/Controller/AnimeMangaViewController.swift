@@ -213,4 +213,8 @@ extension AnimeMangaViewController: MangaManagerDelegate {
             self.tableView.reloadData()
         }
     }
+    
+    func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel) {
+        print("Not looking for pictures.")
+    }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var topAnime: UIButton!
+    @IBOutlet weak var topButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     
     var userSearch: String?
@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        topAnime.contentHorizontalAlignment = .left
+        topButton.contentHorizontalAlignment = .left
         searchBar.delegate = self
     }
     

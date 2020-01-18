@@ -26,7 +26,8 @@ class PictureViewController: UICollectionViewController {
             animeManager.delegate = self
             animeManager.fetchAnime(id, K.Requests.pictures)
         } else if type == K.SearchType.manga {
-            
+            mangaManager.delegate = self
+            mangaManager.fetchManga(id, K.Requests.pictures)
         } else if type == K.SearchType.character {
             characterManager.delegate = self
             characterManager.fetchCharacter(id, K.Requests.pictures)
@@ -108,7 +109,20 @@ extension PictureViewController: AnimeManagerDelegate {
 
 // MARK: - MangaManagerDelegate
 
-
+extension PictureViewController: MangaManagerDelegate {
+    
+    func didUpdateManga(_ mangaManager: MangaManager, _ manga: MangaModel) {
+        print("Not looking for manga.")
+    }
+    
+    func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel) {
+        pictures = manga.pictures
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+}
 
 // MARK: - CharacterManagerDelegate
 

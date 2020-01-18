@@ -10,6 +10,7 @@ import Foundation
 
 protocol MangaManagerDelegate {
     func didUpdateManga(_ mangaManager: MangaManager, _ manga: MangaModel)
+    func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel)
     func didFailWithError(_ error: Error)
 }
 
@@ -37,6 +38,10 @@ struct MangaManager {
                     if request == K.Requests.null {
                         if let manga = self.parseJSON(safeData) {
                             self.delegate?.didUpdateManga(self, manga)
+                        }
+                    } else if request == K.Requests.pictures {
+                        if let manga = self.parseJSONPictures(safeData) {
+                            self.delegate?.didUpdateMangaPicture(self, manga)
                         }
                     }
                 }
@@ -105,6 +110,21 @@ struct MangaManager {
             }
 
             let manga = MangaModel(mangaTitle: title, mangaType: type, mangaStatus: status, mangaImageURL: imageURL, mangaVolChap: volChap, mangaRank: rank, mangaScore: score, mangaScoredBy: scoredBy, mangaPopularity: popularity, mangaMembers: members, mangaFavorites: favorites, mangaSynopsis: synopsis)
+            
+            return manga
+        } catch {
+            delegate?.didFailWithError(error)
+            return nil
+        }
+    }
+    
+    func parseJSONPictures(_ pictureData: Data) -> PictureModel? {
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(PictureData.self, from: pictureData)
+
+            let manga = PictureModel(pictures: decodedData.pictures)
             
             return manga
         } catch {

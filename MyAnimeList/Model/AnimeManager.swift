@@ -195,9 +195,9 @@ struct AnimeManager {
         do {
             let decodedData = try decoder.decode(PictureData.self, from: pictureData)
 
-            let character = PictureModel(pictures: decodedData.pictures)
+            let anime = PictureModel(pictures: decodedData.pictures)
             
-            return character
+            return anime
         } catch {
             delegate?.didFailWithError(error)
             return nil
