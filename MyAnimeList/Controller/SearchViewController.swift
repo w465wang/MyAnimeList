@@ -28,7 +28,11 @@ class SearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults?.count ?? 1
+        if searchResults == nil || searchResults?.isEmpty == true {
+            return 1
+        } else {
+            return searchResults!.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,15 +41,19 @@ class SearchViewController: UITableViewController {
         if searchResults != nil && searchResults!.isEmpty == false {
             cell.searchImage.kf.setImage(with: URL(string: searchResults![indexPath.row].image_url))
             cell.searchLabel.text = searchResults![indexPath.row].title
-        } else if searchResults != nil && searchResults!.isEmpty == true {
-            cell.searchLabel.text = "No results found."
+        } else if searchResults?.isEmpty == true {
+            let alertController = UIAlertController(title: "Search Error", message: "No search results found.", preferredStyle: .alert)
+
+            alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in self.handleButton(alert: action)})
+            
+            self.present(alertController, animated: true, completion: nil)
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searchResults != nil {
+        if searchResults?.isEmpty == false {
             animeID = String(searchResults![indexPath.row].mal_id)
             performSegue(withIdentifier: K.Segues.selection, sender: self)
         }
@@ -55,6 +63,13 @@ class SearchViewController: UITableViewController {
         if segue.identifier == K.Segues.selection {
             let destinationVC = segue.destination as! AnimeTableViewController
             destinationVC.animeID = animeID
+        }
+    }
+    
+    func handleButton(alert: UIAlertAction) {
+        switch(alert.style) {
+        default:
+            _ = navigationController?.popViewController(animated: true)
         }
     }
 }

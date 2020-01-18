@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DeB-QF-BFU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W34-RK-xNV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -71,7 +71,7 @@
             </objects>
             <point key="canvasLocation" x="24.637681159420293" y="-573.21428571428567"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Item-->
         <scene sceneID="bz8-1c-XqH">
             <objects>
                 <viewController id="qHr-1N-1Us" customClass="HomeViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
@@ -79,14 +79,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="06V-EQ-C7D">
-                                <rect key="frame" x="20" y="178" width="374" height="412"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="06V-EQ-C7D">
+                                <rect key="frame" x="20" y="178" width="374" height="385"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon-256" translatesAutoresizingMaskIntoConstraints="NO" id="Ol8-yE-hCZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="256"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="265"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4k-s3-RyG">
+                                        <rect key="frame" x="0.0" y="275" width="374" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="kV8-Sp-1PV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <state key="normal" title="Top Anime"/>
+                                    </button>
                                     <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search Anime" translatesAutoresizingMaskIntoConstraints="NO" id="xYn-Hl-hKJ">
-                                        <rect key="frame" x="0.0" y="331" width="374" height="81"/>
+                                        <rect key="frame" x="0.0" y="335" width="374" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="T9e-SO-Iwv"/>
+                                        </constraints>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
@@ -99,21 +110,40 @@
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="06V-EQ-C7D" firstAttribute="top" secondItem="Ii6-WT-cjg" secondAttribute="top" constant="90" id="2rh-Nh-qcK"/>
-                            <constraint firstItem="Ii6-WT-cjg" firstAttribute="bottom" secondItem="06V-EQ-C7D" secondAttribute="bottom" constant="272" id="KiF-5L-7HY"/>
+                            <constraint firstItem="Ii6-WT-cjg" firstAttribute="bottom" secondItem="06V-EQ-C7D" secondAttribute="bottom" constant="250" id="KiF-5L-7HY"/>
                             <constraint firstAttribute="trailing" secondItem="06V-EQ-C7D" secondAttribute="trailing" constant="20" id="bJF-Rd-rqC"/>
                             <constraint firstItem="06V-EQ-C7D" firstAttribute="leading" secondItem="oBQ-7b-Igc" secondAttribute="leading" constant="20" id="qUx-aX-iKQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ii6-WT-cjg"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Lli-yK-6XX"/>
                     <navigationItem key="navigationItem" id="fRz-9F-AuI"/>
                     <connections>
                         <outlet property="searchBar" destination="xYn-Hl-hKJ" id="NB0-K7-cLb"/>
+                        <outlet property="topAnime" destination="T4k-s3-RyG" id="sln-fF-h6S"/>
                         <segue destination="bxx-ei-vOy" kind="show" identifier="homeToSearch" id="I9x-sA-rVr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DvF-Sd-FhM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-878.26086956521749" y="-573.21428571428567"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="dOt-c2-UGu">
+            <objects>
+                <tabBarController id="W34-RK-xNV" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UQP-4v-1SF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="DeB-QF-BFU" kind="relationship" relationship="viewControllers" id="AUs-b3-nIW"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xjQ-rJ-VHy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2755" y="-165"/>
         </scene>
         <!--Anime View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -289,10 +319,11 @@
             </objects>
             <point key="canvasLocation" x="-1048" y="-2032"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="h6p-tV-ZUx">
             <objects>
                 <navigationController id="DeB-QF-BFU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="rnQ-HC-yjT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Ir-rj-1G3">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -303,14 +334,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TdA-yw-GUg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1796" y="-573"/>
+            <point key="canvasLocation" x="-1793" y="-573"/>
         </scene>
         <!--Reviews-->
         <scene sceneID="XbV-os-WgX">
             <objects>
                 <tableViewController id="yXm-aw-fjY" customClass="ReviewViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pa2-En-3jB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -415,7 +446,7 @@
             <objects>
                 <tableViewController id="AUB-oF-K0g" customClass="CharacterListViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rpj-gR-Gps">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -503,7 +534,7 @@
             <objects>
                 <tableViewController id="znT-Sj-IIk" customClass="AnimeTableViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vtm-YQ-bkd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -837,7 +868,7 @@
             <objects>
                 <tableViewController id="pHO-F8-7v7" customClass="CharacterViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BvE-jN-Ur5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -1235,7 +1266,7 @@
             <objects>
                 <collectionViewController id="h9G-5S-Q8l" customClass="PictureViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="IMW-6M-xa9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6lb-da-wif">
@@ -1284,7 +1315,7 @@
             <objects>
                 <tableViewController id="z7h-Xy-VT2" customClass="StatViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GNY-G2-CSy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -1410,7 +1441,7 @@
             <objects>
                 <tableViewController id="WhC-Op-R5d" customClass="PersonViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lTb-14-ZRU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -1578,7 +1609,7 @@
             <objects>
                 <collectionViewController id="sEL-Vo-T7f" customClass="CollectionTableViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="pEH-3b-NAL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="rUp-Wl-i3i">
@@ -1680,7 +1711,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="personAnimeCell" id="bAf-8B-MAA" customClass="TableCell" customModule="MyAnimeList" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="223" width="416" height="173"/>
+                                <rect key="frame" x="0.0" y="184" width="416" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fHd-b5-IT6">
                                     <rect key="frame" x="0.0" y="0.0" width="416" height="173"/>
@@ -1771,7 +1802,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="personMangaCell" id="8UV-Xu-nFb" customClass="TableCell" customModule="MyAnimeList" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="446" width="416" height="173"/>
+                                <rect key="frame" x="0.0" y="368" width="416" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SbA-tZ-8XX">
                                     <rect key="frame" x="0.0" y="0.0" width="416" height="173"/>
@@ -1888,6 +1919,6 @@
         <segue reference="Sje-jn-ZTw"/>
         <segue reference="37R-gC-Qms"/>
         <segue reference="6bl-Hv-MR7"/>
-        <segue reference="On7-Mw-xkJ"/>
+        <segue reference="0qa-PW-ibo"/>
     </inferredMetricsTieBreakers>
 </document>

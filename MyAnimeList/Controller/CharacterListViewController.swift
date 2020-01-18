@@ -69,6 +69,7 @@ class CharacterListViewController: UITableViewController {
                                 cell.listNameRight.text = actor.name
                                 cell.id = String(actor.mal_id)
                                 count += 1
+                                break
                             }
                         }
                     }
@@ -94,6 +95,7 @@ class CharacterListViewController: UITableViewController {
                                 cell.listNameRight.text = actor.name
                                 cell.id = String(actor.mal_id)
                                 count += 1
+                                break
                             }
                         }
                     }
@@ -205,7 +207,7 @@ extension CharacterListViewController: CustomCellDelegate {
         } else {
             let alertController = UIAlertController(title: "Why did you tap here?", message: "No Japanese voice actor found for this character.", preferredStyle: .actionSheet)
 
-            alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action:UIAlertAction) in })
+            alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in })
             
             self.present(alertController, animated: true, completion: nil)
             
