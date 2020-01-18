@@ -17,6 +17,7 @@ class CollectionTableViewController: UICollectionViewController {
     var manga: [PublishedManga] = []
     
     var animeID = ""
+    var mangaID = ""
     var characterID = ""
     
     override func viewDidLoad() {
@@ -138,7 +139,8 @@ extension CollectionTableViewController: UITableViewDelegate, UITableViewDataSou
             animeID = String(anime[indexPath.row].anime.mal_id)
             performSegue(withIdentifier: K.Segues.staffAnime, sender: self)
         } else if tableView.tag == 2 {
-            
+            mangaID = String(manga[indexPath.row].manga.mal_id)
+            performSegue(withIdentifier: K.Segues.staffManga, sender: self)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -148,6 +150,9 @@ extension CollectionTableViewController: UITableViewDelegate, UITableViewDataSou
         if segue.identifier == K.Segues.staffAnime {
             let destinationVC = segue.destination as! AnimeMangaViewController
             destinationVC.animeID = animeID
+        } else if segue.identifier == K.Segues.staffManga {
+            let destinationVC = segue.destination as! AnimeMangaViewController
+            destinationVC.mangaID = mangaID
         } else if segue.identifier == K.Segues.staffCharacter {
             let destinationVC = segue.destination as! CharacterViewController
             destinationVC.characterID = characterID

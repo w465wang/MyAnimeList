@@ -28,6 +28,7 @@ struct K {
         static let personPicture = "personToPictures"
         static let personStaff = "personToStaff"
         static let staffAnime = "staffToAnime"
+        static let staffManga = "staffToManga"
         static let staffCharacter = "staffToCharacter"
     }
     
