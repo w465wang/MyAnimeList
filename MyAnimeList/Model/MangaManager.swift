@@ -11,7 +11,7 @@ import Foundation
 protocol MangaManagerDelegate {
     func didUpdateManga(_ mangaManager: MangaManager, _ manga: MangaModel)
     func didUpdateMangaCharacter(_ mangaManager: MangaManager, _ manga: MangaCharacterModel)
-//    func didUpdateMangaStat(_ mangaManager: MangaManager, _ manga: MangaStatModel)
+    func didUpdateMangaStat(_ mangaManager: MangaManager, _ manga: MangaStatModel)
 //    func didUpdateMangaUser(_ mangaManager: MangaManager, _ manga: MangaUserModel)
     func didUpdateMangaReview(_ mangaManager: MangaManager, _ manga: MangaReviewModel)
     func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel)
@@ -46,6 +46,10 @@ struct MangaManager {
                     } else if request == K.Requests.characters {
                         if let manga = self.parseJSONCharacters(safeData) {
                             self.delegate?.didUpdateMangaCharacter(self, manga)
+                        }
+                    } else if request == K.Requests.stats {
+                        if let manga = self.parseJSONStat(safeData) {
+                            self.delegate?.didUpdateMangaStat(self, manga)
                         }
                     } else if request == K.Requests.reviews {
                         if let manga = self.parseJSONReview(safeData) {
@@ -136,6 +140,20 @@ struct MangaManager {
         do {
             let decodedData = try decoder.decode(MangaCharacterData.self, from: mangaData)
             let manga = MangaCharacterModel(mangaCharacters: decodedData.characters)
+
+            return manga
+        } catch {
+            delegate?.didFailWithError(error)
+            return nil
+        }
+    }
+    
+    func parseJSONStat(_ mangaData: Data) -> MangaStatModel? {
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(MangaStatData.self, from: mangaData)
+            let manga = MangaStatModel(mangaReading: String(decodedData.reading), mangaCompleted: String(decodedData.completed), mangaOnHold: String(decodedData.on_hold), mangaDropped: String(decodedData.dropped), mangaPlanToRead: String(decodedData.plan_to_read), mangaTotal: String(decodedData.total), mangaScores: decodedData.scores)
 
             return manga
         } catch {

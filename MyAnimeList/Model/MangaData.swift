@@ -37,6 +37,18 @@ struct MangaCharacter: Codable {
     let role: String
 }
 
+// MARK: - Stats
+
+struct MangaStatData: Codable {
+    let reading: Int
+    let completed: Int
+    let on_hold: Int
+    let dropped: Int
+    let plan_to_read: Int
+    let total: Int
+    let scores: [String: Score] // From AnimeData - Stats
+}
+
 // MARK: - Reviews
 
 struct MangaReviewData: Codable {

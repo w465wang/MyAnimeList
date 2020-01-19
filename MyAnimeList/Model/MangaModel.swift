@@ -29,6 +29,18 @@ struct MangaCharacterModel {
     let mangaCharacters: [MangaCharacter]
 }
 
+// MARK: - Stats
+
+struct MangaStatModel: Codable {
+    let mangaReading: String
+    let mangaCompleted: String
+    let mangaOnHold: String
+    let mangaDropped: String
+    let mangaPlanToRead: String
+    let mangaTotal: String
+    let mangaScores: [String: Score]
+}
+
 // MARK: - Reviews
 
 struct MangaReviewModel {

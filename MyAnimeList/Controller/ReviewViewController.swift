@@ -159,6 +159,10 @@ extension ReviewViewController: MangaManagerDelegate {
         print("Not looking for characters.")
     }
     
+    func didUpdateMangaStat(_ mangaManager: MangaManager, _ manga: MangaStatModel) {
+        print("Not looking for stats.")
+    }
+    
     func didUpdateMangaReview(_ mangaManager: MangaManager, _ manga: MangaReviewModel) {
         self.removeSpinner()
         mangaReviews = manga.mangaReviews
