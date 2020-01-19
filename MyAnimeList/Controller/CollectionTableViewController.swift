@@ -104,7 +104,7 @@ extension CollectionTableViewController: UITableViewDelegate, UITableViewDataSou
             cell0.sourceName.text = voice[indexPath.row].anime.name
             cell0.staffImage.kf.setImage(with: URL(string: voice[indexPath.row].character.image_url), for: .normal)
             cell0.staffImage.imageView?.contentMode = .scaleAspectFit
-            cell0.staffName.text = voice[indexPath.row].character.name
+            cell0.staffName.text = "\(voice[indexPath.row].character.name)\n\(voice[indexPath.row].role)"
             cell0.characterID = String(voice[indexPath.row].character.mal_id)
             
             return cell0;
