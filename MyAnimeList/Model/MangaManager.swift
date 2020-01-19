@@ -13,7 +13,7 @@ protocol MangaManagerDelegate {
     func didUpdateMangaCharacter(_ mangaManager: MangaManager, _ manga: MangaCharacterModel)
 //    func didUpdateMangaStat(_ mangaManager: MangaManager, _ manga: MangaStatModel)
 //    func didUpdateMangaUser(_ mangaManager: MangaManager, _ manga: MangaUserModel)
-//    func didUpdateMangaReview(_ mangaManager: MangaManager, _ manga: MangaReviewModel)
+    func didUpdateMangaReview(_ mangaManager: MangaManager, _ manga: MangaReviewModel)
     func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel)
     func didFailWithError(_ error: Error)
 }
@@ -46,6 +46,10 @@ struct MangaManager {
                     } else if request == K.Requests.characters {
                         if let manga = self.parseJSONCharacters(safeData) {
                             self.delegate?.didUpdateMangaCharacter(self, manga)
+                        }
+                    } else if request == K.Requests.reviews {
+                        if let manga = self.parseJSONReview(safeData) {
+                            self.delegate?.didUpdateMangaReview(self, manga)
                         }
                     } else if request == K.Requests.pictures {
                         if let manga = self.parseJSONPictures(safeData) {
@@ -132,6 +136,20 @@ struct MangaManager {
         do {
             let decodedData = try decoder.decode(MangaCharacterData.self, from: mangaData)
             let manga = MangaCharacterModel(mangaCharacters: decodedData.characters)
+
+            return manga
+        } catch {
+            delegate?.didFailWithError(error)
+            return nil
+        }
+    }
+    
+    func parseJSONReview(_ mangaData: Data) -> MangaReviewModel? {
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(MangaReviewData.self, from: mangaData)
+            let manga = MangaReviewModel(mangaReviews: decodedData.reviews)
 
             return manga
         } catch {

@@ -12,6 +12,7 @@ class StatViewController: UITableViewController {
     
     var animeManager = AnimeManager()
     var animeID = ""
+    var mangaID = ""
     var statInfo = AnimeStatModel(animeWatching: "", animeCompleted: "", animeOnHold: "", animeDropped: "", animePlanToWatch: "", animeTotal: "", animeScores: [String: Score]())
     var userInfo: [User]?
     

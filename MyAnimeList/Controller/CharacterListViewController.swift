@@ -278,6 +278,10 @@ extension CharacterListViewController: MangaManagerDelegate {
         }
     }
     
+    func didUpdateMangaReview(_ mangaManager: MangaManager, _ manga: MangaReviewModel) {
+        print("Not looking for reviews.")
+    }
+    
     func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel) {
         print("Not looking for pictures.")
     }

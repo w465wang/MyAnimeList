@@ -53,5 +53,5 @@ struct AnimeUserModel {
 // MARK: - Reviews
 
 struct AnimeReviewModel {
-    let animeReviews: [Review]
+    let animeReviews: [AnimeReview]
 }

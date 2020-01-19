@@ -28,3 +28,9 @@ struct MangaModel {
 struct MangaCharacterModel {
     let mangaCharacters: [MangaCharacter]
 }
+
+// MARK: - Reviews
+
+struct MangaReviewModel {
+    let mangaReviews: [MangaReview]
+}

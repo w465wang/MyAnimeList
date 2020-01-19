@@ -36,3 +36,32 @@ struct MangaCharacter: Codable {
     let name: String
     let role: String
 }
+
+// MARK: - Reviews
+
+struct MangaReviewData: Codable {
+    let reviews: [MangaReview]
+}
+
+struct MangaReview: Codable {
+    let mal_id: Int
+    let helpful_count: Int
+    let date: String
+    let reviewer: MangaReviewer
+    let content: String
+}
+
+struct MangaReviewer: Codable {
+    let image_url: String
+    let username: String
+    let chapters_read: Int
+    let scores: MangaReviewScore
+}
+
+struct MangaReviewScore: Codable {
+    let overall: Int
+    let story: Int
+    let art: Int
+    let character: Int
+    let enjoyment: Int
+}

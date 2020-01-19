@@ -119,6 +119,10 @@ extension PictureViewController: MangaManagerDelegate {
         print("Not looking for character.")
     }
     
+    func didUpdateMangaReview(_ mangaManager: MangaManager, _ manga: MangaReviewModel) {
+        print("Not looking for reviews.")
+    }
+    
     func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel) {
         pictures = manga.pictures
         

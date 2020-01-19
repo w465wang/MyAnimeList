@@ -156,7 +156,7 @@ class AnimeMangaViewController: UITableViewController {
             if animeID != "" {
                 destinationVC.animeID = animeID
             } else if mangaID != "" {
-                
+                destinationVC.mangaID = mangaID
             }
         } else if segue.identifier == K.Segues.review {
             let destinationVC = segue.destination as! ReviewViewController
@@ -164,7 +164,7 @@ class AnimeMangaViewController: UITableViewController {
             if animeID != "" {
                 destinationVC.animeID = animeID
             } else if mangaID != "" {
-                
+                destinationVC.mangaID = mangaID
             }
         } else if segue.identifier == K.Segues.animePicture {
             let destinationVC = segue.destination as! PictureViewController
@@ -231,6 +231,10 @@ extension AnimeMangaViewController: MangaManagerDelegate {
     
     func didUpdateMangaCharacter(_ mangaManager: MangaManager, _ manga: MangaCharacterModel) {
         print("Not looking for characters.")
+    }
+    
+    func didUpdateMangaReview(_ mangaManager: MangaManager, _ manga: MangaReviewModel) {
+        print("Not looking for reviews.")
     }
     
     func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel) {

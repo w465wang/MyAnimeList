@@ -81,25 +81,25 @@ struct User: Codable {
 // MARK: - Reviews
 
 struct AnimeReviewData: Codable {
-    let reviews: [Review]
+    let reviews: [AnimeReview]
 }
 
-struct Review: Codable {
+struct AnimeReview: Codable {
     let mal_id: Int
     let helpful_count: Int
     let date: String
-    let reviewer: Reviewer
+    let reviewer: AnimeReviewer
     let content: String
 }
 
-struct Reviewer: Codable {
+struct AnimeReviewer: Codable {
     let image_url: String
     let username: String
     let episodes_seen: Int
-    let scores: ReviewScore
+    let scores: AnimeReviewScore
 }
 
-struct ReviewScore: Codable {
+struct AnimeReviewScore: Codable {
     let overall: Int
     let story: Int
     let animation: Int

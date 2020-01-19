@@ -11,25 +11,42 @@ import UIKit
 class ReviewViewController: UITableViewController {
     
     @IBOutlet var reviewTable: UITableView!
-    var reviews: [Review]?
+    var animeReviews: [AnimeReview]?
+    var mangaReviews: [MangaReview]?
     
     var animeManager = AnimeManager()
+    var mangaManager = MangaManager()
     var animeID = ""
+    var mangaID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        animeManager.delegate = self
-        animeManager.fetchAnime(animeID, K.Requests.reviews)
+        if animeID != "" {
+            animeManager.delegate = self
+            animeManager.fetchAnime(animeID, K.Requests.reviews)
+        } else if mangaID != "" {
+            mangaManager.delegate = self
+            mangaManager.fetchManga(mangaID, K.Requests.reviews)
+        }
+        
         self.showSpinner(onView: self.view)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if reviews != nil && reviews!.count == 0 {
+        if animeReviews != nil && animeReviews!.isEmpty == true {
+            return 1
+        } else if mangaReviews != nil && mangaReviews!.isEmpty == true {
             return 1
         }
         
-        return reviews?.count ?? 1
+        if animeID != "" {
+            return animeReviews?.count ?? 1
+        } else if mangaID != "" {
+            return mangaReviews?.count ?? 1
+        }
+        
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -39,21 +56,38 @@ class ReviewViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ReviewCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.review, for: indexPath) as! ReviewCell
 
-        if reviews != nil {
-            if reviews!.isEmpty == false {
-                cell.reviewImage.kf.setImage(with: URL(string: reviews![indexPath.row].reviewer.image_url), for: .normal)
+        if animeID != "" && animeReviews != nil {
+            if animeReviews!.isEmpty == false {
+                cell.reviewImage.kf.setImage(with: URL(string: animeReviews![indexPath.row].reviewer.image_url), for: .normal)
                 cell.reviewImage.imageView?.contentMode = .scaleAspectFit
                 
-                cell.reviewUsername.text = "Username: \(reviews![indexPath.row].reviewer.username)"
+                cell.reviewUsername.text = "Username: \(animeReviews![indexPath.row].reviewer.username)"
                 
-                cell.reviewScore.setAttributedTitle(NSAttributedString(string: "Score: \(reviews![indexPath.row].reviewer.scores.overall)", attributes:
+                cell.reviewScore.setAttributedTitle(NSAttributedString(string: "Score: \(animeReviews![indexPath.row].reviewer.scores.overall)", attributes:
                     [.underlineStyle: NSUnderlineStyle.single.rawValue]), for: .normal)
                 cell.reviewScore.contentHorizontalAlignment = .left
                 
-                cell.reviewEpisodesSeen.text = "Episodes Seen: \(reviews![indexPath.row].reviewer.episodes_seen)"
-                cell.reviewHelpfulCount.text = "Helpful Count: \(reviews![indexPath.row].helpful_count)"
-                cell.reviewContent.text = reviews![indexPath.row].content.replacingOccurrences(of: "\\n", with: "\n")
-            } else if reviews!.isEmpty == true {
+                cell.reviewEpisodesSeen.text = "Episodes Seen: \(animeReviews![indexPath.row].reviewer.episodes_seen)"
+                cell.reviewHelpfulCount.text = "Helpful Count: \(animeReviews![indexPath.row].helpful_count)"
+                cell.reviewContent.text = animeReviews![indexPath.row].content.replacingOccurrences(of: "\\n", with: "\n")
+            } else if animeReviews!.isEmpty == true {
+                cell.reviewUsername.text = "No reviews found."
+            }
+        } else if mangaID != "" && mangaReviews != nil {
+            if mangaReviews!.isEmpty == false {
+                cell.reviewImage.kf.setImage(with: URL(string: mangaReviews![indexPath.row].reviewer.image_url), for: .normal)
+                cell.reviewImage.imageView?.contentMode = .scaleAspectFit
+                
+                cell.reviewUsername.text = "Username: \(mangaReviews![indexPath.row].reviewer.username)"
+                
+                cell.reviewScore.setAttributedTitle(NSAttributedString(string: "Score: \(mangaReviews![indexPath.row].reviewer.scores.overall)", attributes:
+                    [.underlineStyle: NSUnderlineStyle.single.rawValue]), for: .normal)
+                cell.reviewScore.contentHorizontalAlignment = .left
+                
+                cell.reviewEpisodesSeen.text = "Chapters Read: \(mangaReviews![indexPath.row].reviewer.chapters_read)"
+                cell.reviewHelpfulCount.text = "Helpful Count: \(mangaReviews![indexPath.row].helpful_count)"
+                cell.reviewContent.text = mangaReviews![indexPath.row].content.replacingOccurrences(of: "\\n", with: "\n")
+            } else if mangaReviews!.isEmpty == true {
                 cell.reviewUsername.text = "No reviews found."
             }
         }
@@ -97,7 +131,7 @@ extension ReviewViewController: AnimeManagerDelegate {
     
     func didUpdateAnimeReview(_ animeManager: AnimeManager, _ anime: AnimeReviewModel) {
         self.removeSpinner()
-        reviews = anime.animeReviews
+        animeReviews = anime.animeReviews
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -110,5 +144,31 @@ extension ReviewViewController: AnimeManagerDelegate {
     
     func didFailWithError(_ error: Error) {
         print(error)
+    }
+}
+
+// MARK: - MangaManagerDelegate
+
+extension ReviewViewController: MangaManagerDelegate {
+    
+    func didUpdateManga(_ mangaManager: MangaManager, _ manga: MangaModel) {
+        print("Not looking for manga.")
+    }
+    
+    func didUpdateMangaCharacter(_ mangaManager: MangaManager, _ manga: MangaCharacterModel) {
+        print("Not looking for characters.")
+    }
+    
+    func didUpdateMangaReview(_ mangaManager: MangaManager, _ manga: MangaReviewModel) {
+        self.removeSpinner()
+        mangaReviews = manga.mangaReviews
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didUpdateMangaPicture(_ mangaManager: MangaManager, _ manga: PictureModel) {
+        print("Not looking for pictures.")
     }
 }
