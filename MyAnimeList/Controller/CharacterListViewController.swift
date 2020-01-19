@@ -70,23 +70,23 @@ class CharacterListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.character, for: indexPath) as! ListCell
+        let cell: CharacterListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.character, for: indexPath) as! CharacterListCell
         cell.delegate = self
         
         var count = 0
         if animeID != "" && animeCharacters != nil {
             if indexPath.section == 0 {
                 if animeMainCharacters != nil && animeMainCharacters!.isEmpty == false {
-                    cell.listImageLeft.kf.setImage(with: URL(string: animeMainCharacters![indexPath.row].image_url))
-                    cell.listNameLeft.text = animeMainCharacters![indexPath.row].name.html2String
+                    cell.sourceImage.kf.setImage(with: URL(string: animeMainCharacters![indexPath.row].image_url))
+                    cell.sourceName.text = animeMainCharacters![indexPath.row].name.html2String
                     
                     if animeMainCharacters![indexPath.row].voice_actors.count > 0 {
                         for actor in animeMainCharacters![indexPath.row].voice_actors {
                             if actor.language == "Japanese" {
-                                cell.listImageRight.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "").replacingOccurrences(of: "/r/42x62", with: "")), for: .normal)
-                                cell.listImageRight.imageView?.contentMode = .scaleAspectFit
-                                cell.listNameRight.text = actor.name
-                                cell.id = String(actor.mal_id)
+                                cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "").replacingOccurrences(of: "/r/42x62", with: "")), for: .normal)
+                                cell.staffImage.imageView?.contentMode = .scaleAspectFit
+                                cell.staffName.text = actor.name
+                                cell.characterID = String(actor.mal_id)
                                 count += 1
                                 break
                             }
@@ -94,26 +94,26 @@ class CharacterListViewController: UITableViewController {
                     }
                     
                     if count == 0 {
-                        cell.listImageRight.kf.setImage(with: URL(string: "https://opengameart.org/content/transparency-background-checkerboard"), for: .normal)
-                        cell.listImageRight.imageView?.contentMode = .scaleAspectFit
-                        cell.listNameRight.text = "Unknown"
-                        cell.id = ""
+                        cell.staffImage.kf.setImage(with: URL(string: "https://opengameart.org/content/transparency-background-checkerboard"), for: .normal)
+                        cell.staffImage.imageView?.contentMode = .scaleAspectFit
+                        cell.staffName.text = "Unknown"
+                        cell.characterID = ""
                     }
                 } else {
-                    cell.listNameLeft.text = "None found."
+                    cell.sourceName.text = "None found."
                 }
             } else {
                 if animeSupportingCharacters != nil && animeSupportingCharacters!.isEmpty == false {
-                    cell.listImageLeft.kf.setImage(with: URL(string: animeSupportingCharacters![indexPath.row].image_url))
-                    cell.listNameLeft.text = animeSupportingCharacters![indexPath.row].name.html2String
+                    cell.sourceImage.kf.setImage(with: URL(string: animeSupportingCharacters![indexPath.row].image_url))
+                    cell.sourceName.text = animeSupportingCharacters![indexPath.row].name.html2String
                     
                     if animeSupportingCharacters![indexPath.row].voice_actors.count > 0 {
                         for actor in animeSupportingCharacters![indexPath.row].voice_actors {
                             if actor.language == "Japanese" {
-                                cell.listImageRight.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "").replacingOccurrences(of: "/r/42x62", with: "")), for: .normal)
-                                cell.listImageRight.imageView?.contentMode = .scaleAspectFit
-                                cell.listNameRight.text = actor.name
-                                cell.id = String(actor.mal_id)
+                                cell.staffImage.kf.setImage(with: URL(string: actor.image_url.replacingOccurrences(of: "/r/23x32", with: "").replacingOccurrences(of: "/r/42x62", with: "")), for: .normal)
+                                cell.staffImage.imageView?.contentMode = .scaleAspectFit
+                                cell.staffName.text = actor.name
+                                cell.characterID = String(actor.mal_id)
                                 count += 1
                                 break
                             }
@@ -121,31 +121,31 @@ class CharacterListViewController: UITableViewController {
                     }
                     
                     if count == 0 {
-                        cell.listImageRight.kf.setImage(with: URL(string: "https://opengameart.org/content/transparency-background-checkerboard"), for: .normal)
-                        cell.listImageRight.imageView?.contentMode = .scaleAspectFit
-                        cell.listNameRight.text = "Unknown"
-                        cell.id = ""
+                        cell.staffImage.kf.setImage(with: URL(string: "https://opengameart.org/content/transparency-background-checkerboard"), for: .normal)
+                        cell.staffImage.imageView?.contentMode = .scaleAspectFit
+                        cell.staffName.text = "Unknown"
+                        cell.characterID = ""
                     }
                 } else {
-                    cell.listNameLeft.text = "None found."
+                    cell.sourceName.text = "None found."
                 }
             }
         } else if mangaID != "" && mangaCharacters != nil {
             if indexPath.section == 0 {
                 if mangaMainCharacters != nil && mangaMainCharacters!.isEmpty == false {
-                    cell.listImageLeft.kf.setImage(with: URL(string: mangaMainCharacters![indexPath.row].image_url))
-                    cell.listNameLeft.text = mangaMainCharacters![indexPath.row].name.html2String
-                    cell.id = String(mangaMainCharacters![indexPath.row].mal_id)
+                    cell.sourceImage.kf.setImage(with: URL(string: mangaMainCharacters![indexPath.row].image_url))
+                    cell.sourceName.text = mangaMainCharacters![indexPath.row].name.html2String
+                    cell.characterID = String(mangaMainCharacters![indexPath.row].mal_id)
                 } else {
-                    cell.listNameLeft.text = "None found."
+                    cell.sourceName.text = "None found."
                 }
             } else {
                 if mangaSupportingCharacters != nil && mangaSupportingCharacters!.isEmpty == false {
-                    cell.listImageLeft.kf.setImage(with: URL(string: mangaSupportingCharacters![indexPath.row].image_url))
-                    cell.listNameLeft.text = mangaSupportingCharacters![indexPath.row].name.html2String
-                    cell.id = String(mangaSupportingCharacters![indexPath.row].mal_id)
+                    cell.sourceImage.kf.setImage(with: URL(string: mangaSupportingCharacters![indexPath.row].image_url))
+                    cell.sourceName.text = mangaSupportingCharacters![indexPath.row].name.html2String
+                    cell.characterID = String(mangaSupportingCharacters![indexPath.row].mal_id)
                 } else {
-                    cell.listNameLeft.text = "None found."
+                    cell.sourceName.text = "None found."
                 }
             }
         }

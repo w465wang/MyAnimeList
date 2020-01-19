@@ -12,9 +12,10 @@ protocol CustomCellDelegate {
     func callSegueFromCell(_ id: String)
 }
 
-class SearchCell: UITableViewCell {
-    @IBOutlet weak var searchImage: UIImageView!
-    @IBOutlet weak var searchLabel: UILabel!
+class ListCell: UITableViewCell {
+    @IBOutlet weak var listImage: UIImageView!
+    @IBOutlet weak var listLabel: UILabel!
+    @IBOutlet weak var listSubLabel: UILabel!
 }
 
 class AnimeImageCell: UITableViewCell {
@@ -43,17 +44,17 @@ class ButtonCell: UITableViewCell {
     @IBOutlet weak var buttonImage: UIButton!
 }
 
-class ListCell: UITableViewCell {
+class CharacterListCell: UITableViewCell {
     var delegate: CustomCellDelegate!
-    var id = ""
+    var characterID = ""
     
-    @IBOutlet weak var listImageLeft: UIImageView!
-    @IBOutlet weak var listImageRight: UIButton!
-    @IBOutlet weak var listNameLeft: UILabel!
-    @IBOutlet weak var listNameRight: UILabel!
+    @IBOutlet weak var sourceImage: UIImageView!
+    @IBOutlet weak var staffImage: UIButton!
+    @IBOutlet weak var sourceName: UILabel!
+    @IBOutlet weak var staffName: UILabel!
     
     @IBAction func staffImagePressed(_ sender: UIButton) {
-        self.delegate.callSegueFromCell(id)
+        self.delegate.callSegueFromCell(characterID)
     }
 }
 

@@ -33,7 +33,7 @@ struct K {
     }
     
     struct CellIdentifier {
-        static let search = "searchCell"
+        static let search = "searchListCell"
         static let animeImage = "animeImageCell"
         static let animeSynopsis = "animeSynopsisCell"
         static let animeInfo = "animeInfoCell"
@@ -58,6 +58,7 @@ struct K {
         static let personAnime = "personAnimeCell"
         static let personManga = "personMangaCell"
         static let personTable = "personTableCell"
+        static let personList = "personListCell"
     }
     
     struct Requests {

@@ -49,12 +49,12 @@ class SearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: SearchCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.search, for: indexPath) as! SearchCell
+        let cell: ListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.search, for: indexPath) as! ListCell
         
         if searchType == K.SearchType.anime {
             if animeSearchResults != nil && animeSearchResults!.isEmpty == false {
-                cell.searchImage.kf.setImage(with: URL(string: animeSearchResults![indexPath.row].image_url))
-                cell.searchLabel.text = animeSearchResults![indexPath.row].title
+                cell.listImage.kf.setImage(with: URL(string: animeSearchResults![indexPath.row].image_url))
+                cell.listLabel.text = animeSearchResults![indexPath.row].title
             } else if animeSearchResults?.isEmpty == true {
                 let alertController = UIAlertController(title: "Search Error", message: "No search results found.", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in self.handleButton(alert: action)})
@@ -62,8 +62,8 @@ class SearchViewController: UITableViewController {
             }
         } else if searchType == K.SearchType.manga {
             if mangaSearchResults != nil && mangaSearchResults!.isEmpty == false {
-                cell.searchImage.kf.setImage(with: URL(string: mangaSearchResults![indexPath.row].image_url))
-                cell.searchLabel.text = mangaSearchResults![indexPath.row].title
+                cell.listImage.kf.setImage(with: URL(string: mangaSearchResults![indexPath.row].image_url))
+                cell.listLabel.text = mangaSearchResults![indexPath.row].title
             } else if mangaSearchResults?.isEmpty == true {
                 let alertController = UIAlertController(title: "Search Error", message: "No search results found.", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in self.handleButton(alert: action)})
