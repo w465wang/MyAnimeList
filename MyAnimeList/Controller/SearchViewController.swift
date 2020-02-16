@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 
+
 class SearchViewController: UITableViewController {
     
     @IBOutlet var searchTable: UITableView!
@@ -54,7 +55,26 @@ class SearchViewController: UITableViewController {
         if searchType == K.SearchType.anime {
             if animeSearchResults != nil && animeSearchResults!.isEmpty == false {
                 cell.listImage.kf.setImage(with: URL(string: animeSearchResults![indexPath.row].image_url))
-                cell.listLabel.text = animeSearchResults![indexPath.row].title
+                cell.listLabel.text = "\(animeSearchResults![indexPath.row].title) (\(animeSearchResults![indexPath.row].type))"
+                
+                let animeStartDate: String
+                if animeSearchResults![indexPath.row].start_date != nil {
+                    animeStartDate = dateFormat(date: animeSearchResults![indexPath.row].start_date!)
+                } else {
+                    animeStartDate = "?"
+                }
+                let animeEndDate: String
+                if animeSearchResults![indexPath.row].end_date != nil {
+                    animeEndDate = dateFormat(date: animeSearchResults![indexPath.row].end_date!)
+                } else {
+                    animeEndDate = "?"
+                }
+                var animeScore = String(format: "%.2f", animeSearchResults![indexPath.row].score)
+                if animeScore == "0.00" {
+                    animeScore = "N/A"
+                }
+                
+                cell.listSubLabel.text = "Aired: \(animeStartDate) to \(animeEndDate)\nScore: \(animeScore)"
             } else if animeSearchResults?.isEmpty == true {
                 let alertController = UIAlertController(title: "Search Error", message: "No search results found.", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in self.handleButton(alert: action)})
@@ -63,7 +83,26 @@ class SearchViewController: UITableViewController {
         } else if searchType == K.SearchType.manga {
             if mangaSearchResults != nil && mangaSearchResults!.isEmpty == false {
                 cell.listImage.kf.setImage(with: URL(string: mangaSearchResults![indexPath.row].image_url))
-                cell.listLabel.text = mangaSearchResults![indexPath.row].title
+                cell.listLabel.text = "\(mangaSearchResults![indexPath.row].title) (\(mangaSearchResults![indexPath.row].type))"
+                
+                let mangaStartDate: String
+                if mangaSearchResults![indexPath.row].start_date != nil {
+                    mangaStartDate = dateFormat(date: mangaSearchResults![indexPath.row].start_date!)
+                } else {
+                    mangaStartDate = "?"
+                }
+                let mangaEndDate: String
+                if mangaSearchResults![indexPath.row].end_date != nil {
+                    mangaEndDate = dateFormat(date: mangaSearchResults![indexPath.row].end_date!)
+                } else {
+                    mangaEndDate = "?"
+                }
+                var mangaScore = String(format: "%.2f", mangaSearchResults![indexPath.row].score)
+                if mangaScore == "0.00" {
+                    mangaScore = "N/A"
+                }
+                
+                cell.listSubLabel.text = "Published: \(mangaStartDate) to \(mangaEndDate)\nScore: \(mangaScore)"
             } else if mangaSearchResults?.isEmpty == true {
                 let alertController = UIAlertController(title: "Search Error", message: "No search results found.", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in self.handleButton(alert: action)})

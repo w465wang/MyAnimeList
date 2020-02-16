@@ -65,10 +65,10 @@ struct Score: Codable {
 // MARK: - User Updates
 
 struct AnimeUserData: Codable {
-    let users: [User]
+    let users: [AnimeUser]
 }
 
-struct User: Codable {
+struct AnimeUser: Codable {
     let username: String
     let image_url: String
     let score: Int?

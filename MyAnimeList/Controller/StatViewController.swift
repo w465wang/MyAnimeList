@@ -17,7 +17,7 @@ class StatViewController: UITableViewController {
     
     var animeStatInfo = AnimeStatModel(animeWatching: "", animeCompleted: "", animeOnHold: "", animeDropped: "", animePlanToWatch: "", animeTotal: "", animeScores: [String: Score]())
     var mangaStatInfo = MangaStatModel(mangaReading: "", mangaCompleted: "", mangaOnHold: "", mangaDropped: "", mangaPlanToRead: "", mangaTotal: "", mangaScores: [String: Score]())
-    var userInfo: [User]?
+    var userInfo: [AnimeUser]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,11 @@ class StatViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        if animeID != "" {
+            return 3
+        }
+        
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
