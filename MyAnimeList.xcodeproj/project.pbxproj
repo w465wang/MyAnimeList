@@ -18,6 +18,10 @@
 		344EDE3223CA6D260084E96D /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EDE3123CA6D260084E96D /* PictureViewController.swift */; };
 		344EDE3623CABCA40084E96D /* PersonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EDE3523CABCA40084E96D /* PersonData.swift */; };
 		344EDE3823CABF330084E96D /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344EDE3723CABF330084E96D /* PersonModel.swift */; };
+		3452F4A323F9FA59003AD1AB /* TopData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452F4A223F9FA59003AD1AB /* TopData.swift */; };
+		3452F4A523F9FB8A003AD1AB /* TopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452F4A423F9FB8A003AD1AB /* TopModel.swift */; };
+		3452F4A723F9FBE1003AD1AB /* TopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452F4A623F9FBE1003AD1AB /* TopManager.swift */; };
+		3452F4A923FA0375003AD1AB /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452F4A823FA0375003AD1AB /* TopViewController.swift */; };
 		3453FBED23CD70D8003321B0 /* CollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3453FBEC23CD70D8003321B0 /* CollectionTableViewController.swift */; };
 		345CA41223CB871500078204 /* PersonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CA41123CB871500078204 /* PersonManager.swift */; };
 		345CA41423CB8A6000078204 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CA41323CB8A6000078204 /* PersonViewController.swift */; };
@@ -59,6 +63,10 @@
 		344EDE3123CA6D260084E96D /* PictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		344EDE3523CABCA40084E96D /* PersonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonData.swift; sourceTree = "<group>"; };
 		344EDE3723CABF330084E96D /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
+		3452F4A223F9FA59003AD1AB /* TopData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopData.swift; sourceTree = "<group>"; };
+		3452F4A423F9FB8A003AD1AB /* TopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopModel.swift; sourceTree = "<group>"; };
+		3452F4A623F9FBE1003AD1AB /* TopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopManager.swift; sourceTree = "<group>"; };
+		3452F4A823FA0375003AD1AB /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		3453FBEC23CD70D8003321B0 /* CollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewController.swift; sourceTree = "<group>"; };
 		345CA41123CB871500078204 /* PersonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonManager.swift; sourceTree = "<group>"; };
 		345CA41323CB8A6000078204 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +92,6 @@
 		34B38B3A23BE816800925B6F /* AnimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeData.swift; sourceTree = "<group>"; };
 		34B38B3C23BE82F700925B6F /* AnimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeModel.swift; sourceTree = "<group>"; };
 		34B38B3E23BE831500925B6F /* AnimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeManager.swift; sourceTree = "<group>"; };
-		34B6397A23EFAB4C00A192AB /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34F0262923D3A2BE007044BD /* MangaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaData.swift; sourceTree = "<group>"; };
 		34F0262B23D3A400007044BD /* AnimeMangaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeMangaViewController.swift; sourceTree = "<group>"; };
 		34F0262D23D3A516007044BD /* MangaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaModel.swift; sourceTree = "<group>"; };
@@ -162,6 +169,7 @@
 			children = (
 				34B1014C23BF9A3C00D2C63E /* HomeViewController.swift */,
 				34B1014623BF903F00D2C63E /* SearchViewController.swift */,
+				3452F4A823FA0375003AD1AB /* TopViewController.swift */,
 				34F0262B23D3A400007044BD /* AnimeMangaViewController.swift */,
 				3497E51623C1836900E65C9E /* CharacterListViewController.swift */,
 				344EDE2923C935C30084E96D /* StatViewController.swift */,
@@ -202,6 +210,9 @@
 				344EDE3723CABF330084E96D /* PersonModel.swift */,
 				344EDE2B23CA66460084E96D /* PictureData.swift */,
 				344EDE2D23CA66660084E96D /* PictureModel.swift */,
+				3452F4A623F9FBE1003AD1AB /* TopManager.swift */,
+				3452F4A223F9FA59003AD1AB /* TopData.swift */,
+				3452F4A423F9FB8A003AD1AB /* TopModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,7 +220,6 @@
 		C3C30EB6425C19E694652BAD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				34B6397A23EFAB4C00A192AB /* IQKeyboardManagerSwift.framework */,
 				34F7EF7F23E8D7430046AC62 /* UIImageColors.framework */,
 				34F7EF7C23E8D7400046AC62 /* Kingfisher.framework */,
 				34F7EF7823E8D73B0046AC62 /* IQKeyboardManagerSwift.framework */,
@@ -348,6 +358,7 @@
 				34B38B1E23BD956C00925B6F /* AppDelegate.swift in Sources */,
 				3497E51723C1836900E65C9E /* CharacterListViewController.swift in Sources */,
 				34B1014F23BFA09400D2C63E /* Constants.swift in Sources */,
+				3452F4A523F9FB8A003AD1AB /* TopModel.swift in Sources */,
 				34B1014723BF903F00D2C63E /* SearchViewController.swift in Sources */,
 				34F0262C23D3A400007044BD /* AnimeMangaViewController.swift in Sources */,
 				34B1015123BFA87400D2C63E /* SearchManager.swift in Sources */,
@@ -355,14 +366,17 @@
 				344EDE3623CABCA40084E96D /* PersonData.swift in Sources */,
 				34B1014523BEF98600D2C63E /* AnimeViewController.swift in Sources */,
 				34F0263023D3A674007044BD /* MangaManager.swift in Sources */,
+				3452F4A323F9FA59003AD1AB /* TopData.swift in Sources */,
 				344EDE3823CABF330084E96D /* PersonModel.swift in Sources */,
 				344EDE2A23C935C30084E96D /* StatViewController.swift in Sources */,
 				34B1014923BF92BC00D2C63E /* SearchData.swift in Sources */,
 				344EDE3223CA6D260084E96D /* PictureViewController.swift in Sources */,
 				34B1014D23BF9A3C00D2C63E /* HomeViewController.swift in Sources */,
 				344EDE2C23CA66460084E96D /* PictureData.swift in Sources */,
+				3452F4A723F9FBE1003AD1AB /* TopManager.swift in Sources */,
 				34B38B3F23BE831500925B6F /* AnimeManager.swift in Sources */,
 				34B38B3D23BE82F700925B6F /* AnimeModel.swift in Sources */,
+				3452F4A923FA0375003AD1AB /* TopViewController.swift in Sources */,
 				3422B56723C7D94400E01D1A /* CharacterData.swift in Sources */,
 				3422B56B23C7E4BE00E01D1A /* CharacterModel.swift in Sources */,
 				3422B56D23C7E58C00E01D1A /* CharacterManager.swift in Sources */,

@@ -29,7 +29,17 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         topButton.contentHorizontalAlignment = .left
+        if self.title! == K.VCTitle.animeHome {
+            topButton.setTitle("Top Anime", for: .normal)
+        } else if self.title! == K.VCTitle.mangaHome {
+            topButton.setTitle("Top Manga", for: .normal)
+        }
+        
         searchBar.delegate = self
+    }
+    
+    @IBAction func topPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: K.Segues.animeTop, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,10 +47,16 @@ class HomeViewController: UIViewController {
             let destinationVC = segue.destination as! SearchViewController
             destinationVC.userSearch = userSearch
             destinationVC.searchType = K.SearchType.anime
+        } else if segue.identifier == K.Segues.animeTop {
+            let destinationVC = segue.destination as! TopViewController
+            destinationVC.topType = K.SearchType.anime
         } else if segue.identifier == K.Segues.mangaSearch {
             let destinationVC = segue.destination as! SearchViewController
             destinationVC.userSearch = userSearch
             destinationVC.searchType = K.SearchType.manga
+        } else if segue.identifier == K.Segues.mangaTop {
+            let destinationVC = segue.destination as! TopViewController
+            destinationVC.topType = K.SearchType.manga
         }
     }
 }

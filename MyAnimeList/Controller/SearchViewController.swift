@@ -53,7 +53,7 @@ class SearchViewController: UITableViewController {
         let cell: ListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.search, for: indexPath) as! ListCell
         
         if searchType == K.SearchType.anime {
-            if animeSearchResults != nil && animeSearchResults!.isEmpty == false {
+            if animeSearchResults != nil && animeSearchResults!.isEmpty != true {
                 cell.listImage.kf.setImage(with: URL(string: animeSearchResults![indexPath.row].image_url))
                 cell.listLabel.text = "\(animeSearchResults![indexPath.row].title) (\(animeSearchResults![indexPath.row].type))"
                 
@@ -114,10 +114,10 @@ class SearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if animeSearchResults?.isEmpty == false {
+        if animeSearchResults?.isEmpty != true {
             animeID = String(animeSearchResults![indexPath.row].mal_id)
             performSegue(withIdentifier: K.Segues.animeSelection, sender: self)
-        } else if mangaSearchResults?.isEmpty == false {
+        } else if mangaSearchResults?.isEmpty != true {
             mangaID = String(mangaSearchResults![indexPath.row].mal_id)
             performSegue(withIdentifier: K.Segues.mangaSelection, sender: self)
         }

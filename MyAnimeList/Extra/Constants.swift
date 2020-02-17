@@ -12,7 +12,11 @@ import UIImageColors
 struct K {
     struct Segues {
         static let animeSearch = "animeHomeToSearch"
+        static let animeTop = "animeHomeToTop"
         static let mangaSearch = "mangaHomeToSearch"
+        static let mangaTop = "mangaHomeToTop"
+        static let topAnime = "topToAnime"
+        static let topManga = "topToManga"
         static let animeSelection = "searchToAnime"
         static let mangaSelection = "searchToManga"
         static let animePicture = "animeToPictures"
@@ -34,6 +38,7 @@ struct K {
     
     struct CellIdentifier {
         static let search = "searchListCell"
+        static let top = "topListCell"
         static let animeImage = "animeImageCell"
         static let animeSynopsis = "animeSynopsisCell"
         static let animeInfo = "animeInfoCell"
