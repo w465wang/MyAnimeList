@@ -10,8 +10,9 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var topButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var topButton: UIButton!
+    @IBOutlet weak var popularButton: UIButton!
     
     var userSearch: String?
     
@@ -34,6 +35,8 @@ class HomeViewController: UIViewController {
         } else if self.title! == K.VCTitle.mangaHome {
             topButton.setTitle("Top Manga", for: .normal)
         }
+        popularButton.contentHorizontalAlignment = .left
+        popularButton.setTitle("Popular", for: .normal)
         
         searchBar.delegate = self
     }
@@ -46,6 +49,14 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @IBAction func popularPressed(_ sender: UIButton) {
+        if self.title! == K.VCTitle.animeHome {
+            performSegue(withIdentifier: K.Segues.animePopular, sender: self)
+        } else if self.title! == K.VCTitle.mangaHome {
+            performSegue(withIdentifier: K.Segues.mangaPopular, sender: self)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segues.animeSearch {
             let destinationVC = segue.destination as! SearchViewController
@@ -54,6 +65,11 @@ class HomeViewController: UIViewController {
         } else if segue.identifier == K.Segues.animeTop {
             let destinationVC = segue.destination as! TopViewController
             destinationVC.topType = K.SearchType.anime
+            destinationVC.topSubType = K.Requests.null
+        } else if segue.identifier == K.Segues.animePopular {
+            let destinationVC = segue.destination as! TopViewController
+            destinationVC.topType = K.SearchType.anime
+            destinationVC.topSubType = K.Requests.popularity
         } else if segue.identifier == K.Segues.mangaSearch {
             let destinationVC = segue.destination as! SearchViewController
             destinationVC.userSearch = userSearch
@@ -61,6 +77,11 @@ class HomeViewController: UIViewController {
         } else if segue.identifier == K.Segues.mangaTop {
             let destinationVC = segue.destination as! TopViewController
             destinationVC.topType = K.SearchType.manga
+            destinationVC.topSubType = K.Requests.null
+        } else if segue.identifier == K.Segues.mangaPopular {
+            let destinationVC = segue.destination as! TopViewController
+            destinationVC.topType = K.SearchType.manga
+            destinationVC.topSubType = K.Requests.popularity
         }
     }
 }

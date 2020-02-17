@@ -13,8 +13,10 @@ struct K {
     struct Segues {
         static let animeSearch = "animeHomeToSearch"
         static let animeTop = "animeHomeToTop"
+        static let animePopular = "animeHomeToPopular"
         static let mangaSearch = "mangaHomeToSearch"
         static let mangaTop = "mangaHomeToTop"
+        static let mangaPopular = "mangaHomeToPopular"
         static let topAnime = "topToAnime"
         static let topManga = "topToManga"
         static let animeSelection = "searchToAnime"
@@ -80,6 +82,7 @@ struct K {
         static let reviews = "reviews"
         static let recommendations = "recommendations"
         static let userupdates = "userupdates"
+        static let popularity = "bypopularity"
     }
     
     struct SearchType {

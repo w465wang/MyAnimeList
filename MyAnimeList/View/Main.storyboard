@@ -93,13 +93,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="06V-EQ-C7D">
-                                <rect key="frame" x="20" y="178" width="374" height="385"/>
+                                <rect key="frame" x="20" y="178" width="374" height="435"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon-256" translatesAutoresizingMaskIntoConstraints="NO" id="Ol8-yE-hCZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="265"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="255"/>
                                     </imageView>
                                     <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search Anime" translatesAutoresizingMaskIntoConstraints="NO" id="xYn-Hl-hKJ">
-                                        <rect key="frame" x="0.0" y="275" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="265" width="374" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="T9e-SO-Iwv"/>
                                         </constraints>
@@ -110,7 +110,7 @@
                                         </scopeButtonTitles>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4k-s3-RyG">
-                                        <rect key="frame" x="0.0" y="335" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="325" width="374" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="kV8-Sp-1PV"/>
                                         </constraints>
@@ -120,13 +120,24 @@
                                             <action selector="topPressed:" destination="qHr-1N-1Us" eventType="touchUpInside" id="Gqk-J5-HY7"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYX-lx-R92">
+                                        <rect key="frame" x="0.0" y="385" width="374" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Z1s-pr-wRR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <state key="normal" title="   "/>
+                                        <connections>
+                                            <action selector="popularPressed:" destination="qHr-1N-1Us" eventType="touchUpInside" id="G8v-Zx-c6E"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="06V-EQ-C7D" firstAttribute="top" secondItem="Ii6-WT-cjg" secondAttribute="top" constant="90" id="2rh-Nh-qcK"/>
-                            <constraint firstItem="Ii6-WT-cjg" firstAttribute="bottom" secondItem="06V-EQ-C7D" secondAttribute="bottom" constant="250" id="KiF-5L-7HY"/>
+                            <constraint firstItem="Ii6-WT-cjg" firstAttribute="bottom" secondItem="06V-EQ-C7D" secondAttribute="bottom" constant="200" id="KiF-5L-7HY"/>
                             <constraint firstAttribute="trailing" secondItem="06V-EQ-C7D" secondAttribute="trailing" constant="20" id="bJF-Rd-rqC"/>
                             <constraint firstItem="06V-EQ-C7D" firstAttribute="leading" secondItem="oBQ-7b-Igc" secondAttribute="leading" constant="20" id="qUx-aX-iKQ"/>
                         </constraints>
@@ -135,10 +146,12 @@
                     <tabBarItem key="tabBarItem" title="" selectedImage="tv.fill" catalog="system" id="Lli-yK-6XX"/>
                     <navigationItem key="navigationItem" id="fRz-9F-AuI"/>
                     <connections>
+                        <outlet property="popularButton" destination="KYX-lx-R92" id="Nie-n9-JHg"/>
                         <outlet property="searchBar" destination="xYn-Hl-hKJ" id="NB0-K7-cLb"/>
                         <outlet property="topButton" destination="T4k-s3-RyG" id="sln-fF-h6S"/>
                         <segue destination="bxx-ei-vOy" kind="show" identifier="animeHomeToSearch" id="I9x-sA-rVr"/>
                         <segue destination="E76-gU-JSp" kind="show" identifier="animeHomeToTop" id="chS-Iu-7pd"/>
+                        <segue destination="E76-gU-JSp" kind="show" identifier="animeHomeToPopular" id="m3V-PD-xH4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DvF-Sd-FhM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1932,13 +1945,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BKK-jN-2yJ">
-                                <rect key="frame" x="20" y="178" width="374" height="385"/>
+                                <rect key="frame" x="20" y="178" width="374" height="435"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-touch-icon-256" translatesAutoresizingMaskIntoConstraints="NO" id="MqS-wf-Zpj">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="265"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="255"/>
                                     </imageView>
                                     <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search Manga" translatesAutoresizingMaskIntoConstraints="NO" id="kN2-vd-bJW">
-                                        <rect key="frame" x="0.0" y="275" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="265" width="374" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="grT-KQ-Rht"/>
                                         </constraints>
@@ -1949,7 +1962,7 @@
                                         </scopeButtonTitles>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j48-mo-nJ4">
-                                        <rect key="frame" x="0.0" y="335" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="325" width="374" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="qGz-h5-gaa"/>
                                         </constraints>
@@ -1959,13 +1972,24 @@
                                             <action selector="topPressed:" destination="grT-71-iCt" eventType="touchUpInside" id="BEz-CB-KKP"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1m-oa-Qp4">
+                                        <rect key="frame" x="0.0" y="385" width="374" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="rKQ-eV-Oaz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <state key="normal" title="   "/>
+                                        <connections>
+                                            <action selector="popularPressed:" destination="grT-71-iCt" eventType="touchUpInside" id="R3Z-2i-mi5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BKK-jN-2yJ" firstAttribute="leading" secondItem="29J-UQ-kZ2" secondAttribute="leading" constant="20" id="LTL-we-uTg"/>
-                            <constraint firstItem="A0X-5s-ddA" firstAttribute="bottom" secondItem="BKK-jN-2yJ" secondAttribute="bottom" constant="250" id="Xhx-qL-5XC"/>
+                            <constraint firstItem="A0X-5s-ddA" firstAttribute="bottom" secondItem="BKK-jN-2yJ" secondAttribute="bottom" constant="200" id="Xhx-qL-5XC"/>
                             <constraint firstItem="BKK-jN-2yJ" firstAttribute="top" secondItem="A0X-5s-ddA" secondAttribute="top" constant="90" id="dqK-n7-8fZ"/>
                             <constraint firstAttribute="trailing" secondItem="BKK-jN-2yJ" secondAttribute="trailing" constant="20" id="qt9-po-OL9"/>
                         </constraints>
@@ -1974,10 +1998,12 @@
                     <tabBarItem key="tabBarItem" title="" selectedImage="book.fill" catalog="system" id="HBF-op-T3f"/>
                     <navigationItem key="navigationItem" id="8x0-uo-MRG"/>
                     <connections>
+                        <outlet property="popularButton" destination="g1m-oa-Qp4" id="npR-Vx-Ssw"/>
                         <outlet property="searchBar" destination="kN2-vd-bJW" id="s9I-LJ-ScH"/>
                         <outlet property="topButton" destination="j48-mo-nJ4" id="wyB-Kc-G7S"/>
                         <segue destination="bxx-ei-vOy" kind="show" identifier="mangaHomeToSearch" id="yo6-nW-JqG"/>
                         <segue destination="E76-gU-JSp" kind="show" identifier="mangaHomeToTop" id="hcq-Gc-2Dh"/>
+                        <segue destination="E76-gU-JSp" kind="show" identifier="mangaHomeToPopular" id="xhe-ev-nsG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CON-SM-n2d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2070,7 +2096,7 @@
         <image name="tv.fill" catalog="system" width="64" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hcq-Gc-2Dh"/>
+        <segue reference="xhe-ev-nsG"/>
         <segue reference="7pz-gN-TTJ"/>
         <segue reference="Cyf-Fm-ZIA"/>
         <segue reference="6bl-Hv-MR7"/>

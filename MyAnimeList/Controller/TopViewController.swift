@@ -11,6 +11,7 @@ import UIKit
 class TopViewController: UITableViewController {
 
     var topType = ""
+    var topSubType = ""
     var topInfo: [TopAnimeManga]?
     
     var topManager = TopManager()
@@ -21,7 +22,7 @@ class TopViewController: UITableViewController {
         super.viewDidLoad()
 
         topManager.delegate = self
-        topManager.fetchTop(topType, 1, K.Requests.null)
+        topManager.fetchTop(topType, 1, topSubType)
         
         self.showSpinner(onView: self.view)
     }
@@ -49,7 +50,11 @@ class TopViewController: UITableViewController {
             
             cell.listImage.kf.setImage(with: URL(string: topInfo![indexPath.row].image_url))
             cell.listLabel.text = "\(topInfo![indexPath.row].title) (\(topInfo![indexPath.row].type))"
-            cell.listSubLabel.text = "\(startDate) - \(endDate)\nScore: \(String(format: "%.2f", topInfo![indexPath.row].score))"
+            if topSubType == K.Requests.null {
+                cell.listSubLabel.text = "\(startDate) - \(endDate)\nScore: \(String(format: "%.2f", topInfo![indexPath.row].score))"
+            } else if topSubType == K.Requests.popularity {
+                cell.listSubLabel.text = "\(startDate) - \(endDate)\nMembers: \(topInfo![indexPath.row].members)"
+            }
         }
 
         return cell
