@@ -1955,6 +1955,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                         <state key="normal" title="   "/>
+                                        <connections>
+                                            <action selector="topPressed:" destination="grT-71-iCt" eventType="touchUpInside" id="BEz-CB-KKP"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

@@ -11,7 +11,7 @@ import UIKit
 class TopViewController: UITableViewController {
 
     var topType = ""
-    var topAnimeInfo: [TopAnime]?
+    var topInfo: [TopAnimeManga]?
     
     var topManager = TopManager()
     var animeID = ""
@@ -33,26 +33,35 @@ class TopViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.top, for: indexPath) as! ListCell
         
-        if topAnimeInfo != nil && topAnimeInfo?.isEmpty != true {
-            let episodes: String
-            if topAnimeInfo![indexPath.row].episodes != nil {
-                episodes = String(topAnimeInfo![indexPath.row].episodes!)
+        let startDate: String
+        let endDate: String
+        if topInfo != nil && topInfo?.isEmpty != true {
+            if topInfo![indexPath.row].start_date != nil {
+                startDate = topInfo![indexPath.row].start_date!
             } else {
-                episodes = "-"
+                startDate = ""
+            }
+            if topInfo![indexPath.row].end_date != nil {
+                endDate = topInfo![indexPath.row].end_date!
+            } else {
+                endDate = ""
             }
             
-            cell.listImage.kf.setImage(with: URL(string: topAnimeInfo![indexPath.row].image_url))
-            cell.listLabel.text = "\(topAnimeInfo![indexPath.row].title)"
-            cell.listSubLabel.text = "\(topAnimeInfo![indexPath.row].type) (\(episodes) eps)\nScore: \(String(format: "%.2f", topAnimeInfo![indexPath.row].score))"
+            cell.listImage.kf.setImage(with: URL(string: topInfo![indexPath.row].image_url))
+            cell.listLabel.text = "\(topInfo![indexPath.row].title) (\(topInfo![indexPath.row].type))"
+            cell.listSubLabel.text = "\(startDate) - \(endDate)\nScore: \(String(format: "%.2f", topInfo![indexPath.row].score))"
         }
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if topAnimeInfo?.isEmpty != true {
-            animeID = String(topAnimeInfo![indexPath.row].mal_id)
+        if topType == K.SearchType.anime {
+            animeID = String(topInfo![indexPath.row].mal_id)
             performSegue(withIdentifier: K.Segues.topAnime, sender: self)
+        } else if topType == K.SearchType.manga {
+            mangaID = String(topInfo![indexPath.row].mal_id)
+            performSegue(withIdentifier: K.Segues.topManga, sender: self)
         }
     }
 
@@ -61,10 +70,10 @@ class TopViewController: UITableViewController {
             let destinationVC = segue.destination as! AnimeMangaViewController
             destinationVC.animeID = animeID
         } else if segue.identifier == K.Segues.topManga {
-            
+            let destinationVC = segue.destination as! AnimeMangaViewController
+            destinationVC.mangaID = mangaID
         }
     }
-
 }
 
 // MARK: - TopManagerDelegate
@@ -73,7 +82,7 @@ extension TopViewController: TopManagerDelegate {
     
     func didUpdateTop(_ topManager: TopManager, _ top: TopModel) {
         self.removeSpinner()
-        topAnimeInfo = top.top
+        topInfo = top.top
         
         DispatchQueue.main.async {
             self.tableView.reloadData()

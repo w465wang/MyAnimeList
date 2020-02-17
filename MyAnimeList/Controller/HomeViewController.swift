@@ -39,7 +39,11 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func topPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: K.Segues.animeTop, sender: self)
+        if self.title! == K.VCTitle.animeHome {
+            performSegue(withIdentifier: K.Segues.animeTop, sender: self)
+        } else if self.title! == K.VCTitle.mangaHome {
+            performSegue(withIdentifier: K.Segues.mangaTop, sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

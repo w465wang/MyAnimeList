@@ -9,17 +9,16 @@
 import Foundation
 
 struct TopData: Codable {
-    let top: [TopAnime]
+    let top: [TopAnimeManga]
 }
 
-struct TopAnime: Codable {
+struct TopAnimeManga: Codable {
     let mal_id: Int
     let rank: Int
     let title: String
     let url: String
     let image_url: String
     let type: String
-    let episodes: Int?
     let start_date: String?
     let end_date: String?
     let members: Int

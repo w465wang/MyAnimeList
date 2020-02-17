@@ -9,5 +9,5 @@
 import Foundation
 
 struct TopModel {
-    let top: [TopAnime]
+    let top: [TopAnimeManga]
 }

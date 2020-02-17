@@ -52,29 +52,30 @@ class SearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.search, for: indexPath) as! ListCell
         
+        let startDate: String
+        let endDate: String
         if searchType == K.SearchType.anime {
             if animeSearchResults != nil && animeSearchResults!.isEmpty != true {
                 cell.listImage.kf.setImage(with: URL(string: animeSearchResults![indexPath.row].image_url))
                 cell.listLabel.text = "\(animeSearchResults![indexPath.row].title) (\(animeSearchResults![indexPath.row].type))"
                 
-                let animeStartDate: String
+                
                 if animeSearchResults![indexPath.row].start_date != nil {
-                    animeStartDate = dateFormat(date: animeSearchResults![indexPath.row].start_date!)
+                    startDate = dateFormat(date: animeSearchResults![indexPath.row].start_date!)
                 } else {
-                    animeStartDate = "?"
+                    startDate = "?"
                 }
-                let animeEndDate: String
                 if animeSearchResults![indexPath.row].end_date != nil {
-                    animeEndDate = dateFormat(date: animeSearchResults![indexPath.row].end_date!)
+                    endDate = dateFormat(date: animeSearchResults![indexPath.row].end_date!)
                 } else {
-                    animeEndDate = "?"
+                    endDate = "?"
                 }
                 var animeScore = String(format: "%.2f", animeSearchResults![indexPath.row].score)
                 if animeScore == "0.00" {
                     animeScore = "N/A"
                 }
                 
-                cell.listSubLabel.text = "Aired: \(animeStartDate) to \(animeEndDate)\nScore: \(animeScore)"
+                cell.listSubLabel.text = "Aired: \(startDate) to \(endDate)\nScore: \(animeScore)"
             } else if animeSearchResults?.isEmpty == true {
                 let alertController = UIAlertController(title: "Search Error", message: "No search results found.", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in self.handleButton(alert: action)})
@@ -85,24 +86,22 @@ class SearchViewController: UITableViewController {
                 cell.listImage.kf.setImage(with: URL(string: mangaSearchResults![indexPath.row].image_url))
                 cell.listLabel.text = "\(mangaSearchResults![indexPath.row].title) (\(mangaSearchResults![indexPath.row].type))"
                 
-                let mangaStartDate: String
                 if mangaSearchResults![indexPath.row].start_date != nil {
-                    mangaStartDate = dateFormat(date: mangaSearchResults![indexPath.row].start_date!)
+                    startDate = dateFormat(date: mangaSearchResults![indexPath.row].start_date!)
                 } else {
-                    mangaStartDate = "?"
+                    startDate = "?"
                 }
-                let mangaEndDate: String
                 if mangaSearchResults![indexPath.row].end_date != nil {
-                    mangaEndDate = dateFormat(date: mangaSearchResults![indexPath.row].end_date!)
+                    endDate = dateFormat(date: mangaSearchResults![indexPath.row].end_date!)
                 } else {
-                    mangaEndDate = "?"
+                    endDate = "?"
                 }
                 var mangaScore = String(format: "%.2f", mangaSearchResults![indexPath.row].score)
                 if mangaScore == "0.00" {
                     mangaScore = "N/A"
                 }
                 
-                cell.listSubLabel.text = "Published: \(mangaStartDate) to \(mangaEndDate)\nScore: \(mangaScore)"
+                cell.listSubLabel.text = "Published: \(startDate) to \(endDate)\nScore: \(mangaScore)"
             } else if mangaSearchResults?.isEmpty == true {
                 let alertController = UIAlertController(title: "Search Error", message: "No search results found.", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Got it", style: .default) { (action: UIAlertAction) in self.handleButton(alert: action)})
