@@ -28,23 +28,23 @@
                                             <rect key="frame" x="20" y="11" width="374" height="78"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QVv-ff-l4c">
-                                                    <rect key="frame" x="0.0" y="0.0" width="286.5" height="78"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="263.5" height="78"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50.140000000000001" id="49a-BL-6lA"/>
                                                         <constraint firstAttribute="height" constant="78" id="6GY-Ng-LwH"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SEV-Ii-f5q">
-                                                    <rect key="frame" x="296.5" y="0.0" width="77.5" height="78"/>
+                                                    <rect key="frame" x="273.5" y="0.0" width="100.5" height="78"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="6fm-At-UpC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="77.5" height="34"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="100.5" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4at-Fr-Rbu">
-                                                            <rect key="frame" x="0.0" y="44" width="77.5" height="34"/>
+                                                            <rect key="frame" x="0.0" y="44" width="100.5" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -898,7 +898,7 @@
             <objects>
                 <tableViewController id="pHO-F8-7v7" customClass="CharacterViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BvE-jN-Ur5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -1297,7 +1297,7 @@
             <objects>
                 <collectionViewController id="h9G-5S-Q8l" customClass="PictureViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="IMW-6M-xa9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="6lb-da-wif">
@@ -1472,7 +1472,7 @@
             <objects>
                 <tableViewController id="WhC-Op-R5d" customClass="PersonViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lTb-14-ZRU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -1640,7 +1640,7 @@
             <objects>
                 <collectionViewController id="sEL-Vo-T7f" customClass="CollectionTableViewController" customModule="MyAnimeList" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="pEH-3b-NAL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="rUp-Wl-i3i">
@@ -1742,7 +1742,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="personAnimeCell" id="bAf-8B-MAA" customClass="TableCell" customModule="MyAnimeList" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="223" width="416" height="173"/>
+                                <rect key="frame" x="0.0" y="184" width="416" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fHd-b5-IT6">
                                     <rect key="frame" x="0.0" y="0.0" width="416" height="173"/>
@@ -1822,7 +1822,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="personMangaCell" id="8UV-Xu-nFb" customClass="TableCell" customModule="MyAnimeList" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="446" width="416" height="173"/>
+                                <rect key="frame" x="0.0" y="368" width="416" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SbA-tZ-8XX">
                                     <rect key="frame" x="0.0" y="0.0" width="416" height="173"/>
@@ -2077,6 +2077,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="2LG-Ga-tZY"/>
                     <connections>
+                        <outlet property="navBar" destination="2LG-Ga-tZY" id="Bbm-o0-xdv"/>
                         <segue destination="znT-Sj-IIk" kind="show" identifier="topToAnime" id="Odo-Ym-nnB"/>
                         <segue destination="znT-Sj-IIk" kind="show" identifier="topToManga" id="3vg-nB-PCi"/>
                     </connections>
@@ -2096,11 +2097,11 @@
         <image name="tv.fill" catalog="system" width="64" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xhe-ev-nsG"/>
-        <segue reference="7pz-gN-TTJ"/>
-        <segue reference="Cyf-Fm-ZIA"/>
-        <segue reference="6bl-Hv-MR7"/>
-        <segue reference="3vg-nB-PCi"/>
-        <segue reference="yo6-nW-JqG"/>
+        <segue reference="m3V-PD-xH4"/>
+        <segue reference="Sje-jn-ZTw"/>
+        <segue reference="37R-gC-Qms"/>
+        <segue reference="eKt-0r-pYO"/>
+        <segue reference="mv3-Rd-cJG"/>
+        <segue reference="I9x-sA-rVr"/>
     </inferredMetricsTieBreakers>
 </document>

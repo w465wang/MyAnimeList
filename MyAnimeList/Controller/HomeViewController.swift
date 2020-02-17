@@ -30,11 +30,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         topButton.contentHorizontalAlignment = .left
-        if self.title! == K.VCTitle.animeHome {
-            topButton.setTitle("Top Anime", for: .normal)
-        } else if self.title! == K.VCTitle.mangaHome {
-            topButton.setTitle("Top Manga", for: .normal)
-        }
+        topButton.setTitle("Top Rated", for: .normal)
         popularButton.contentHorizontalAlignment = .left
         popularButton.setTitle("Popular", for: .normal)
         
