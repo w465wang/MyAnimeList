@@ -22,6 +22,7 @@
 		3452F4A523F9FB8A003AD1AB /* TopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452F4A423F9FB8A003AD1AB /* TopModel.swift */; };
 		3452F4A723F9FBE1003AD1AB /* TopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452F4A623F9FBE1003AD1AB /* TopManager.swift */; };
 		3452F4A923FA0375003AD1AB /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452F4A823FA0375003AD1AB /* TopViewController.swift */; };
+		3452F4AB23FB5B0E003AD1AB /* RelatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452F4AA23FB5B0E003AD1AB /* RelatedViewController.swift */; };
 		3453FBED23CD70D8003321B0 /* CollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3453FBEC23CD70D8003321B0 /* CollectionTableViewController.swift */; };
 		345CA41223CB871500078204 /* PersonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CA41123CB871500078204 /* PersonManager.swift */; };
 		345CA41423CB8A6000078204 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CA41323CB8A6000078204 /* PersonViewController.swift */; };
@@ -67,6 +68,7 @@
 		3452F4A423F9FB8A003AD1AB /* TopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopModel.swift; sourceTree = "<group>"; };
 		3452F4A623F9FBE1003AD1AB /* TopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopManager.swift; sourceTree = "<group>"; };
 		3452F4A823FA0375003AD1AB /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		3452F4AA23FB5B0E003AD1AB /* RelatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedViewController.swift; sourceTree = "<group>"; };
 		3453FBEC23CD70D8003321B0 /* CollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewController.swift; sourceTree = "<group>"; };
 		345CA41123CB871500078204 /* PersonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonManager.swift; sourceTree = "<group>"; };
 		345CA41323CB8A6000078204 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				344EDE2923C935C30084E96D /* StatViewController.swift */,
 				3497E52623C3DD2F00E65C9E /* ReviewViewController.swift */,
 				344EDE3123CA6D260084E96D /* PictureViewController.swift */,
+				3452F4AA23FB5B0E003AD1AB /* RelatedViewController.swift */,
 				3422B56823C7DEB800E01D1A /* CharacterViewController.swift */,
 				345CA41323CB8A6000078204 /* PersonViewController.swift */,
 				3453FBEC23CD70D8003321B0 /* CollectionTableViewController.swift */,
@@ -374,6 +377,7 @@
 				34B1014D23BF9A3C00D2C63E /* HomeViewController.swift in Sources */,
 				344EDE2C23CA66460084E96D /* PictureData.swift in Sources */,
 				3452F4A723F9FBE1003AD1AB /* TopManager.swift in Sources */,
+				3452F4AB23FB5B0E003AD1AB /* RelatedViewController.swift in Sources */,
 				34B38B3F23BE831500925B6F /* AnimeManager.swift in Sources */,
 				34B38B3D23BE82F700925B6F /* AnimeModel.swift in Sources */,
 				3452F4A923FA0375003AD1AB /* TopViewController.swift in Sources */,

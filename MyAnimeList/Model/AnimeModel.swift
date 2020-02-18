@@ -23,6 +23,7 @@ struct AnimeModel {
     let animeFavorites: String
     let animeSynopsis: String
     let animePremiered: String
+    let animeRelated: [String: [Related]]
 //    let animeColors: UIImageColors?
 }
 

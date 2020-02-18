@@ -13,7 +13,7 @@ class AnimeMangaViewController: UITableViewController {
     
     var animeManager = AnimeManager()
     var animeID = ""
-    var animeInfo = AnimeModel(animeImageURL: "", animeTitle: "", animeType: "", animeEpisodes: "", animeStatus: "", animeScore: "", animeScoredBy: "", animeRank: "", animePopularity: "", animeMembers: "", animeFavorites: "", animeSynopsis: "", animePremiered: "")
+    var animeInfo = AnimeModel(animeImageURL: "", animeTitle: "", animeType: "", animeEpisodes: "", animeStatus: "", animeScore: "", animeScoredBy: "", animeRank: "", animePopularity: "", animeMembers: "", animeFavorites: "", animeSynopsis: "", animePremiered: "", animeRelated: [:])
     
     var mangaManager = MangaManager()
     var mangaID = ""
@@ -34,7 +34,7 @@ class AnimeMangaViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -78,7 +78,7 @@ class AnimeMangaViewController: UITableViewController {
                 
                 return cell1
             } else if indexPath.row == 2 {
-                let cell2 = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.animeInfo, for: indexPath) as! AnimeInfoCell
+                let cell2: AnimeInfoCell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.animeInfo, for: indexPath) as! AnimeInfoCell
                 
                 if animeID != "" {
                     cell2.animeScore.text = "Score: \(animeInfo.animeScore)"
@@ -109,6 +109,10 @@ class AnimeMangaViewController: UITableViewController {
                 let cell5 = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.animeReviews, for: indexPath) as! ButtonCell
                 
                 return cell5
+            } else if indexPath.row == 6 {
+                let cell6 = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifier.animeRelated, for: indexPath) as! ButtonCell
+                
+                return cell6
             }
         }
         
@@ -127,11 +131,13 @@ class AnimeMangaViewController: UITableViewController {
             
             self.tableView.reloadData()
         } else if indexPath.row == 3 {
-            performSegue(withIdentifier: K.Segues.characterList, sender: self)
+            performSegue(withIdentifier: K.Segues.animeMangaCharacterList, sender: self)
         } else if indexPath.row == 4 {
-            performSegue(withIdentifier: K.Segues.stat, sender: self)
+            performSegue(withIdentifier: K.Segues.animeMangaStat, sender: self)
         } else if indexPath.row == 5 {
-            performSegue(withIdentifier: K.Segues.review, sender: self)
+            performSegue(withIdentifier: K.Segues.animeMangaReview, sender: self)
+        } else if indexPath.row == 6 {
+            performSegue(withIdentifier: K.Segues.animeMangaRelated, sender: self)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -142,7 +148,7 @@ class AnimeMangaViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.Segues.characterList {
+        if segue.identifier == K.Segues.animeMangaCharacterList {
             let destinationVC = segue.destination as! CharacterListViewController
             
             if animeID != "" {
@@ -150,7 +156,7 @@ class AnimeMangaViewController: UITableViewController {
             } else if mangaID != "" {
                 destinationVC.mangaID = mangaID
             }
-        } else if segue.identifier == K.Segues.stat {
+        } else if segue.identifier == K.Segues.animeMangaStat {
             let destinationVC = segue.destination as! StatViewController
             
             if animeID != "" {
@@ -158,13 +164,24 @@ class AnimeMangaViewController: UITableViewController {
             } else if mangaID != "" {
                 destinationVC.mangaID = mangaID
             }
-        } else if segue.identifier == K.Segues.review {
+        } else if segue.identifier == K.Segues.animeMangaReview {
             let destinationVC = segue.destination as! ReviewViewController
             
             if animeID != "" {
                 destinationVC.animeID = animeID
             } else if mangaID != "" {
                 destinationVC.mangaID = mangaID
+            }
+        } else if segue.identifier == K.Segues.animeMangaRelated {
+            let destinationVC = segue.destination as! RelatedViewController
+
+            if animeID != "" {
+                for item in animeInfo.animeRelated {
+                    destinationVC.titles.append(item.key)
+                    destinationVC.related.append(item.value)
+                }
+            } else if mangaID != "" {
+//                destinationVC.related = mangaInfo.mangaRelated
             }
         } else if segue.identifier == K.Segues.animePicture {
             let destinationVC = segue.destination as! PictureViewController
@@ -185,7 +202,7 @@ class AnimeMangaViewController: UITableViewController {
 extension AnimeMangaViewController: AnimeManagerDelegate {
     
     func didUpdateAnime(_ animeManager: AnimeManager, _ anime: AnimeModel) {
-        animeInfo = AnimeModel(animeImageURL: anime.animeImageURL, animeTitle: anime.animeTitle, animeType: anime.animeType, animeEpisodes: anime.animeEpisodes, animeStatus: anime.animeStatus, animeScore: anime.animeScore, animeScoredBy: anime.animeScoredBy, animeRank: anime.animeRank, animePopularity: anime.animePopularity, animeMembers: anime.animeMembers, animeFavorites: anime.animeFavorites, animeSynopsis: anime.animeSynopsis, animePremiered: anime.animePremiered)
+        animeInfo = AnimeModel(animeImageURL: anime.animeImageURL, animeTitle: anime.animeTitle, animeType: anime.animeType, animeEpisodes: anime.animeEpisodes, animeStatus: anime.animeStatus, animeScore: anime.animeScore, animeScoredBy: anime.animeScoredBy, animeRank: anime.animeRank, animePopularity: anime.animePopularity, animeMembers: anime.animeMembers, animeFavorites: anime.animeFavorites, animeSynopsis: anime.animeSynopsis, animePremiered: anime.animePremiered, animeRelated: anime.animeRelated)
         
         DispatchQueue.main.async {
             self.tableView.reloadData()

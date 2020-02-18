@@ -79,6 +79,10 @@ class ReviewCell: UITableViewCell {
     @IBOutlet weak var reviewContent: UILabel!
 }
 
+class RelatedCell: UITableViewCell {
+    @IBOutlet weak var relatedName: UILabel!
+}
+
 class PictureCell: UICollectionViewCell {
     @IBOutlet weak var picture: UIImageView!
 }

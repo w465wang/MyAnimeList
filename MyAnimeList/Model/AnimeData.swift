@@ -22,6 +22,13 @@ struct AnimeData: Codable {
     let favorites: Int
     let synopsis: String?
     let premiered: String?
+    let related: [String: [Related]]
+}
+
+struct Related: Codable {
+    let mal_id: Int
+    let type: String
+    let name: String
 }
 
 // MARK: - Characters and Staff

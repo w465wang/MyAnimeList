@@ -124,7 +124,7 @@ struct AnimeManager {
                 premiered = "N/A"
             }
             
-            let anime = AnimeModel(animeImageURL: imageURL, animeTitle: title, animeType: type, animeEpisodes: episodes, animeStatus: status, animeScore: score, animeScoredBy: scoredBy, animeRank: rank, animePopularity: popularity, animeMembers: members, animeFavorites: favorites, animeSynopsis: synopsis, animePremiered: premiered)
+            let anime = AnimeModel(animeImageURL: imageURL, animeTitle: title, animeType: type, animeEpisodes: episodes, animeStatus: status, animeScore: score, animeScoredBy: scoredBy, animeRank: rank, animePopularity: popularity, animeMembers: members, animeFavorites: favorites, animeSynopsis: synopsis, animePremiered: premiered, animeRelated: decodedData.related)
             
             return anime
         } catch {
