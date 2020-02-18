@@ -17,7 +17,7 @@ class AnimeMangaViewController: UITableViewController {
     
     var mangaManager = MangaManager()
     var mangaID = ""
-    var mangaInfo = MangaModel(mangaTitle: "", mangaType: "", mangaStatus: "", mangaImageURL: "", mangaVolChap: "", mangaRank: "", mangaScore: "", mangaScoredBy: "", mangaPopularity: "", mangaMembers: "", mangaFavorites: "", mangaSynopsis: "")
+    var mangaInfo = MangaModel(mangaTitle: "", mangaType: "", mangaStatus: "", mangaImageURL: "", mangaVolChap: "", mangaRank: "", mangaScore: "", mangaScoredBy: "", mangaPopularity: "", mangaMembers: "", mangaFavorites: "", mangaSynopsis: "", mangaRelated: [:])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,11 +177,24 @@ class AnimeMangaViewController: UITableViewController {
 
             if animeID != "" {
                 for item in animeInfo.animeRelated {
-                    destinationVC.titles.append(item.key)
-                    destinationVC.related.append(item.value)
+                    if item.key == "Adaptation" {
+                        destinationVC.titles.insert(item.key, at: 0)
+                        destinationVC.related.insert(item.value, at: 0)
+                    } else {
+                        destinationVC.titles.append(item.key)
+                        destinationVC.related.append(item.value)
+                    }
                 }
             } else if mangaID != "" {
-//                destinationVC.related = mangaInfo.mangaRelated
+                for item in mangaInfo.mangaRelated {
+                    if item.key == "Adaptation" {
+                        destinationVC.titles.insert(item.key, at: 0)
+                        destinationVC.related.insert(item.value, at: 0)
+                    } else {
+                        destinationVC.titles.append(item.key)
+                        destinationVC.related.append(item.value)
+                    }
+                }
             }
         } else if segue.identifier == K.Segues.animePicture {
             let destinationVC = segue.destination as! PictureViewController
@@ -239,7 +252,7 @@ extension AnimeMangaViewController: AnimeManagerDelegate {
 extension AnimeMangaViewController: MangaManagerDelegate {
     
     func didUpdateManga(_ mangaManager: MangaManager, _ manga: MangaModel) {
-        mangaInfo = MangaModel(mangaTitle: manga.mangaTitle, mangaType: manga.mangaType, mangaStatus: manga.mangaStatus, mangaImageURL: manga.mangaImageURL, mangaVolChap: manga.mangaVolChap, mangaRank: manga.mangaRank, mangaScore: manga.mangaScore, mangaScoredBy: manga.mangaScoredBy, mangaPopularity: manga.mangaPopularity, mangaMembers: manga.mangaMembers, mangaFavorites: manga.mangaFavorites, mangaSynopsis: manga.mangaSynopsis)
+        mangaInfo = MangaModel(mangaTitle: manga.mangaTitle, mangaType: manga.mangaType, mangaStatus: manga.mangaStatus, mangaImageURL: manga.mangaImageURL, mangaVolChap: manga.mangaVolChap, mangaRank: manga.mangaRank, mangaScore: manga.mangaScore, mangaScoredBy: manga.mangaScoredBy, mangaPopularity: manga.mangaPopularity, mangaMembers: manga.mangaMembers, mangaFavorites: manga.mangaFavorites, mangaSynopsis: manga.mangaSynopsis, mangaRelated: manga.mangaRelated)
         
         DispatchQueue.main.async {
             self.tableView.reloadData()

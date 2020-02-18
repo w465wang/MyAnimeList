@@ -87,11 +87,6 @@ struct MangaManager {
             
             let chapters: String
             if decodedData.chapters != nil {
-                if decodedData.volumes! == 1 {
-                    
-                } else {
-                    
-                }
                 chapters = "Chapters: \(decodedData.chapters!)"
             } else {
                 chapters = "Chapters: Unknown"
@@ -125,7 +120,7 @@ struct MangaManager {
                 synopsis = "No synopsis information has been added to this title."
             }
 
-            let manga = MangaModel(mangaTitle: title, mangaType: type, mangaStatus: status, mangaImageURL: imageURL, mangaVolChap: volChap, mangaRank: rank, mangaScore: score, mangaScoredBy: scoredBy, mangaPopularity: popularity, mangaMembers: members, mangaFavorites: favorites, mangaSynopsis: synopsis)
+            let manga = MangaModel(mangaTitle: title, mangaType: type, mangaStatus: status, mangaImageURL: imageURL, mangaVolChap: volChap, mangaRank: rank, mangaScore: score, mangaScoredBy: scoredBy, mangaPopularity: popularity, mangaMembers: members, mangaFavorites: favorites, mangaSynopsis: synopsis, mangaRelated: decodedData.related)
             
             return manga
         } catch {

@@ -22,6 +22,7 @@ struct MangaData: Codable {
     let members: Int
     let favorites: Int
     let synopsis: String?
+    let related: [String: [Related]] // from AnimeData
 }
 
 // MARK: - Characters

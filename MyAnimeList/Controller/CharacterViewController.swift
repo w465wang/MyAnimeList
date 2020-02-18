@@ -64,7 +64,7 @@ class CharacterViewController: UITableViewController {
                 }
                 
                 cell1.title.text = "About"
-                cell1.about.text = "\(nicknames)\(characterInfo.characterAbout)"
+                cell1.about.text = "\(nicknames)\(characterInfo.characterAbout.replacingOccurrences(of: "\\n", with: ""))"
                 
                 return cell1
             } else if indexPath.row == 2 {
