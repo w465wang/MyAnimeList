@@ -97,7 +97,12 @@ struct AnimeManager {
                 score = "N/A"
             }
             
-            let scoredBy = String(decodedData.scored_by)
+            let scoredBy: String
+            if decodedData.scored_by != nil {
+                scoredBy = String(decodedData.scored_by!)
+            } else {
+                scoredBy = "N/A"
+            }
             
             let rank: String
             if decodedData.rank != nil {

@@ -108,7 +108,13 @@ struct MangaManager {
                 score = "N/A"
             }
             
-            let scoredBy = String(decodedData.scored_by)
+            let scoredBy: String
+            if decodedData.scored_by != nil {
+                scoredBy = String(decodedData.scored_by!)
+            } else {
+                scoredBy = "N/A"
+            }
+            
             let popularity = String(decodedData.popularity)
             let members = String(decodedData.members)
             let favorites = String(decodedData.favorites)

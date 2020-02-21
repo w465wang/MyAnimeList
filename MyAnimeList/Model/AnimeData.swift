@@ -15,7 +15,7 @@ struct AnimeData: Codable {
     let episodes: Int?
     let status: String
     let score: Double?
-    let scored_by: Int
+    let scored_by: Int?
     let rank: Int?
     let popularity: Int
     let members: Int

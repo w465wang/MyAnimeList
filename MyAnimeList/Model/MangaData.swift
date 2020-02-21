@@ -17,7 +17,7 @@ struct MangaData: Codable {
     let chapters: Int?
     let rank: Int?
     let score: Double?
-    let scored_by: Int
+    let scored_by: Int?
     let popularity: Int
     let members: Int
     let favorites: Int
